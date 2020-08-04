@@ -1,0 +1,38 @@
+{
+	"title": "Module 3 - Explore your app",
+	"description": "Explore your app",
+	"pathwayTitle": "Kubernetes Bootcamp",
+	"backend": {
+		"port": 30000,
+		"dockerimage": "minikube-running"
+	},
+	"environment": {
+		"uilayout": "terminal",
+		"hideintro": false,
+		"hidefinish": false
+	},
+	"details": {
+		"steps": [{
+			"title": " Step 1 Check application configuration",
+			"code": "foreground.sh",
+			"text": "step1.md"
+		}, {
+			"title": "Step 2 Show the app in the terminal",
+			"text": "step2.md"
+		}, {
+			"title": "Step 3 View the container logs",
+			"text": "step3.md"
+		}, {
+			"title": "Step 4 Executing command on the container ",
+			"text": "step4.md"
+		}],
+		"intro": {
+			"courseData": "env-init.sh",
+			"text": "intro.md"
+		},
+		"finish": {
+			"text": "finish.md"
+		}
+	},
+	"embedded_survey_url": "https://docs.google.com/forms/d/e/1FAIpQLScMbLRAbaZ8NleOFYRrepdIwCbhClHK3abu3SgzMn1KT_H5iA/viewform?entry.434419381="
+}
