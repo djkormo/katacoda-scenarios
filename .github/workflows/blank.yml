@@ -1,0 +1,10 @@
+name: Validate Katacoda
+on: push
+jobs:
+  build:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+    - id: checkout-code
+      name: Checkout code
+      uses: actions/checkout@v2
