@@ -1,1 +1,0 @@
-# This concludes the Kubernetes Bootcamp interactive tutorial. #
