@@ -1,12 +1,12 @@
 {
-    "title": "Git basics",
-    "description": "Basic git commands",
-    "difficulty": "beginner",
-    "time": "2 minutes",
+    "title": "Podstawy Gita",
+    "description": "Podstawowy kurs Gita",
+    "difficulty": "początkujący",
+    "time": "2 godziny",
     "details": {
       "steps": [
         {
-          "title": "1) Create a git repository",
+          "title": "1) Utwórz repozytorium Gita",
           "text": "010.git-init.md",
           "verify": "010.git-init.verify.sh"
         }
