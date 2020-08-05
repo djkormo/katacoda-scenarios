@@ -6,39 +6,49 @@
     "details": {
       "steps": [
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "1) Podstawowy kurs Gita",
           "text": "010.git-init.md",
           "verify": "010.git-init.verify.sh"
         }
         ,
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "2) Podstawowy kurs Gita",
           "text": "020.git-init.md"
         }
         ,
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "3) Podstawowy kurs Gita",
           "text": "030.git-init.md"
         }
         ,
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "4) Podstawowy kurs Gita",
           "text": "040.git-init.md"
         }
         ,
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "5) Podstawowy kurs Gita",
           "text": "050.git-init.md"
         }
         ,
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "6) Podstawowy kurs Gita",
           "text": "060.git-init.md"
         },
         {
-          "title": "1) Utwórz repozytorium Gita",
+          "title": "7) Podstawowy kurs Gita",
           "text": "070.git-init.md"
         }
+        ,
+        {
+          "title": "8) Podstawowy kurs Gita",
+          "text": "080.git-init.md"
+        }
+        ,
+        {
+          "title": "9) Podstawowy kurs Gita",
+          "text": "090.git-init.md"
+        }        
       ],
       "intro": {
         "text": "000.intro.md",
