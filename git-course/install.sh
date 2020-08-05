@@ -2,3 +2,5 @@
 
 apt install --yes apache2 
 apt install --yes composer
+
+sudo service apache2 status
