@@ -52,7 +52,9 @@
       ],
       "intro": {
         "text": "000.intro.md",
-        "credits": ""
+        "credits": "https://en.wikipedia.org/wiki/Git",
+        "courseData": "install.sh",
+        "code": "init.sh"
       },
       "finish": {
         "text": "999.finish.md"
