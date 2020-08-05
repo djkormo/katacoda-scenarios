@@ -53,6 +53,6 @@
       "uimessage1": "\u001b[32mTwój interaktywny Terminal Bash.\r\n"
     },
     "backend": {
-      "imageid": "ubuntu:1804"
+      "imageid": "ubuntu"
     }
   }
