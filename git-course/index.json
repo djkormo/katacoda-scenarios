@@ -61,7 +61,7 @@
       }
     },
     "environment": {
-      "uilayout": "vscode-terminal-split",
+      "uilayout": "terminal",
       "showide": true,
       "uimessage1": "\u001b[32mTwój interaktywny Terminal Bash.\r\n"
     },
