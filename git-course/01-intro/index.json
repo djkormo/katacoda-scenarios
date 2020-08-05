@@ -1,0 +1,29 @@
+{
+    "title": "Git basics",
+    "description": "Basic git commands",
+    "difficulty": "beginner",
+    "time": "2 minutes",
+    "details": {
+      "steps": [
+        {
+          "title": "1) Create a git repository",
+          "text": "010.git-init.md",
+          "verify": "010.git-init.verify.sh"
+        }
+      ],
+      "intro": {
+        "text": "000.intro.md",
+        "credits": ""
+      },
+      "finish": {
+        "text": "999.finish.md"
+      }
+    },
+    "environment": {
+      "uilayout": "terminal",
+      "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\n"
+    },
+    "backend": {
+      "imageid": "ubuntu"
+    }
+  }
