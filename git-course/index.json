@@ -10,6 +10,35 @@
           "text": "010.git-init.md",
           "verify": "010.git-init.verify.sh"
         }
+        ,
+        {
+          "title": "1) Utwórz repozytorium Gita",
+          "text": "020.git-init.md"
+        }
+        ,
+        {
+          "title": "1) Utwórz repozytorium Gita",
+          "text": "030.git-init.md"
+        }
+        ,
+        {
+          "title": "1) Utwórz repozytorium Gita",
+          "text": "040.git-init.md"
+        }
+        ,
+        {
+          "title": "1) Utwórz repozytorium Gita",
+          "text": "050.git-init.md"
+        }
+        ,
+        {
+          "title": "1) Utwórz repozytorium Gita",
+          "text": "060.git-init.md"
+        }
+        {
+          "title": "1) Utwórz repozytorium Gita",
+          "text": "070.git-init.md"
+        }
       ],
       "intro": {
         "text": "000.intro.md",
@@ -21,9 +50,9 @@
     },
     "environment": {
       "uilayout": "terminal",
-      "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\n"
+      "uimessage1": "\u001b[32mTwój interaktywny Terminal Bash.\r\n"
     },
     "backend": {
-      "imageid": "ubuntu"
+      "imageid": "ubuntu:1804"
     }
   }
