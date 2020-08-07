@@ -6,7 +6,6 @@ apt install --yes emacs
 apt install --yes lynx
 sudo service apache2 status
 
-
 cat <<EOF >~/.bashrc
 force_color_prompt=yes
 color_prompt=yes
