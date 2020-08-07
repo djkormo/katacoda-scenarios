@@ -20,7 +20,8 @@
         ,
         {
           "title": "3) Podstawowy kurs Gita",
-          "text": "030.git-init.md"
+          "text": "030.git-init.md",
+          "background": "run-command-03-in-background.sh"
         }
         ,
         {
