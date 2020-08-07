@@ -3,21 +3,14 @@
 apt install --yes apache2 
 apt install --yes composer
 apt install --yes emacs
-apt install --yes lynx
+apt install --yes lynx mc nano
 sudo service apache2 status
 
 cat <<EOF >~/.bashrc
-force_color_prompt=yes
-color_prompt=yes
-parse_git_branch() {
+git_branch() {
  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-if [ "$color_prompt" = yes ]; then
- PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
-else
- PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
-fi
-unset color_prompt force_color_prompt
+export PS1="\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\]\$(git_branch)\$ "
 EOF
 
 source ~/.bashrc
