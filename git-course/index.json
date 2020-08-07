@@ -14,7 +14,8 @@
         {
           "title": "2) Podstawowy kurs Gita",
           "text": "020.git-init.md",
-          "background": "run-command-02-in-background.sh"
+          "background": "run-command-02-in-background.sh",
+          "verify": "020.git-init.verify.sh"
         }
         ,
         {
