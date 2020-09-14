@@ -1,0 +1,32 @@
+{
+    "title": "Piaskownica dla Kubernetes",
+    "description": "Piaskownica dla Kubernetes",
+    "difficulty": "początkujący",
+    "time": "2 godziny",
+    "details": {
+      "steps": [
+        {
+          "title": "1) Piaskownica dla Kubernetes",
+          "text": "010.k8s-init.md",
+          "foreground": "clear.sh"
+         
+      ],
+      "intro": {
+        "text": "000.intro.md",
+        "credits": "https://en.wikipedia.org/wiki/Git",
+        "courseData": "install.sh",
+        "code": "init.sh"
+      },
+      "finish": {
+        "text": "999.finish.md"
+      }
+    },
+    "environment": {
+      "uilayout": "terminal",
+      "showide": true,
+      "uimessage1": "\u001b[32mTwój interaktywny Terminal Bash.\r\n"
+    },
+    "backend": {
+      "imageid": "kubernetes-cluster-running:1.18"
+    }
+  }
