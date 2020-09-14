@@ -9,7 +9,7 @@
           "title": "1) Piaskownica dla Kubernetes",
           "text": "010.k8s-init.md",
           "foreground": "clear.sh"
-         
+        } 
       ],
       "intro": {
         "text": "000.intro.md",
