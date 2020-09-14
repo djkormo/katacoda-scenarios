@@ -1,32 +1,26 @@
 {
-    "title": "Piaskownica dla Kubernetes",
-    "description": "Piaskownica dla Kubernetes",
-    "difficulty": "początkujący",
-    "time": "2 godziny",
-    "details": {
-      "steps": [
-        {
-          "title": "1) Piaskownica dla Kubernetes",
-          "text": "010.k8s-init.md",
-          "foreground": "clear.sh"
-        } 
-      ],
-      "intro": {
-        "text": "000.intro.md",
-        "credits": "https://en.wikipedia.org/wiki/Git",
-        "courseData": "install.sh",
-        "code": "init.sh"
+  "title": "Kubernetes",
+  "description": "Multi node Kubernetes cluster configured using Kubeadm",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
       },
-      "finish": {
-        "text": "999.finish.md"
+      {
+        "title": "Step 2",
+        "text": "step2.md"
       }
-    },
-    "environment": {
-      "uilayout": "terminal",
-      "showide": true,
-      "uimessage1": "\u001b[32mTwój interaktywny Terminal Bash.\r\n"
-    },
-    "backend": {
-      "imageid": "kubernetes-cluster:1.17"
+    ],
+    "finish": {
+      "text": "finish.md"
     }
+  },
+  "environment": {
+    "hideintro": true,
+    "uilayout": "terminal-terminal"
+  },
+  "backend": {
+    "imageid": "kubernetes-cluster:1.17"
   }
+}
