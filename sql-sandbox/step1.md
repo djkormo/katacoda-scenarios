@@ -1,13 +1,13 @@
 
 Install postgresql on Ubuntu 16.04
 
-`cat /sudo apt-get update`{{execute}}
+`cat /etc/os-release`{{execute}}
 
 
 `sudo apt-get update`{{execute}}
 
 
-`sudo apt-get install postgresql postgresql-contrib`{{execute}}
+`sudo apt-get install postgresql postgresql-contrib  phppgadmin -y `{{execute}}
 
 
 `sudo -u postgres psql`{{execute}}
@@ -21,6 +21,6 @@ Install postgresql on Ubuntu 16.04
 
 `systemctl status postgresql`{{execute}}
 
-
+`systemctl status postgresql`{{execute}}
 
 
