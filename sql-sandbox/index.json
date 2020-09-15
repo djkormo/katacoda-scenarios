@@ -21,7 +21,7 @@
     "showide": true,
     "uilayout": "terminal",
     "showdashboard": true,
-    "dashboards": [{"name": "Display 80", "port": 80}, {"name": "Display 8080", "port": 8080}],
+    "dashboards": [{"name": "Display 80", "port": 80}, {"name": "Display 8080", "port": 8080}]
   },
   "backend": {
     "imageid": "ubuntu"
