@@ -45,7 +45,7 @@ nano config.inc.php
 
 `cat /etc/phppgadmin/config.inc.php |grep "conf\['extra_login_security'\]"`{{execute}}
 
-`sed -i 's/'conf['extra_login_security'] = true'/'conf['extra_login_security'] = false'/g' /etc/phppgadmin/config.inc.php`{execute}
+`sed -i s/'conf['extra_login_security'] = true'/'conf['extra_login_security'] = false'/g /etc/phppgadmin/config.inc.php`{execute}
 
 `cat /etc/phppgadmin/config.inc.php |grep "conf\['extra_login_security'\]"`{{execute}}
 
@@ -53,6 +53,6 @@ nano config.inc.php
 Find the line $conf['extra_login_security'] = true; and change the value to false so you can login to phpPgAdmin with user postgres.
 
 
-systemctl restart postgresql
-systemctl restart apache2
+`systemctl restart postgresql`{{execute}}
+`systemctl restart apache2`{{execute}}
 
