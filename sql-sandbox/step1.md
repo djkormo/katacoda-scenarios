@@ -33,7 +33,7 @@ nano phppgadmin.conf
 
 Comment out the line #Require local by adding a # in front of the line and add below the line allow from all so that you can access from your browser.
 
-`sed -i  s/'#Require local'/'##Require local'/g   /etc/apache2/conf-available/phppgadmin.conf`{{execute}}
+`sed -i  s/'Require local'/'#Require local'/g   /etc/apache2/conf-available/phppgadmin.conf`{{execute}}
 
 
 `cat /etc/apache2/conf-available/phppgadmin.conf |grep "Require local"`{{execute}}
