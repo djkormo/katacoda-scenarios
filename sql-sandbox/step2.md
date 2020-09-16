@@ -6,7 +6,7 @@ Install mysql on Ubuntu 16.04
 
 `docker pull mysql/mysql-server:5.7`{{execute}}
 
-`docker run --network=sql --name=mysqlCon -p 3306:3306 -d mysql/mysql-server:5.7`{{execute}}
+`docker run --network=host --name=mysqlCon -p 3306:3306 -d mysql/mysql-server:5.7`{{execute}}
 
 `sudo docker logs mysqlCon`{{execute}}
 
@@ -17,4 +17,9 @@ Install mysql on Ubuntu 16.04
 `GRANT ALL PRIVILEGES ON *.* to root@'%' IDENTIFIED BY 'root';`{{execute}}
 
 
-`docker run  --network=sql -it --rm -p 8080:8080 -p 25482:25482 taivokasper/omnidb`{{execute}}
+`docker run  --network=sql -d  -p 8080:8080 -p 25482:25482 taivokasper/omnidb`{{execute}}
+
+`docker run -d  --network=host -v config-omnidb:/etc/omnidb -p 8080:8080 -p 25482:25482 taivokasper/omnidb`
+
+
+sudo docker exec -it mysqlCon cat /etc/mysql/mysql.conf.d/mysqld.cnf
