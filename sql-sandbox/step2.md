@@ -22,7 +22,7 @@ Install mysql on Ubuntu 16.04
 
 `docker run  --network=sql -d  -p 8080:8080 -p 25482:25482 taivokasper/omnidb`{{execute}}
 
-`docker run -d  --network=host -v config-omnidb:/etc/omnidb -p 8080:8080 -p 25482:25482 taivokasper/omnidb`{{execute}}
+`docker run -d  --network=host  --name=omnidb  -v config-omnidb:/etc/omnidb -p 8080:8080 -p 25482:25482 taivokasper/omnidb`{{execute}}
 
 
 `netstat -tulnp | grep mysql`{{execute}}
