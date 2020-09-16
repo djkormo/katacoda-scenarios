@@ -13,14 +13,12 @@ Install mysql on Ubuntu 16.04
 `sudo docker exec -it mysqlCon mysql -uroot -p`{{execute}}
 
 
-`\quit`{{execute}}
-
 `ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassword';`{{execute}}
 
-`GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "abc123456";` {{execute}}
+`GRANT ALL PRIVILEGES ON *.* to root@'%' IDENTIFIED BY 'NewPassword';`{{execute}}
 
-`GRANT ALL PRIVILEGES ON *.* to root@'%' IDENTIFIED BY 'root';`{{execute}}
 
+`\quit`{{execute}}
 
 `docker run  --network=sql -d  -p 8080:8080 -p 25482:25482 taivokasper/omnidb`{{execute}}
 
