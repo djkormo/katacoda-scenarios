@@ -31,7 +31,7 @@ To download the latest stable version of the image, open a terminal and type the
 
 After downloading the image, we need to run the container making sure that the container connects with the other container running mysql. In order to do so we type the following command:
 
-`docker run --name my-own-phpmyadmin -d --link my-own-mysql:db -p 8081:80 phpmyadmin/phpmyadmin`{{execute}}
+`docker run --name my-own-phpmyadmin -d --link my-own-mysql:db -p 8080:80 phpmyadmin/phpmyadmin`{{execute}}
 
 
 `docker ps -a`{{execute}}
