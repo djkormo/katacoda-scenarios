@@ -1,11 +1,11 @@
 https://medium.com/@migueldoctor/run-mysql-phpmyadmin-locally-in-3-steps-using-docker-74eb735fa1fc
 
 
-`docker pull mysql:8.0.1`{{execute}}
+`docker pull mysql:latest`{{execute}}
 
 The previous command will download the version 8.0.1 of mysql within an image available in the Docker store, so now you can run it into your local machine:
 
-`docker run --name my-own-mysql -e MYSQL_ROOT_PASSWORD=mypass123 -d mysql:8.0.1`{{execute}}
+`docker run --name my-own-mysql -e MYSQL_ROOT_PASSWORD=mypass123 -d mysql:latest`{{execute}}
 
 Let's explain the options for the command docker run.
 
