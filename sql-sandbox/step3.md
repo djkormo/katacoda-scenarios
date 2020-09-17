@@ -17,9 +17,10 @@ Let's explain the options for the command docker run.
 If everything went well you could see the running container by typing the following command:
 
 `docker ps -a`{{execute}}
-
+<pre>
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                 NAMES
 d47128c8198c        mysql:8.0.1        "docker-entrypoint.s…"   33 seconds ago      Up 32 seconds       3306/tcp, 33060/tcp   my-own-mysql
+</pre>
 
 Step 2: Obtaining and running phpMyAdmin docker container
 
