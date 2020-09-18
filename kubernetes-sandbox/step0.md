@@ -8,7 +8,7 @@ The Kubernetes nodes are not configured. If you want to configure the nodes then
 
 `kubeadm init --kubernetes-version $(kubeadm version -o short)`{{execute HOST1}}
 
-
+`kubectl cluster-info`{{execute}}
 
 `kubectl get nodes`{{execute}}
 

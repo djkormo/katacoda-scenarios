@@ -19,6 +19,11 @@
         "foreground": "clear.sh"
       }
     ],
+    "intro": {
+      "text": "000.intro.md",
+      "credits": "https://kubernetes.io/",
+      "courseData": "install.sh"
+    },
     "finish": {
       "text": "finish.md"
     }
@@ -28,6 +33,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "kubernetes-cluster-running:1.18"
+    "imageid": "kubernetes-cluster:1.18"
   }
 }
