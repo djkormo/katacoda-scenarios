@@ -12,9 +12,9 @@ The Kubernetes nodes are not configured. If you want to configure the nodes then
 
 
 
-`mkdir -p $HOME/.kube`
-`sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config`
-`sudo chown $(id -u):$(id -g) $HOME/.kube/config` {{execute}}
+`mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config`{{execute}}
 
 Initialize cluster networking:
 

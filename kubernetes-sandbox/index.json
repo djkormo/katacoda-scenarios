@@ -29,7 +29,7 @@
     }
   },
   "environment": {
-    "hideintro": true,
+    "hideintro": false,
     "uilayout": "terminal"
   },
   "backend": {
