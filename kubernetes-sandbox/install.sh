@@ -2,7 +2,7 @@
 
 apt-get update
 
-apt-get install kubelet=1.17.0-00 kubeadm=1.17.0-00 kubectl=1.17.0-00
+apt-get install kubelet=1.15.0-00 kubeadm=1.15.0-00 kubectl=1.15.0-00
 
 cat <<EOF >~/.bashrc
 git_branch() {
