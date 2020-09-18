@@ -1,4 +1,4 @@
-Upgrade cluster from version 1.17 to 1.18
+Upgrade cluster from version 1.18 to 1.19
 
 
 `kubectl get nodes`{{execute}}
@@ -8,12 +8,12 @@ Upgrade cluster from version 1.17 to 1.18
 
 `apt-get update`{{execute}}
 
-`apt-get install kubectl=1.18.0-00 kubelet=1.18.0-00`{{execute}}
+`apt-get install kubectl=1.19.0-00 kubelet=1.19.0-00`{{execute}}
 
 
 `kubeadm upgrade plan`{{execute}}
 
-`kubeadm  upgrade apply v1.18.0`{{execute}}
+`kubeadm  upgrade apply v1.19.0`{{execute}}
 
 `kubectl get nodes`{{execute}}
 
@@ -25,7 +25,7 @@ Upgrade cluster from version 1.17 to 1.18
 
 On node01 node
 
-`apt-get install kubelet=1.18.0-00`{{execute}}
+`apt-get install kubelet=1.19.0-00`{{execute}}
 
 `systemctl status kubelet`{{execute}}
 
@@ -39,8 +39,6 @@ On node01 node
 On master node
 
 `kubectl uncordon node01`{code}
-
-
 
 `kubectl get pod -o wide`{{}} 
 
