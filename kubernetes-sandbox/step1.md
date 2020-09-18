@@ -1,5 +1,48 @@
-If you need a cluster available, 
+Upgrade cluster from version 1.17 to 1.18
 
-The Kubernetes nodes are not configured. If you want to configure the nodes then you'd need to run `kubeadm` which has been set and configured. For example, for following command will initialise the master with the latest version installed.
 
-`kubeadm init --kubernetes-version $(kubeadm version -o short)`{{execute HOST1}}
+`kubectl get nodes`{{execute}}
+
+`kubectl get pod -o wide`{{execute}}
+
+
+`apt-get update`{{execute}}
+
+`apt-get install kubectl=1.18.0-00 kubelet=1.18.0-00`{{execute}}
+
+
+`kubeadm upgrade plan`{{execute}}
+
+`kubeadm  upgrade apply v1.18.0`{{execute}}
+
+`kubectl get nodes`{{execute}}
+
+`kubectl drain node01`{{execute}}
+
+`kubectl drain node01 --ignore-daemonsets`{{execute}}
+
+`ssh@node01`{{execute}}
+
+On node01 node
+
+`apt-get install kubelet=1.18.0-00`{{execute}}
+
+`systemctl status kubelet`{{execute}}
+
+`systemctl restart kubelet`{{execute}}
+
+`systemctl status kubelet`{{execute}}
+
+`exit`{{execute}}
+
+
+On master node
+
+`kubectl uncordon node01`{code}
+
+
+
+`kubectl get pod -o wide`{{}} 
+
+
+
