@@ -21,7 +21,7 @@ Upgrade cluster from version 1.18 to 1.19
 
 `kubectl drain node01 --ignore-daemonsets`{{execute}}
 
-`ssh@node01`{{execute}}
+`ssh node01`{{execute}}
 
 On node01 node
 
@@ -38,9 +38,9 @@ On node01 node
 
 On master node
 
-`kubectl uncordon node01`{code}
+`kubectl uncordon node01`{{execute}}
 
-`kubectl get pod -o wide`{{}} 
+`kubectl get pod -o wide`{{execute}} 
 
 
 

@@ -4,6 +4,11 @@
   "details": {
     "steps": [
       {
+        "title": "Step 0",
+        "text": "step0.md",
+        "foreground": "clear.sh"
+      },
+      {
         "title": "Step 1",
         "text": "step1.md",
         "foreground": "clear.sh"
