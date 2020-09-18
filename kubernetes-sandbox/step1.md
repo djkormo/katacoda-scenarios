@@ -8,7 +8,7 @@ Upgrade cluster from version 1.18 to 1.19
 
 `apt-get update`{{execute}}
 
-`apt-get install kubectl=1.19.0-00 kubelet=1.19.0-00`{{execute}}
+`apt-get install kubeadm=1.19.0-00 kubectl=1.19.0-00 kubelet=1.19.0-00 -y`{{execute}}
 
 
 `kubeadm upgrade plan`{{execute}}
@@ -25,7 +25,7 @@ Upgrade cluster from version 1.18 to 1.19
 
 On node01 node
 
-`apt-get install kubelet=1.19.0-00`{{execute}}
+`apt-get install kubelet=1.19.0-00 -y `{{execute}}
 
 `systemctl status kubelet`{{execute}}
 
