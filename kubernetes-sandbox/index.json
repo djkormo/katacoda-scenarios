@@ -4,12 +4,12 @@
   "details": {
     "steps": [
       {
-        "title": "Step 0",
+        "title": "Installing cluster k8s",
         "text": "step0.md",
         "foreground": "clear.sh"
       },
       {
-        "title": "Step 1",
+        "title": "Upgrading cluster k8s",
         "text": "step1.md",
         "foreground": "clear.sh"
       },
