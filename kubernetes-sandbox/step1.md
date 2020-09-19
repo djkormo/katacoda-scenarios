@@ -19,6 +19,21 @@ Upgrade cluster from version 1.18 to 1.19
 
 `kubectl drain node01`{{execute HOST1}}
 
+
+kubectl describe node node01 |grep Non-terminated -A 8
+
+<pre>
+Non-terminated Pods:          (6 in total)
+  Namespace                   Name                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
+  ---------                   ----                         ------------  ----------  ---------------  -------------  ---
+  default                     my-nginx-6b474476c4-4bpmx    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m36s
+  default                     my-nginx-6b474476c4-ghxf7    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m36s
+  default                     my-nginx-6b474476c4-llwqg    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m36s
+  kube-system                 coredns-66bff467f8-h6q7l     100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     6m58s
+  kube-system                 kube-proxy-jtg29             0 (0%)        0 (0%)      0 (0%)           0 (0%)         5m14s
+  kube-system                 kube-router-258xn            250m (12%)    0 (0%)      250Mi (6%)       0 (0%)         4m40s
+</pre>
+
 `kubectl drain node01 --ignore-daemonsets`{{execute HOST1}}
 
 `ssh node01`{{execute HOST1}}
@@ -47,4 +62,4 @@ On master node
 `kubectl get pod -o wide`{{execute}}} 
 
 
-
+To continue you should have 1.19 Kubernetes cluster with two nodes (ready)

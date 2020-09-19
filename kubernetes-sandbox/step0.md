@@ -40,7 +40,8 @@ How to get join command ?
 `kubeadm token create --print-join-command`{{execute}}
 
 List of all generated tokens
-`kubeadm token list`
+
+`kubeadm token list`{{execute}}
 
 
 
@@ -50,4 +51,4 @@ List of all generated tokens
 
 `kubectl get pod -o wide`{{execute}}
 
-
+To continue you should have 1.18 Kubernetes cluster with two nodes (ready)

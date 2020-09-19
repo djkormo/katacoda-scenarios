@@ -21,9 +21,11 @@ apt  install etcd-client
 
 See 'snap info etcd' for additional versions.
 </pre>
+
 `apt-get install etcd-client -y`{{execute}}
 
 `etcdctl --version`{{execute}}
+
 <pre>
 etcdctl version: 3.2.17
 API version: 2
@@ -38,7 +40,18 @@ API version: 3.2
 
 `etcdctl snapshot save help`{{execute}}
 
+
+
+
+
 Restore etcd
+
+
+To continue you have to backup etcd to /opt/etcd-backup.db file and next recover after disaster.
+
+
+
+
 
 
 
