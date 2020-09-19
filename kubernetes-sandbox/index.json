@@ -6,16 +6,19 @@
       {
         "title": "Installing Kubenetes cluster",
         "text": "step0.md",
+        "verify": "step0-verify.sh",
         "foreground": "clear.sh"
       },
       {
         "title": "Upgrading Kubernetes cluster",
         "text": "step1.md",
+        "verify": "step1-verify.sh",
         "foreground": "clear.sh"
       },
       {
         "title": "Backup and restore Kubernetes cluster ",
         "text": "step2.md",
+        "verify": "step2-verify.sh",
         "foreground": "clear.sh"
       }
     ],
