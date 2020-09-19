@@ -26,8 +26,10 @@ Initialize cluster networking:
  `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
 
 
-
+`ssh node01`{{execute}}
 On worker node (node01) execute  kubeadm join 
+
+`exit`{{execute}}
 
 `kubectl cluster-info`{{execute}}
 

@@ -4,17 +4,17 @@
   "details": {
     "steps": [
       {
-        "title": "Installing cluster k8s",
+        "title": "Installing Kubenetes cluster",
         "text": "step0.md",
         "foreground": "clear.sh"
       },
       {
-        "title": "Upgrading cluster k8s",
+        "title": "Upgrading Kubernetes cluster",
         "text": "step1.md",
         "foreground": "clear.sh"
       },
       {
-        "title": "Step 2",
+        "title": "Backup and restore Kubernetes cluster ",
         "text": "step2.md",
         "foreground": "clear.sh"
       }
