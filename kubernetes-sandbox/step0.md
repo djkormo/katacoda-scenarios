@@ -26,11 +26,23 @@ Initialize cluster networking:
 
 
 `ssh node01`{{execute}}
-On worker node (node01) execute  kubeadm join 
+On worker node (node01) 
+execute kubeadm join .... command.
 
-
+Return to master (controlplane) node
 
 `exit`{{execute}}
+
+Tip.
+
+How to get join command ?
+
+`kubeadm token create --print-join-command`{{execute}}
+
+List of all generated tokens
+`kubeadm token list`
+
+
 
 `kubectl cluster-info`{{execute}}
 
