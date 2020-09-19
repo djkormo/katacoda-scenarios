@@ -9,7 +9,8 @@
         "title": "Installing Kubenetes cluster",
         "text": "step0.md",
         "verify": "step0-verify.sh",
-        "foreground": "clear.sh"
+        "foreground": "clear.sh",
+        "code": "foreground.sh"
       },
       {
         "title": "Upgrading Kubernetes cluster",

@@ -10,7 +10,7 @@ The Kubernetes nodes are not configured. If you want to configure the nodes then
 
 `kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 10.5.0.0/16`{{execute HOST1}}
 
-
+Move cluster config file to your home directory.
 
 `mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -20,14 +20,15 @@ Initialize cluster networking:
 
 `kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml`{{execute}}
 
-
- (Optional) Create an nginx deployment:
+ (Optional) Create an example deployment:
 
  `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
 
 
 `ssh node01`{{execute}}
 On worker node (node01) execute  kubeadm join 
+
+
 
 `exit`{{execute}}
 
