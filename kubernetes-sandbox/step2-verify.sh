@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-echo "done"
+
+[ -d /opt/etcd-backup.db ] && [ -d /opt/etcd-backup.db ] && [ -f /opt/etcd-backup.db ] && echo "done"
