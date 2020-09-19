@@ -25,6 +25,7 @@ Upgrade cluster from version 1.18 to 1.19
 
 On node01 node
 
+`apt-get update`{{execute}}
 `apt-get install kubelet=1.19.0-00 -y `{{execute}}
 
 `systemctl status kubelet`{{execute}}
