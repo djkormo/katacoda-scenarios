@@ -36,11 +36,24 @@ Non-terminated Pods:          (6 in total)
 
 `kubectl drain node01 --ignore-daemonsets`{{execute HOST1}}
 
+<pre>
+node/node01 already cordoned
+WARNING: ignoring DaemonSet-managed Pods: kube-system/kube-proxy-pz94c, kube-system/kube-router-brhfw
+evicting pod default/my-nginx-6b474476c4-6rq86
+evicting pod default/my-nginx-6b474476c4-tcswf
+evicting pod default/my-nginx-6b474476c4-wqr6d
+pod/my-nginx-6b474476c4-tcswf evicted
+pod/my-nginx-6b474476c4-wqr6d evicted
+pod/my-nginx-6b474476c4-6rq86 evicted
+node/node01 evicted
+</pre>
+
 `ssh node01`{{execute HOST1}}
 
 On node01 node
 
 `apt-get update`{{execute}}
+
 `apt-get install kubelet=1.19.0-00 -y `{{execute}}
 
 `systemctl status kubelet`{{execute}}

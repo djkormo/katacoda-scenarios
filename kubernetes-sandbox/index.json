@@ -16,13 +16,15 @@
         "title": "Upgrading Kubernetes cluster",
         "text": "step1.md",
         "verify": "step1-verify.sh",
-        "foreground": "clear.sh"
+        "foreground": "clear.sh",
+        "answer": "step1-answer.md"
       },
       {
         "title": "Backup and restore Kubernetes cluster ",
         "text": "step2.md",
         "verify": "step2-verify.sh",
-        "foreground": "clear.sh"
+        "foreground": "clear.sh",
+        "answer": "step2-answer.md"
       }
     ],
     "intro": {
