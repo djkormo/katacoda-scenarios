@@ -19,6 +19,14 @@ Upgrade cluster from version 1.18 to 1.19
 
 `kubectl drain node01`{{execute HOST1}}
 
+<pre>
+node/node01 cordoned
+error: unable to drain node "node01", aborting command...
+
+There are pending nodes to be drained:
+ node01
+error: cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/kube-proxy-chm2m, kube-system/kube-router-ssqcq
+</pre>
 
 `kubectl describe node node01 |grep Non-terminated -A 8`{{execute}}
 
