@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-echo "done"
 
- [ -f ~/.kube/config ] && echo "done"
+[ -d ~/.kube/config ] && echo "done"
