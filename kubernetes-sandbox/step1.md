@@ -20,7 +20,7 @@ Upgrade cluster from version 1.18 to 1.19
 `kubectl drain node01`{{execute HOST1}}
 
 
-kubectl describe node node01 |grep Non-terminated -A 8
+`kubectl describe node node01 |grep Non-terminated -A 8`{{execute}}
 
 <pre>
 Non-terminated Pods:          (6 in total)

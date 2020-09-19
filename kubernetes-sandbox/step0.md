@@ -44,7 +44,6 @@ List of all generated tokens
 `kubeadm token list`{{execute}}
 
 
-
 `kubectl cluster-info`{{execute}}
 
 `kubectl get nodes`{{execute}}
