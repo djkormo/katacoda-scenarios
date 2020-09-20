@@ -29,7 +29,7 @@ What upgrade plan is possible ?
 
 `kubeadm upgrade plan`{{execute HOST1}}
 
-Let's upgrade (remebmer to confirm by pressing y key) 
+Let's upgrade (remember to confirm by pressing y key) 
 
 `kubeadm upgrade apply v1.19.0`{{execute HOST1}}
 
@@ -93,7 +93,6 @@ On node01 node
 Now we should restart kubelet
 `systemctl restart kubelet`{{execute}}
 
-`exit`{{execute}}
 
 
 On master node
