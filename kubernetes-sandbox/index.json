@@ -30,6 +30,7 @@
         "title": "Restore Kubernetes cluster ",
         "text": "step3.md",
         "verify": "step3-verify.sh",
+        "background": "step3-in-background.sh",
         "foreground": "clear.sh",
         "answer": "step3-answer.md"
       }
