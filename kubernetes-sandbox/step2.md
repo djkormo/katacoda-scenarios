@@ -38,8 +38,17 @@ etcdctl version: 3.2.17
 API version: 3.2
 </pre>
 
-`etcdctl snapshot save help`{{execute}}
 
+Hint!
+
+use command command in such a way
+
+`ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 \
+  --cacert=...ca.crt \
+  --cert=...server.crt \
+  --key=...server.key \
+  snapshot save filename
+  `{{copy}}
 
 To continue you have to backup etcd to /opt/etcd-backup.db file
 
