@@ -70,7 +70,9 @@ ETCDCTL_API=3 ... snapshot status-w table /opt/etcd-backup.db
 To continue you have to backup etcd to /opt/etcd-backup.db file
 
 
+Literature:
 
+https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
 
 
 

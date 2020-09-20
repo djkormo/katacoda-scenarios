@@ -47,22 +47,21 @@ use command in such a way
   --cacert=...ca.crt \
   --cert=...server.crt \
   --key=...server.key \
-  snapshot save filename
+  snapshot restore filename
   `{{copy}}
 
-Checking status of backup
-
-ETCDCTL_API=3 ... snapshot status-w table /opt/etcd-backup.db
-<pre>
-+----------+----------+------------+------------+
-|   HASH   | REVISION | TOTAL KEYS | TOTAL SIZE |
-+----------+----------+------------+------------+
-| 66b8edae |     2325 |       2339 |     3.9 MB |
-+----------+----------+------------+------------+
-</pre>
-To continue you have to backup etcd to /opt/etcd-backup.db file
+Checking status of restore
 
 
+
+To continue you have to restore etcd from /opt/etcd-backup.db file
+
+
+
+
+Literature:
+
+https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
 
 
 
