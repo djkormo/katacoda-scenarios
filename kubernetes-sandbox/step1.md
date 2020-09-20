@@ -1,21 +1,42 @@
 Upgrade cluster from version 1.18 to 1.19
 
+Show list of cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
-`kubectl get pod -o wide`{{execute HOST1}}
+Here we have cluster with 1.18 version
 
+List all of objects in default namespace
 
+`kubectl get all -o wide`{{execute HOST1}}
+
+Out goal is to have running 1.19 version cluster.
+
+`kubectl version --short 
+ kubeadm version -o short
+ kubelet --version
+`{{execute}}
+
+Update packages
 `apt-get update`{{execute HOST1}}
+
+Install specific version of  kubeadm, kubelet and kubectl
 
 `apt-get install kubeadm=1.19.0-00 kubectl=1.19.0-00 kubelet=1.19.0-00 -y`{{execute HOST1}}
 
+What upgrade plan is possible ?
 
 `kubeadm upgrade plan`{{execute HOST1}}
 
-`kubeadm  upgrade apply v1.19.0`{{execute HOST1}}
+Let's upgrade 
+
+`kubeadm upgrade apply v1.19.0`{{execute HOST1}}
 
 `kubectl get nodes`{{execute HOST1}}
+
+Now we have master node with 1.19 version and worked node with 1.18
+
+The first thing is to detach worker node from kubernetes cluster.
 
 `kubectl drain node01`{{execute HOST1}}
 
@@ -27,6 +48,8 @@ There are pending nodes to be drained:
  node01
 error: cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/kube-proxy-chm2m, kube-system/kube-router-ssqcq
 </pre>
+
+List all pods running on node01
 
 `kubectl describe node node01 |grep Non-terminated -A 8`{{execute}}
 

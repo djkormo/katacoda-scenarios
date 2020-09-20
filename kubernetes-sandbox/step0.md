@@ -33,7 +33,7 @@ Return to master (controlplane) node
 
 `exit`{{execute}}
 
-Tip.
+Hint
 
 How to get join command ?
 
@@ -43,11 +43,16 @@ List of all generated tokens
 
 `kubeadm token list`{{execute}}
 
+Let's examine our cluster
 
 `kubectl cluster-info`{{execute}}
 
+Number of cluster nodes
+
 `kubectl get nodes`{{execute}}
 
-`kubectl get pod -o wide`{{execute}}
+Example objects in default namespace
+
+`kubectl get all -o wide`{{execute}}
 
 To continue you should have 1.18 Kubernetes cluster with two nodes (ready)
