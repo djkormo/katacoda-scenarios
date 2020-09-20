@@ -1,4 +1,4 @@
-Backup and restore cluster k8s
+Backup cluster k8s
 
 Backup etcd to file /opt/etcd-backup.db
 
@@ -41,13 +41,7 @@ API version: 3.2
 `etcdctl snapshot save help`{{execute}}
 
 
-
-
-
-Restore etcd
-
-
-To continue you have to backup etcd to /opt/etcd-backup.db file and next recover after disaster.
+To continue you have to backup etcd to /opt/etcd-backup.db file
 
 
 
