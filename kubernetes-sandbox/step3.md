@@ -1,10 +1,9 @@
-Backup cluster k8s
+Restore cluster k8s
 
-Backup etcd to file /opt/etcd-backup.db
+Restore etcd from file /opt/etcd-backup.db
 
 
 `kubectl get pods -n kube-system`{{execute}}
-
 
 `kubectl get pods -n kube-system -l component=etcd`{{execute}}
 
@@ -22,11 +21,7 @@ apt  install etcd-client
 See 'snap info etcd' for additional versions.
 </pre>
 
-If etcdctl is not found we have to install it.
-
 `apt-get install etcd-client -y`{{execute}}
-
-Only 3.x version and 3.x API version should be used.
 
 `etcdctl --version`{{execute}}
 
@@ -34,8 +29,6 @@ Only 3.x version and 3.x API version should be used.
 etcdctl version: 3.2.17
 API version: 2
 </pre>
-
-To use API 3.x set ETCDCTL_API variable
 
 `export ETCDCTL_API=3 
 etcdctl version`{{execute}}

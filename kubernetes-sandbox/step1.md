@@ -13,11 +13,12 @@ List all of objects in default namespace
 Out goal is to have running 1.19 version cluster.
 
 `kubectl version --short 
- kubeadm version -o short
- kubelet --version
+kubeadm version -o short
+kubelet --version
 `{{execute}}
 
 Update packages
+
 `apt-get update`{{execute HOST1}}
 
 Install specific version of  kubeadm, kubelet and kubectl
@@ -28,9 +29,11 @@ What upgrade plan is possible ?
 
 `kubeadm upgrade plan`{{execute HOST1}}
 
-Let's upgrade 
+Let's upgrade (remebmer to confirm by pressing y key) 
 
 `kubeadm upgrade apply v1.19.0`{{execute HOST1}}
+
+Let's see out cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
@@ -87,12 +90,8 @@ On node01 node
 
 `apt-get install kubelet=1.19.0-00 -y `{{execute}}
 
-`systemctl status kubelet`{{execute}}
-
+Now we should restart kubelet
 `systemctl restart kubelet`{{execute}}
-
-
-`systemctl status kubelet`{{execute}}
 
 `exit`{{execute}}
 
