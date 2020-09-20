@@ -33,7 +33,7 @@ Let's upgrade (remember to confirm by pressing y key)
 
 `kubeadm upgrade apply v1.19.0`{{execute HOST1}}
 
-Let's see out cluster nodes
+Let's see the cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
