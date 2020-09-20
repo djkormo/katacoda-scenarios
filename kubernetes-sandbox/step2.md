@@ -58,8 +58,10 @@ use command in such a way
   `{{copy}}
 
 
-* Remember the objects in default namespace
+**Remember the objects in default namespace**
+
 `kubectl get all -n default`{{execute}}
+
 <pre>
 
 NAME                            READY   STATUS    RESTARTS   AGE
@@ -95,6 +97,7 @@ replicaset.apps/my-nginx-6b474476c4   3         3         3       12m
 NAME                     ENDPOINTS                             AGE
 endpoints/kubernetes     172.17.0.65:6443                      12m
 endpoints/my-nginx-svc   10.5.1.6:80,10.5.1.7:80,10.5.1.8:80   12m
+
 </pre>
 
 
