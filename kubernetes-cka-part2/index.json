@@ -10,7 +10,7 @@
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "background": "install.sh",
-        "foreground": "clear.sh",
+        "foreground": "foreground.sh",
         "answer": "step1-answer.md"
       },
       {
