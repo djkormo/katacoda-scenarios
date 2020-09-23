@@ -1,1 +1,2 @@
-sleep 10; bash /usr/local/bin/wait.sh
+echo off
+sleep 3; bash /usr/local/bin/wait.sh
