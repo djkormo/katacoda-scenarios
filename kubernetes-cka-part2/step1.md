@@ -16,7 +16,11 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
 
-Create namespace alpha and ....
+Create namespace alpha 
+
+`kubectl create ns alpha`{{copy}}
+
+and 
 
 1. Create a pod named web using image nginx:1.11.9-alpine, on port 80 and 443. 
 
