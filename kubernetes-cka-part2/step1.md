@@ -21,12 +21,41 @@ Create namespace alpha and ....
 1. Create a pod named web using image nginx:1.11.9-alpine, on port 80 and 443. 
 
 
-`kubectl get pod -n alpha`{{execute}}
+`kubectl get pod web -n alpha |grep Running  && echo "done"`{{execute}}
+`kubectl get pod web -n alpha -o yaml  |grep 'image: nginx:1.11.9-alpine' && echo "done"`{{execute}}
 
+<pre>
+
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          49s
+
+</pre>
+
+CHECK
+`echo done`{{execute}}
 
 2. Create a service to expose that pod, named as webservice
 
 `kubectl get pod,svc,ep -n alpha`{{execute}}
 
+<pre>
+
+NAME      READY   STATUS    RESTARTS   AGE
+pod/web   1/1     Running   0          51s
+
+NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/web   ClusterIP   10.103.154.206   <none>        80/TCP,443/TCP   15s
+
+NAME            ENDPOINTS                      AGE
+endpoints/web   10.244.1.4:80,10.244.1.4:443   15s
+
+</pre>
+
+CHECK
+`echo done`{{execute}}
+
+
 3. List all the pods in alpha namespace sorted by name
 
+CHECK
+`echo "done"`{{execute}}
