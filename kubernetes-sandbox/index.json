@@ -1,5 +1,5 @@
 {
-  "title": "Kubernetes",
+  "title": "Kubernetes for CKA - part 1",
   "description": "Multi node Kubernetes cluster configured using Kubeadm",
   "difficulty": "intermediate",
   "time": "45-60 minutes",
