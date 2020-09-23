@@ -1,5 +1,6 @@
 Pod and services exercises
 
+This environment has a `launch.sh`{{execute}}
 
 Show list of cluster nodes
 
