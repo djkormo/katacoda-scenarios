@@ -9,6 +9,7 @@
         "title": "Creating pods and services",
         "text": "step1.md",
         "verify": "step1-verify.sh",
+        "background": "install.sh",
         "foreground": "clear.sh",
         "answer": "step1-answer.md"
       },
@@ -29,6 +30,15 @@
     "finish": {
       "text": "finish.md"
     }
+  },
+  "assets": {
+    "host01": [
+      {
+        "file": "wait.sh",
+        "target": "/usr/local/bin/",
+        "chmod": "+x"
+      }
+    ]
   },
   "environment": {
     "hideintro": false,
