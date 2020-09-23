@@ -18,7 +18,7 @@ List all of objects in default namespace
 
 Create namespace alpha and ....
 
-1. Create a pod named web using image nginx:1.19.9-alpine, on port 80 and 443. 
+1. Create a pod named web using image nginx:1.11.9-alpine, on port 80 and 443. 
 
 
 `kubectl get pod -n alpha`{{execute}}
