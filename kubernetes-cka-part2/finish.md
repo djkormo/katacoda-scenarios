@@ -7,6 +7,6 @@ For example:
   "uilayout": "terminal"
 },
 "backend": {
-  "imageid": "kubernetes-cluster"
+  "imageid": "kubernetes-cluster-running"
 }
 </pre>
