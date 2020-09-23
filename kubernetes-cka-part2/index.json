@@ -43,7 +43,7 @@
   "environment": {
     "hideintro": false,
     "uilayout": "terminal-iframe",
-    "uimessage1": "\u001b[32mSetting up your Kubernetes playground...\u001b[m\r\n",
+    "uimessage1": "\u001b[32mSetting up your Kubernetes playground...\u001b[m\r\n"
   },
   "backend": {
     "imageid": "kubernetes-cluster-running:1.18"
