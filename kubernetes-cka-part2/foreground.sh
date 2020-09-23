@@ -1,1 +1,1 @@
-sleep 10; sh /usr/local/bin/wait.sh
+sleep 10; bash /usr/local/bin/wait.sh

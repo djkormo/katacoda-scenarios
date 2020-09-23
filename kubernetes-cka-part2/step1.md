@@ -1,12 +1,16 @@
 Pod and services exercises
 
-This environment has a `launch.sh`{{execute}}
 
 Show list of cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
 Here we have cluster with 1.18 version
+
+Show all namespaces
+
+`kubectl get ns`{{execute}}
+
 
 List all of objects in default namespace
 
