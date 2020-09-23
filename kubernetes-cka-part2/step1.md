@@ -48,15 +48,15 @@ NAME      READY   STATUS    RESTARTS   AGE
 pod/web   1/1     Running   0          51s
 
 NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-service/web   ClusterIP   10.103.154.206   <none>        80/TCP,443/TCP   15s
+service/webservice   ClusterIP   10.103.154.206   <none>        80/TCP,443/TCP   15s
 
 NAME            ENDPOINTS                      AGE
-endpoints/web   10.244.1.4:80,10.244.1.4:443   15s
+endpoints/webservice   10.244.1.4:80,10.244.1.4:443   15s
 
 </pre>
 
 CHECK
-`kubectl get svc web -n alpha |grep 80 && kubectl get svc web -n alpha |grep 443 &&  echo "done" `{{execute}}
+`kubectl get svc webservice -n alpha |grep 80 && kubectl get svc webservice -n alpha |grep 443 &&  echo "done" `{{execute}}
 CHECK
 
 
