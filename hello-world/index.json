@@ -3,6 +3,7 @@
   "description": "Your First Scenario",
   "difficulty": "beginner",
   "time": "2 minutes",
+  "private": true,
   "details": {
     "steps": [{
       "title": "Step 1 - Run Command",
