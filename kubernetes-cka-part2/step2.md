@@ -4,6 +4,23 @@ In aplha namespace
 
 **1.Create a pod named postgresql using image postgres:12.4, on port 5432.**
 
+Something bad is going on
+
+`kubectl logs postgresql -n alpha`{{execute}}
+
+<pre>
+Error: Database is uninitialized and superuser password is not specified.
+       You must specify POSTGRES_PASSWORD to a non-empty value for the
+       superuser. For example, "-e POSTGRES_PASSWORD=password" on "docker run".
+
+       You may also use "POSTGRES_HOST_AUTH_METHOD=trust" to allow all
+       connections without a password. This is *not* recommended.
+
+       See PostgreSQL documentation about "trust":
+       https://www.postgresql.org/docs/current/auth-trust.html
+
+</pre>
+
 
 **2.Create a pod named postgresql-env using image postgres:12.4, on port 5432.**
 
@@ -12,6 +29,15 @@ and add to pod environment variables
 POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
 POSTGRES_PASSWORD: admin123
+
+
+`kubectl logs postgresql-env -n alpha`{{execute}}
+
+<pre>
+...
+2020-09-24 22:10:12.464 UTC [1] LOG:  database system is ready to accept connections
+...
+</pre>
 
 **3.Create a configmap named postgresql-configmap with following content**
 
