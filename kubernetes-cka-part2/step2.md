@@ -2,10 +2,10 @@ Extending pods configuration
 
 In aplha namespace
 
-**1.Create a pod named postgresql using image postgresql:12.4, on port 5432.**
+**1.Create a pod named postgresql using image postgres:12.4, on port 5432.**
 
 
-**2.Create a pod named postgresql-env using image postgresql:12.4, on port 5432.**
+**2.Create a pod named postgresql-env using image postgres:12.4, on port 5432.**
 
 and add to pod environment variables
 
@@ -19,7 +19,7 @@ POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
 POSTGRES_PASSWORD: admin123
 
-**4.Create a pod named postgresql-cm using image postgresql:12.4, on port 5432.**
+**4.Create a pod named postgresql-cm using image postgres:12.4, on port 5432.**
 
 instead of environment variables use
 config map postgresql-configmap
@@ -35,7 +35,7 @@ POSTGRES_USER: postgresadmin
 POSTGRES_PASSWORD: admin123
 
 
-**7.Create a pod named postgresql-cm-secret using image postgresql:12.4, on port 5432.**
+**7.Create a pod named postgresql-cm-secret using image postgres:12.4, on port 5432.**
 
 use 
 configmap postgresql-configmap-nopass
