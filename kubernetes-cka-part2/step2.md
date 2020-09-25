@@ -2,9 +2,12 @@ Extending pods configuration
 
 In aplha namespace
 
-**1.Create a pod named postgresql using image postgres:12.4, on port 5432.**
+**1.Create a pod named postgresql using image postgres:12.4 on port 5432.**
 
 Something bad is going on
+
+
+`kubectl get pod postgresql -n alpha`{{execute}}
 
 `kubectl logs postgresql -n alpha`{{execute}}
 
@@ -22,7 +25,13 @@ Error: Database is uninitialized and superuser password is not specified.
 </pre>
 
 
-**2.Create a pod named postgresql-env using image postgres:12.4, on port 5432.**
+CHECK
+`kubectl get pod postgresql -n alpha && echo "done"`{{execute}}
+`kubectl get pod postgresql -n alpha -o yaml |grep " containerPort: 5432" && echo "done"`{{execute}}
+`kubectl get pod postgresql -n alpha -o yaml  |grep 'image: postgres:12.4' && echo "done"`{{execute}}
+CHECK
+
+**2.Create a pod named postgresql-env using image postgres:12.4 on port 5432.**
 
 and add to pod environment variables
 
@@ -30,6 +39,7 @@ POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
 POSTGRES_PASSWORD: admin123
 
+`kubectl get pod postgresql -n alpha`{{execute}}
 
 `kubectl logs postgresql-env -n alpha`{{execute}}
 
@@ -39,27 +49,66 @@ POSTGRES_PASSWORD: admin123
 ...
 </pre>
 
+
+CHECK
+`kubectl get pod postgresql-env -n alpha |grep Running && echo "done"`{{execute}}
+`kubectl get pod postgresql-env -n alpha -o yaml |grep "containerPort: 5432" && echo "done"{{execute}}
+`kubectl get pod postgresql-env -n alpha -o yaml  |grep 'image: postgres:12.4' && echo "done"`{{execute}}
+CHECK
+
+
 **3.Create a configmap named postgresql-configmap with following content**
 
 POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
 POSTGRES_PASSWORD: admin123
 
-**4.Create a pod named postgresql-cm using image postgres:12.4, on port 5432.**
+
+CHECK
+`kubectl get cm postgresql-configmap -n alpha && echo "done"`{{execute}}
+`kubectl get cm postgresql-configmap -n alpha -o yaml | grep "POSTGRES_DB: postgresdb" && echo "done"`{{execute}}
+`kubectl get cm postgresql-configmap -n alpha -o yaml | grep "POSTGRES_USER: postgresadmin" && echo "done"`{{execute}}
+`kubectl get cm postgresql-configmap -n alpha -o yaml | grep "POSTGRES_PASSWORD: admin123" && echo "done"`{{execute}}
+CHECK
+
+
+
+**4.Create a pod named postgresql-cm using image postgres:12.4 on port 5432.**
 
 instead of environment variables use
 config map postgresql-configmap
 
+
+Hint!
+use:
+
+`kubectl explain pod.spec.containers.envFrom`{{execute}}
+
+CHECK
+`kubectl get pod postgresql-cm -n alpha | grep Running && echo "done"`{{execute}}
+`kubectl get pod postgresql-cm -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-cm && echo "done"`{{execute}}
+CHECK
 
 **5.Create a configmap named postgresql-configmap-nopass with following content**
 
 POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
 
+
+CHECK
+`kubectl get cm postgresql-configmap-nopass -n alpha && echo "done"`{{execute}}
+`kubectl get cm postgresql-configmap-nopass -n alpha -o yaml | grep "POSTGRES_DB: postgresdb" && echo "done"`{{execute}}
+`kubectl get cm postgresql-configmap-nopass -n alpha -o yaml | grep "POSTGRES_USER: postgresadmin" && echo "done"`{{execute}}
+CHECK
+
+
 **6.Create a secret named postgresql-secret with following content**
 
 POSTGRES_PASSWORD: admin123
 
+CHECK
+`kubectl get secret postgresql-secret -n alpha && echo "done"`{{execute}}
+CHECK
 
 **7.Create a pod named postgresql-cm-secret using image postgres:12.4, on port 5432.**
 
@@ -68,25 +117,12 @@ configmap postgresql-configmap-nopass
 and
 secret postgresql-secret
 
+CHECK
+`kubectl get pod postgresql-cm-secret -n alpha | grep Running && echo "done"`{{execute}}
+`kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-configmap-nopass && echo "done"`{{execute}}
+CHECK
+
 
 **8.Create a service as ClusterIP to expose pod postgresql-cm-secret, named as posgresql-webservice**
 
-
 `kubectl get pod,svc,ep -n alpha`{{execute}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
