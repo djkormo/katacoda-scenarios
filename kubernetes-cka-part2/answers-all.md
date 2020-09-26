@@ -90,7 +90,7 @@ kubectl apply -f postgresql-secret.yaml -n alpha
 
 cp  postgresql-cm-pod.yaml postgresql-cm-secret.yaml
 
-vim postgresql-cm-secret
+vim postgresql-cm-secret.yaml
 
 change name to postgresql-cm-secret
 change configmap name

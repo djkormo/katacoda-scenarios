@@ -24,7 +24,19 @@ kubectl create configmap postgresql-configmap   --from-literal="POSTGRES_DB=post
 4. 
 
 
+cp postgresql-pod.yaml postgresql-cm-pod.yaml
 
+vim postgresql-cm-pod.yaml
+
+change name to postgresql-cm
+add  
+```yaml
+envFrom:
+  - configMapRef:
+    name: postgresql-configmap
+```
+
+kubectl apply -f postgresql-cm-pod.yaml -n alpha
 
 5. 
 
@@ -33,5 +45,30 @@ kubectl create configmap postgresql-configmap-nopass --from-literal="POSTGRES_DB
 6.
 
 kubectl create secret generic posgresql-secret --from-literal="POSTGRES_PASSWORD=admin123"  -o yaml--dry-run=client
+
+7.
+
+cp  postgresql-cm-pod.yaml postgresql-cm-secret.yaml
+
+vim postgresql-cm-secret.yaml
+
+change name to postgresql-cm-secret
+change configmap name
+add secret reference
+
+```yaml
+envFrom:
+- configMapRef:
+    name: postgresql-configmap-nopass
+- secretRef:
+    name: postgresql-secret
+```
+
+kubectl apply -f  postgresql-cm-secret.yaml  -n alpha
+
+
+8. 
+
+kubectl expose pod/postgresql-cm-secret --name=postgresql-webservice -n alpha --dry-run
 
 </pre>
