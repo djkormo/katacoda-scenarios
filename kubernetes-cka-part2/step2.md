@@ -1,11 +1,10 @@
 Extending pods configuration
 
-In aplha namespace
+All objects should by deployed into alpha namespace
 
 **1.Create a pod named postgresql using image postgres:12.4 on port 5432.**
 
 Something bad is going on
-
 
 `kubectl get pod postgresql -n alpha`{{execute}}
 
@@ -39,7 +38,7 @@ POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
 POSTGRES_PASSWORD: admin123
 
-`kubectl get pod postgresql -n alpha`{{execute}}
+`kubectl get pod postgresql-env -n alpha`{{execute}}
 
 `kubectl logs postgresql-env -n alpha`{{execute}}
 
@@ -107,6 +106,7 @@ POSTGRES_PASSWORD: admin123
 
 CHECK
 `kubectl get secret postgresql-secret -n alpha && echo "done"`{{execute}}
+`kubectl get secret postgresql-secret -n alpha -o yaml | grep POSTGRES_PASSWORD: && echo "done"`{{execute}}
 CHECK
 
 **7.Create a pod named postgresql-cm-secret using image postgres:12.4, on port 5432.**
@@ -119,9 +119,10 @@ secret postgresql-secret
 CHECK
 `kubectl get pod postgresql-cm-secret -n alpha | grep Running && echo "done"`{{execute}}
 `kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-configmap-nopass && echo "done"`{{execute}}
+kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret && echo "done"
 CHECK
 
 
 **8.Create a service as ClusterIP to expose pod postgresql-cm-secret, named as posgresql-webservice**
 
-`kubectl get pod,svc,ep -n alpha`{{execute}}
+`kubectl get pod,cm,secret,svc,ep -n alpha`{{execute}}
