@@ -1,4 +1,13 @@
-Pod and services exercises
+
+Lets try to control remainning time to reset our sandbow
+
+`free_time()
+{
+    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
+}
+GREEN="\[$(tput setaf 2)\]"
+RESET="\[$(tput sgr0)\]"
+export PS1='$(free_time) ${GREEN}\u@\h${RESET}:'`{{execute}}
 
 
 Show list of cluster nodes

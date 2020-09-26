@@ -32,15 +32,21 @@ free_time()
 cat <<EOF >~/.bashrc
 free_time()
 {
-    uptime -p 2> /dev/null'
+    #awk "{print $1}" /proc/uptime
+    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
 }
 GREEN="\[$(tput setaf 2)\]"
 RESET="\[$(tput sgr0)\]"
-export PS1="$(free_time) ${GREEN}\u@\h ${RESET}:"
+export PS1="$(free_time) ${GREEN}\u@\h ${RESET} :"
 EOF
 
 source ~/.bashrc
 
-#GREEN="\[$(tput setaf 2)\]"
-#RESET="\[$(tput sgr0)\]"
-#PS1="$(free_time) ${GREEN}\u@\h ${RESET}:"
+free_time()
+{
+    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
+}
+
+GREEN="\[$(tput setaf 2)\]"
+RESET="\[$(tput sgr0)\]"
+export PS1='$(free_time) ${GREEN}\u@\h${RESET}:'
