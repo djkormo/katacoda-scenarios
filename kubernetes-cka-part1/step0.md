@@ -1,6 +1,6 @@
 **Install cluster with kubeadm** 
 
-
+Lets try to control remainning time to reset our sandbow
 
 `free_time()
 {
@@ -54,7 +54,7 @@ execute kubeadm join .... command.
 
 Return to master (controlplane) node
 
-`exit`{{execute}}
+`exit`{{ HOST2}}
 
 Hint
 
