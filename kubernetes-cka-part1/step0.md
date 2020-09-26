@@ -1,4 +1,27 @@
-Install cluster with kubeadm 
+**Install cluster with kubeadm** 
+
+
+
+`free_time()
+{
+    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
+}`{{execute}}
+
+`GREEN="\[$(tput setaf 2)\]" && RESET="\[$(tput sgr0)\]"`{{execute}}
+
+`export PS1="$(free_time) ${GREEN}\u@\h${RESET}:"`{{execute}}
+
+`prompt() {
+    PS1="$(free_time) ${GREEN}\u@\h${RESET}:"
+}`{{execute}}
+
+`PROMPT_COMMAND=prompt`{{execute}}
+
+<pre>
+58 min root@master
+</pre>
+
+It means that you have only 58 minutes to finish the lab!!
 
 
 `kubeadm version -o short`{{execute}}

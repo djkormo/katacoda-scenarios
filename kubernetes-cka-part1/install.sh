@@ -29,7 +29,6 @@ EOF
 cat <<EOF >~/.bashrc
 free_time()
 {
-    #awk "{print $1}" /proc/uptime
     uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
 }
 GREEN="\[$(tput setaf 2)\]"

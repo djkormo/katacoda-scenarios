@@ -1,8 +1,6 @@
 
 Lets try to control remainning time to reset our sandbow
 
-
-
 `free_time()
 {
     uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
