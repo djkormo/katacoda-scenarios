@@ -1,8 +1,22 @@
 #!/bin/bash
-
+echo off
 apt-get update
 
-apt-get install kubelet=1.17.0-00 kubeadm=1.17.0-00 kubectl=1.17.0-00
+# Start Kubernetes
+echo "Starting cluster"
+launch.sh
+echo "done" >> /opt/.clusterstarted
+
+# create a vimrc
+cat <<EOF >>.vimrc
+" Created on $(date)
+set nocompatible
+syntax enable
+filetype plugin indent on
+set paste
+set tabstop=2
+set autoindent
+EOF
 
 cat <<EOF >~/.bashrc
 git_branch() {
