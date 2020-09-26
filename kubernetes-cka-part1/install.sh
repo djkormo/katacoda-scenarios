@@ -27,4 +27,3 @@ EOF
 
 source ~/.bashrc
 
-clear

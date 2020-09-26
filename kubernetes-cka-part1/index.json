@@ -10,6 +10,8 @@
         "text": "step0.md",
         "verify": "step0-verify.sh",
         "code": "foreground.sh",
+        "background": "install.sh",
+        "foreground": "foreground.sh",
         "answer": "step0-answer.md"
       },
       {
