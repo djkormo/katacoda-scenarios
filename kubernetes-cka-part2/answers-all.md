@@ -119,9 +119,9 @@ Bonus
 
 kubectl exec -it  postgresql-cm-secret -n alpha -- bash
 Inside the pod
+
 psql -U postgresadmin -d postgresdb
 
 select * from pg_tables;
 
 \quit
-
