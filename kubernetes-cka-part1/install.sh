@@ -4,8 +4,8 @@ apt-get update
 
 # Start Kubernetes
 echo "Starting cluster"
-launch.sh
-echo "done" >> /opt/.clusterstarted
+# launch.sh
+
 
 # create a vimrc
 cat <<EOF >>.vimrc
@@ -27,3 +27,4 @@ EOF
 
 source ~/.bashrc
 
+echo "done" >> /opt/.clusterstarted
