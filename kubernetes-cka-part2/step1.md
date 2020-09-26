@@ -1,12 +1,14 @@
 
 Lets try to control remainning time to reset our sandbow
 
+
+
 `free_time()
 {
     uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
 }`{{execute}}
 
-`GREEN="\[$(tput setaf 2)\] && RESET="\[$(tput sgr0)\]"`{{execute}}
+`GREEN="\[$(tput setaf 2)\]" && RESET="\[$(tput sgr0)\]"`{{execute}}
 
 `export PS1="$(free_time) ${GREEN}\u@\h${RESET}:"`{{execute}}
 
@@ -14,12 +16,13 @@ Lets try to control remainning time to reset our sandbow
     PS1="$(free_time) ${GREEN}\u@\h${RESET}:"
 }`{{execute}}
 
-`PROMPT_COMMAND=prompt`{execute}
-prompt() {
-    PS1="$(free_time)$"
-}
+`PROMPT_COMMAND=prompt`{{execute}}
 
+<pre>
+58 min root@master
+</pre>
 
+It means that you have only 58 minutes to finish the lab!!
 
 
 Show list of cluster nodes
