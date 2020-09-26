@@ -45,7 +45,7 @@
     "showdashboard": true,
     "dashboards": [
       {
-        "name": "Kobernetes.io",
+        "name": "Kubernetes.io",
         "href": "https://kubernetes.io"
       }
     ],
