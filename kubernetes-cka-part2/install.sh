@@ -32,7 +32,7 @@ free_time()
 cat <<EOF >~/.bashrc
 free_time()
 {
-    uptime -p 
+    uptime -p 2> /dev/null'
 }
 GREEN="\[$(tput setaf 2)\]"
 RESET="\[$(tput sgr0)\]"
