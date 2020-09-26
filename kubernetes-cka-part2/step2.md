@@ -122,7 +122,7 @@ secret postgresql-secret
 CHECK
 `kubectl get pod postgresql-cm-secret -n alpha | grep Running && echo "done"`{{execute}}
 `kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-configmap-nopass && echo "done"`{{execute}}
-kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret && echo "done"
+`kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret && echo "done"`{{execute}}
 CHECK
 
 
