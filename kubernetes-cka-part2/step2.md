@@ -128,6 +128,11 @@ CHECK
 
 **8.Create a service as ClusterIP to expose pod postgresql-cm-secret, named as postgresql-webservice**
 
+CHECK
+`kubectl get svc postgresql-webservice -n alpha |grep 5432 && echo "done" `{{execute}}
+CHECK
+
+
 `kubectl get pod,cm,secret,svc,ep -n alpha`{{execute}}
 
 <pre>
