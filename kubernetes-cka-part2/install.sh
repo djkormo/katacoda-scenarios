@@ -28,6 +28,19 @@ free_time()
     uptime -p 
 }
 
+
+cat <<EOF >~/.bashrc
+free_time()
+{
+    uptime -p 
+}
 GREEN="\[$(tput setaf 2)\]"
 RESET="\[$(tput sgr0)\]"
-PS1="$(free_time) ${GREEN}\u@\h ${RESET}:"
+export PS1="$(free_time) ${GREEN}\u@\h ${RESET}:"
+EOF
+
+source ~/.bashrc
+
+#GREEN="\[$(tput setaf 2)\]"
+#RESET="\[$(tput sgr0)\]"
+#PS1="$(free_time) ${GREEN}\u@\h ${RESET}:"
