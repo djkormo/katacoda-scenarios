@@ -2,12 +2,12 @@ STEP 1
 
 1. run
 
-`kubectl run web --image=nginx:1.11.9-alpine --port 80  -o yaml --dry-run=client > web-pod.yaml`{{copy}}
+kubectl run web --image=nginx:1.11.9-alpine --port 80  -o yaml --dry-run=client > web-pod.yaml
 
 
 2. use
 
-edit `vim web-pod.yaml`
+edit vim web-pod.yaml
 
 add port 443
 
@@ -113,4 +113,15 @@ kubectl expose pod/postgresql-cm-secret --name=postgresql-webservice -n alpha
 Based on 
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/
+
+
+Bonus
+
+kubectl exec -it  postgresql-cm-secret -n alpha -- bash
+Inside the pod
+psql -U postgresadmin -d postgresdb
+
+select * from pg_tables;
+
+\quit
 

@@ -83,9 +83,4 @@ CHECK
 `kubectl get svc webservice -n alpha |grep 80 && kubectl get svc webservice -n alpha |grep 443 &&  echo "done" `{{execute}}
 CHECK
 
-
-**3.List all the pods in alpha namespace sorted by name**
-
-CHECK
-`echo "done"`{{execute}}
-CHECK
+To move to the next step make sure to have all checks with "done"
