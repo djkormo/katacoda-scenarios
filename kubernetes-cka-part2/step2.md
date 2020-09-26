@@ -75,8 +75,7 @@ CHECK
 
 **4.Create a pod named postgresql-cm using image postgres:12.4 on port 5432.**
 
-instead of environment variables use
-config map postgresql-configmap
+But instead of environment variables use configmap postgresql-configmap
 
 
 Hint!
