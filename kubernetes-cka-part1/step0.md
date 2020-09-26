@@ -54,7 +54,7 @@ execute kubeadm join .... command.
 
 Return to master (controlplane) node
 
-`exit`{{ HOST2}}
+`exit`{{execute HOST2}}
 
 Hint
 

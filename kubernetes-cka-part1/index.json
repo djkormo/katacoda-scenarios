@@ -39,7 +39,7 @@
     ],
     "intro": {
       "text": "000.intro.md",
-      "credits": "https://kubernetes.io/",
+      "credits": "https://kubernetes.io/docs/home/",
       "courseData": "install.sh"
     },
     "finish": {
