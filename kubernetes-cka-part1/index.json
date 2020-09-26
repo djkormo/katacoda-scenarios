@@ -45,6 +45,13 @@
     }
   },
   "environment": {
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Kobernetes.io",
+        "href": "https://kubernetes.io"
+      }
+    ],
     "hideintro": false,
     "uilayout": "terminal"
   },
