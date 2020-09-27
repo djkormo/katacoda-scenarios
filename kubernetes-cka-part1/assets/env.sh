@@ -13,7 +13,7 @@ EOF
 #free_time()
 #{
     #awk "{print $1}" /proc/uptime
-    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
+    #uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
 #}
 #GREEN="\[$(tput setaf 2)\]"
 #RESET="\[$(tput sgr0)\]"
