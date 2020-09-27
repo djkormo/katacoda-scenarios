@@ -12,7 +12,6 @@ Inspect objects deployed in beta namespace
 
 **Try to fix kubernetes objects to see application in Application tab on 30001 port.**
 
-
 CHECK
-`kubectl get svc frontend -n beta -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}
+`kubectl get svc frontend -n beta -o yaml |grep "nodePort: 30001" && kubectl get svc frontend -n beta -o yaml |grep "targetPort: 80" && echo "done" `{{execute}}
 CHECK

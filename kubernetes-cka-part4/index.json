@@ -14,14 +14,29 @@
         "answer": "step1-answer.md"
       },
       {
-        "title": "Troubleshooting 1",
+        "title": "Troubleshooting 2",
         "text": "step2.md",
         "verify": "step2-verify.sh",
         "background": "step2-background.sh",
         "foreground": "clear.sh",
         "answer": "step2-answer.md"
-      }
-      
+      },
+      {
+        "title": "Troubleshooting 3",
+        "text": "step3.md",
+        "verify": "step3-verify.sh",
+        "background": "step3-background.sh",
+        "foreground": "clear.sh",
+        "answer": "step3-answer.md"
+      },
+      {
+        "title": "Troubleshooting 4",
+        "text": "step4.md",
+        "verify": "step4-verify.sh",
+        "background": "step4-background.sh",
+        "foreground": "clear.sh",
+        "answer": "step4-answer.md"
+      }         
     ],
     "intro": {
       "text": "000.intro.md",

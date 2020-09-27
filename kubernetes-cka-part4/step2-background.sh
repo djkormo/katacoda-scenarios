@@ -18,6 +18,8 @@ kubectl delete svc --all -n alpha
 kubectl delete deploy --all -n beta
 kubectl delete svc --all -n beta
 
+sleep 10
+
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/redis-master-deployment.yaml -n beta 
 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/redis-master-service.yaml -n beta 
