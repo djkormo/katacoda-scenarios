@@ -20,6 +20,9 @@ Inspect objects deployed in alpha namespace
 `kubectl get all,ep -n alpha`{{execute}}
 
 
-Try to fix kubernetes objects to see application in Applicatrion tab.
+**Try to fix kubernetes objects to see application in Application tab on 30001 port.**
 
 
+CHECK
+`kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}
+CHECK
