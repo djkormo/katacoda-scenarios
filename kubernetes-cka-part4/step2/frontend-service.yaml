@@ -12,7 +12,10 @@ spec:
   # an external load-balanced IP for the frontend service.
   # type: LoadBalancer
   ports:
-  - port: 8080
+  - nodePort: 30001
+    port: 80
+    protocol: TCP
+    targetPort: 8080
   selector:
     app: guestbook
     tier: frontend

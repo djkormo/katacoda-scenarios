@@ -7,7 +7,7 @@ Show all namespaces
 
 Inspect objects deployed in beta namespace
 
-`kubectl get all,ep -n alpha`{{execute}}
+`kubectl get all,ep -n beta`{{execute}}
 
 
 **Try to fix kubernetes objects to see application in Application tab on 30001 port.**

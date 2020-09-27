@@ -12,6 +12,9 @@ kubectl create ns beta
 # based on 
 # https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
+kubectl delete deploy --all -n alpha
+kubectl delete svc --all -n alpha
+
 kubectl delete deploy --all -n beta
 kubectl delete svc --all -n beta
 
