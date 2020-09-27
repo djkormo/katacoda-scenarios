@@ -1,12 +1,12 @@
-Start using the Multi-node Kubernetes environment for your content by setting the `imageid` to `kubernetes-cluster-running`.
 
-For example:
+You will learn how to 
 
-<pre class="file">
-"environment": {
-  "uilayout": "terminal"
-},
-"backend": {
-  "imageid": "kubernetes-cluster-running"
-}
-</pre>
+a) create pods and services
+
+b) create deployments
+
+c) create jobs and cronjobs
+
+
+https://training.linuxfoundation.org/cka-program-changes-2020/
+
