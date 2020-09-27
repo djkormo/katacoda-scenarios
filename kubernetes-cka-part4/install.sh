@@ -1,20 +1,11 @@
 #!/bin/bash
-echo off
-apt-get update
 
-# Start Kubernetes
-echo "Starting cluster"
-launch.sh
-echo "done" >> /opt/.clusterstarted
+kubectl create ns alpha
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/wordpress/mysql-deployment.yaml -n alpha 
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/wordpress/wordpress-deployment.yaml -n alpha 
 
 
-# create a vimrc
-cat <<EOF >>.vimrc
-" Created on $(date)
-set nocompatible
-syntax enable
-filetype plugin indent on
-set paste
-set tabstop=2
-set autoindent
-EOF
+
+

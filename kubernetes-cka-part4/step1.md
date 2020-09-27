@@ -1,4 +1,4 @@
-**Troubleshooting execrices**
+**Troubleshooting exercises**
 
 Show list of cluster nodes
 
@@ -13,3 +13,8 @@ Show all namespaces
 List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
+
+Inspect objects deployed in alpha namespace
+
+
+
