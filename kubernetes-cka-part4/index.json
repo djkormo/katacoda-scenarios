@@ -1,6 +1,6 @@
 {
   "title": "Kubernetes for CKA - part 4",
-  "description": "Multi node Kubernetes cluster",
+  "description": "Troubleshooting scenarios",
   "difficulty": "intermediate",
   "time": "45-60 minutes",
   "details": {
