@@ -26,15 +26,15 @@ git_branch() {
 export PS1="\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\]\$(git_branch)\$ "
 EOF
 
-cat <<EOF >~/.bashrc
-free_time()
-{
-    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
-}
-GREEN="\[$(tput setaf 2)\]"
-RESET="\[$(tput sgr0)\]"
-export PS1="$(free_time) ${GREEN}\u@\h ${RESET} :"
-EOF
+#cat <<EOF >~/.bashrc
+#free_time()
+#{
+#    uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
+#}
+#GREEN="\[$(tput setaf 2)\]"
+#RESET="\[$(tput sgr0)\]"
+#export PS1="$(free_time) ${GREEN}\u@\h ${RESET} :"
+#EOF
 
 source ~/.bashrc
 
