@@ -29,16 +29,7 @@ kubectl delete svc --all -n epsilon
 
 sleep 10
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step4/redis-master-deployment.yaml -n epsilon 
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/wordpress-deployment.yaml -n epsilon 
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step4/redis-master-service.yaml -n epsilon 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step4/redis-slave-deployment.yaml -n epsilon 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step4/redis-slave-service.yaml -n epsilon 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step4/frontend-deployment.yaml -n epsilon 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step4/frontend-service.yaml -n epsilon 
 
 sleep 10
