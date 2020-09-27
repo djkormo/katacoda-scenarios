@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"
+
+curl -sSf http://localhost:30001 > /tmp/alpha.log
+
+kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" \
+&& cat /tmp/alpha.log | grep "<title>Guestbook</title>" \
+&&  echo "done"
