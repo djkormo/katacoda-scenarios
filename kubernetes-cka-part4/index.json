@@ -43,7 +43,8 @@
       {
         "name": "Kubernetes.io",
         "href": "https://kubernetes.io/docs/home/"
-      }
+      },
+      {"name": "Application", "port": 33332}
     ],
     "hideintro": false,
     "uilayout": "terminal-iframe",
