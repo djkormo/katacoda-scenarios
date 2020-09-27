@@ -8,17 +8,17 @@ spec:
   selector:
     matchLabels:
       app: guestbook
-      tier: frontend
+      tier: frontend2
   replicas: 3
   template:
     metadata:
       labels:
         app: guestbook
-        tier: frontend
+        tier: frontend2
     spec:
       containers:
       - name: php-redis
-        image: gcr.io/google-samples/gb-frontend:v4
+        image: gcr.io/google-samples/gb-frontend:v5
         resources:
           requests:
             cpu: 100m
