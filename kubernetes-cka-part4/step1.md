@@ -12,9 +12,12 @@ Show all namespaces
 
 List all of objects in default namespace
 
-`kubectl get all -o wide`{{execute HOST1}}
+`kubectl get all -o wide`{{execute}}
 
 Inspect objects deployed in alpha namespace
+
+
+`kubectl get all,ep -n alpha`{{execute}}
 
 
 
