@@ -1,5 +1,4 @@
-Pod and services exercises
-
+**Storage exercices**
 
 Show list of cluster nodes
 

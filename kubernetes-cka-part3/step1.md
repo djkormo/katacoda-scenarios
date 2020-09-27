@@ -1,4 +1,4 @@
-Pod and services exercises
+**Network exercises**
 
 
 Show list of cluster nodes

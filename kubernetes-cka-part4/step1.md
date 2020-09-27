@@ -1,5 +1,4 @@
-Pod and services exercises
-
+**Troubleshooting execrices**
 
 Show list of cluster nodes
 
@@ -11,8 +10,6 @@ Show all namespaces
 
 `kubectl get ns`{{execute}}
 
-
 List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
-
