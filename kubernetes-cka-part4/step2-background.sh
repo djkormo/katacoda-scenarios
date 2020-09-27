@@ -31,3 +31,5 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/frontend-deployment.yaml -n beta 
 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/frontend-service.yaml -n beta 
+
+sleep 10
