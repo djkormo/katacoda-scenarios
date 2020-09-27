@@ -20,4 +20,6 @@ Inspect objects deployed in alpha namespace
 `kubectl get all,ep -n alpha`{{execute}}
 
 
+Try to fix kubernetes objects to see application in Applicatrion tab.
+
 
