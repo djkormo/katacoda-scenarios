@@ -6,7 +6,6 @@ sleep 10; bash /usr/local/bin/wait.sh
 
 free_time()
 {
-    #awk "{print $1}" /proc/uptime
     uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
 }
 git_branch() {
