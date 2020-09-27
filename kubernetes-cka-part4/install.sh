@@ -7,7 +7,6 @@ echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
 
-
 kubectl create ns alpha
 
 #kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/wordpress/mysql-deployment.yaml -n alpha 
