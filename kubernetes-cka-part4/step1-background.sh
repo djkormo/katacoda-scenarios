@@ -12,6 +12,11 @@ kubectl create ns alpha
 # based on 
 # https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
+## Installing metrics server 
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
+
+
 kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
 
@@ -26,3 +31,5 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-deployment.yaml -n alpha 
 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-service.yaml -n alpha 
+
+
