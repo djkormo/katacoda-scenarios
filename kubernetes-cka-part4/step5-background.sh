@@ -40,5 +40,11 @@ sleep 10
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n epsilon 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n epsilon 
 
+kubectl delete -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n epsilon 
+kubectl delete -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n epsilon 
+
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n epsilon 
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n epsilon 
+
 
 sleep 10

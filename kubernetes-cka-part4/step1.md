@@ -14,6 +14,10 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute}}
 
+
+![Guestbook architecture](./assets/guestbook-architecture.png)
+
+
 Inspect objects deployed in alpha namespace
 
 
