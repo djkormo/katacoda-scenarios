@@ -39,12 +39,12 @@
       }
       ,
       {
-        "title": "Troubleshooting 4",
-        "text": "step4.md",
-        "verify": "step4-verify.sh",
-        "background": "step4-background.sh",
+        "title": "Troubleshooting 5",
+        "text": "step5.md",
+        "verify": "step5-verify.sh",
+        "background": "step5-background.sh",
         "foreground": "clear.sh",
-        "answer": "step4-answer.md"
+        "answer": "step5-answer.md"
       }           
     ],
     "intro": {
