@@ -1,6 +1,6 @@
 {
   "title": "Kubernetes for CKA - part 5",
-  "description": "Multi node Kubernetes cluster",
+  "description": "Storage scenarios",
   "difficulty": "intermediate",
   "time": "45-60 minutes",
   "details": {

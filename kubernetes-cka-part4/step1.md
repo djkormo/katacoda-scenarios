@@ -14,10 +14,19 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute}}
 
+
+![Guestbook architecture](./assets/guestbook-architecture.png)
+
+
 Inspect objects deployed in alpha namespace
 
 
 `kubectl get all,ep -n alpha`{{execute}}
 
 
+**Try to fix kubernetes objects to see application in Application tab on 30001 port.**
 
+
+CHECK
+`kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}
+CHECK

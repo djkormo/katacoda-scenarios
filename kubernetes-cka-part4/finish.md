@@ -1,12 +1,4 @@
-Start using the Multi-node Kubernetes environment for your content by setting the `imageid` to `kubernetes-cluster-running`.
+Congratulations!
 
-For example:
+I hope I have learned how to fight with kubernetes troubleshooting.
 
-<pre class="file">
-"environment": {
-  "uilayout": "terminal"
-},
-"backend": {
-  "imageid": "kubernetes-cluster-running"
-}
-</pre>
