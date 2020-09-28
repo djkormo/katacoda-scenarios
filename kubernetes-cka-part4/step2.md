@@ -4,6 +4,7 @@ Show all namespaces
 
 `kubectl get ns`{{execute}}
 
+![Guestbook architecture](./assets/guestbook-architecture.png)
 
 Inspect objects deployed in beta namespace
 
