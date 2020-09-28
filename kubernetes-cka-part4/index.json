@@ -36,7 +36,16 @@
         "background": "step4-background.sh",
         "foreground": "clear.sh",
         "answer": "step4-answer.md"
-      }         
+      }
+      ,
+      {
+        "title": "Troubleshooting 4",
+        "text": "step4.md",
+        "verify": "step4-verify.sh",
+        "background": "step4-background.sh",
+        "foreground": "clear.sh",
+        "answer": "step4-answer.md"
+      }           
     ],
     "intro": {
       "text": "000.intro.md",

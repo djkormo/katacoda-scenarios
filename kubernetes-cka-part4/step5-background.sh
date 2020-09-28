@@ -29,10 +29,14 @@ kubectl delete svc --all -n epsilon
 
 sleep 10
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/wordpress-deployment.yaml -n epsilon 
 
-sed -i '/kube-scheduler/kube-schedulerrr' /etc/kubernetes/manifests/kube-scheduler.yaml
-sed -i 's/etc\/kubernetes\/pki/etc\/kubernetes\/pki-wrong/g' /etc/kubernetes/manifests/kube-controller-manager.yaml
-systemctl stop kubelet
+sed -i 's/kube-scheduler/kube-schedulerrr' /etc/kubernetes/manifests/kube-scheduler.yaml
+
+#sed -i 's/etc\/kubernetes\/pki/etc\/kubernetes\/pki-wrong/g' /etc/kubernetes/manifests/kube-controller-manager.yaml
+#systemctl stop kubelet
+
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n epsilon 
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n epsilon 
+
 
 sleep 10
