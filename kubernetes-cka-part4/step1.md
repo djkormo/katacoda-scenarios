@@ -26,6 +26,7 @@ Inspect objects deployed in alpha namespace
 
 **Try to fix kubernetes objects to see application in Application tab on 30001 port.**
 
+![Web application](./assets/guestbook-web.png)
 
 CHECK
 `kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}

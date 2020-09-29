@@ -53,7 +53,15 @@
         "background": "step6-background.sh",
         "foreground": "clear.sh",
         "answer": "step6-answer.md"
-      }             
+      },
+      {
+        "title": "Troubleshooting 7",
+        "text": "step7.md",
+        "verify": "step7-verify.sh",
+        "background": "step7-background.sh",
+        "foreground": "clear.sh",
+        "answer": "step7-answer.md"
+      }               
     ],
     "intro": {
       "text": "000.intro.md",

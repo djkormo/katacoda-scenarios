@@ -33,15 +33,9 @@ kubectl delete svc --all -n zeta
 sleep 10
 
 
-# sed -i 's/kube-scheduler/kube-schedulerrr'/ /etc/kubernetes/manifests/kube-scheduler.yaml
-sed -i 's/etc\/kubernetes\/pki/etc\/kubernetes\/pki-wrong/g' /etc/kubernetes/manifests/kube-controller-manager.yaml
-sleep 10
-
-#sed -i 's/etc\/kubernetes\/pki/etc\/kubernetes\/pki-wrong/g' /etc/kubernetes/manifests/kube-controller-manager.yaml
-#systemctl stop kubelet
-
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n zeta 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n zeta 
 
+sed -i 's/etc\/kubernetes\/pki/etc\/kubernetes\/pki-wrong/g' /etc/kubernetes/manifests/kube-controller-manager.yaml
 
 sleep 10
