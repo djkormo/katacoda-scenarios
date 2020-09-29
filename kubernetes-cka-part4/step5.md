@@ -17,6 +17,8 @@ Look at pods in kube-system namespace
 
 **Try to fix kubernetes objects to see application in Application tab on 30001 port.**
 
+![Web application](./assets/nginx-web.png)
+
 CHECK
 `kubectl get svc nginx -n epsilon -o yaml |grep "nodePort: 30001" && kubectl get svc nginx -n epsilon -o yaml |grep "targetPort: 80" && echo "done" `{{execute}}
 
