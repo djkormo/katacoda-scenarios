@@ -41,6 +41,14 @@ sleep 10
 sed -i 's/\/etc\/kubernetes\/pki\/ca.crt/\/etc\/kubernetes\/pki\/caa.crt/g' /var/lib/kubelet/config.yaml
 
 systemctl stop kubelet
+kubectl  drain node01 --ignore-daemonsets
+
+
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n lambda 
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n lambda 
+
+kubectl delete -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n lambda 
+kubectl delete -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n lambda 
 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n lambda 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n lambda 

@@ -32,7 +32,7 @@ sleep 10
 
 sed -i 's/kube-scheduler/kube-schedulerrr'/ /etc/kubernetes/manifests/kube-scheduler.yaml
 
-sleep 10
+sleep 20
 
 #sed -i 's/etc\/kubernetes\/pki/etc\/kubernetes\/pki-wrong/g' /etc/kubernetes/manifests/kube-controller-manager.yaml
 #systemctl stop kubelet
@@ -46,5 +46,4 @@ kubectl delete -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/m
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n epsilon 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n epsilon 
 
-
-sleep 10
+sleep 20
