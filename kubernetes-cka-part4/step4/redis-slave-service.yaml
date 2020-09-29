@@ -8,7 +8,7 @@ metadata:
     tier: backend
 spec:
   ports:
-  - port: 6379
+  - port: 6378
   selector:
     app: redis
     role: slave
