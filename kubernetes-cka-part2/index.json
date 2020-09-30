@@ -1,6 +1,6 @@
 {
   "title": "Kubernetes for CKA - part 2",
-  "description": "Multi node Kubernetes cluster",
+  "description": "Workloads & Scheduling cluster",
   "difficulty": "intermediate",
   "time": "45-60 minutes",
   "details": {

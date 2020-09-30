@@ -1,6 +1,6 @@
 {
   "title": "Kubernetes for CKA - part 1",
-  "description": "Multi node Kubernetes cluster configured using Kubeadm",
+  "description": "Cluster Architecture, Installation, and Configuration by Kubeadm",
   "difficulty": "intermediate",
   "time": "45-60 minutes",
   "details": {
@@ -22,14 +22,14 @@
         "answer": "step1-answer.md"
       },
       {
-        "title": "Backup Kubernetes cluster ",
+        "title": "Backup Kubernetes cluster",
         "text": "step2.md",
         "verify": "step2-verify.sh",
         "foreground": "clear.sh",
         "answer": "step2-answer.md"
       },
       {
-        "title": "Restore Kubernetes cluster ",
+        "title": "Restore Kubernetes cluster",
         "text": "step3.md",
         "verify": "step3-verify.sh",
         "background": "step3-in-background.sh",
