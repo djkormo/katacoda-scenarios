@@ -25,6 +25,6 @@ CHECK
 
 `kubectl get pod -n kube-system |grep kube-controller-manager |grep Running && echo "done"`{{execute}}
 
-`kubectl get deploy nginx-deployment -n lambda -o yaml | grep "replicas: 4" && echo "done"`{{execute}}
+`kubectl get deploy nginx-deployment -n zetaq -o yaml | grep "replicas: 4" && echo "done"`{{execute}}
 
 CHECK
