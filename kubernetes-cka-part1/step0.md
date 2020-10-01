@@ -28,10 +28,13 @@ Initialize cluster networking:
 
 `kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml`{{execute}}
 
- (Optional) Create an example deployment:
+ Create an example deployment:
 
  `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
 
+Create an example pods:
+
+ `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
 
 `ssh node01`{{execute}}
 On worker node (node01) 

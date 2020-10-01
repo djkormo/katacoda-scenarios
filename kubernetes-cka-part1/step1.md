@@ -39,6 +39,9 @@ Let's see the cluster nodes
 
 Now we have master node with 1.19 version and worked node with 1.18
 
+**Look what deployment and pods are on our cluster. Preserve them**
+
+
 The first thing is to detach worker node from kubernetes cluster.
 
 `kubectl drain node01`{{execute HOST1}}
@@ -68,6 +71,8 @@ Non-terminated Pods:          (6 in total)
   kube-system                 kube-router-258xn            250m (12%)    0 (0%)      250Mi (6%)       0 (0%)         4m40s
 </pre>
 
+**Look what deployment and pods are on our cluster. Preserve them**
+
 `kubectl drain node01 --ignore-daemonsets`{{execute HOST1}}
 
 <pre>
@@ -81,6 +86,8 @@ pod/my-nginx-6b474476c4-wqr6d evicted
 pod/my-nginx-6b474476c4-6rq86 evicted
 node/node01 evicted
 </pre>
+
+**Look what deployment and pods are on our cluster. Preserve them**
 
 `ssh node01`{{execute HOST1}}
 
