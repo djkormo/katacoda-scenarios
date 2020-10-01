@@ -37,7 +37,7 @@ Let's see the cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
-Now we have master node with 1.19 version and worked node with 1.18
+Now we have master node with 1.19 version and worker node with 1.18
 
 **Look what deployment and pods are on our cluster. Preserve them**
 
