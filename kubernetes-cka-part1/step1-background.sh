@@ -6,4 +6,4 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part1/step1/web-server.yaml -n alone 
 
-sleep
+sleep 10

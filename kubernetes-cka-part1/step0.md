@@ -1,6 +1,6 @@
 **Install cluster with kubeadm** 
 
-Lets try to control remainning time to reset our sandbow
+Lets try to control remainning time to reset our sandbox
 
 <pre>
 58 min root@master
@@ -8,11 +8,12 @@ Lets try to control remainning time to reset our sandbow
 
 It means that you have only 58 minutes to finish the lab!!
 
+**Hurry up!**
 
 `kubeadm version -o short`{{execute}}
 
 
-If you need a cluster available,
+If you need a cluster available.. let's make our hand go to work...
 
 The Kubernetes nodes are not configured. If you want to configure the nodes then you'd need to run kubeadm which has been set and configured. For example, for following command will initialise the master with the latest version installed.
 

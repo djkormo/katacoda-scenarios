@@ -60,20 +60,45 @@ List all pods running on node01
 `kubectl describe node node01 |grep Non-terminated -A 8`{{execute}}
 
 <pre>
-Non-terminated Pods:          (6 in total)
-  Namespace                   Name                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
+Non-terminated Pods:          (8 in total)
+  Namespace                   Name                         CPU Requests  CPU Limits  Memory Requests  MemoryLimits  AGE
   ---------                   ----                         ------------  ----------  ---------------  -------------  ---
-  default                     my-nginx-6b474476c4-4bpmx    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m36s
-  default                     my-nginx-6b474476c4-ghxf7    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m36s
-  default                     my-nginx-6b474476c4-llwqg    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m36s
-  kube-system                 coredns-66bff467f8-h6q7l     100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     6m58s
-  kube-system                 kube-proxy-jtg29             0 (0%)        0 (0%)      0 (0%)           0 (0%)         5m14s
-  kube-system                 kube-router-258xn            250m (12%)    0 (0%)      250Mi (6%)       0 (0%)         4m40s
+  alone                       alone-pod                    0 (0%)        0 (0%)      0 (0%)           0 (0%)        3m2s
+  alone                       web-server                   0 (0%)        0 (0%)      0 (0%)           0 (0%)        3m2s
+  default                     my-nginx-6b474476c4-2l4cf    0 (0%)        0 (0%)      0 (0%)           0 (0%)        9m35s
+  default                     my-nginx-6b474476c4-mkkz2    0 (0%)        0 (0%)      0 (0%)           0 (0%)        9m35s
+  default                     my-nginx-6b474476c4-mvxg6    0 (0%)        0 (0%)      0 (0%)           0 (0%)        9m35s
+  kube-system                 coredns-f9fd979d6-b2qsx      100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     5m28s
 </pre>
 
 **Look what deployment and pods are on our cluster. Preserve them**
 
+
 `kubectl drain node01 --ignore-daemonsets`{{execute HOST1}}
+
+<pre>
+node/node01 already cordoned
+error: unable to drain node "node01", aborting command...
+
+There are pending nodes to be drained:
+ node01
+error: cannot delete Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet (use --force to override): alone/alone-pod, alone/web-server
+</pre>
+
+node/node01 already cordoned
+error: unable to drain node "node01", aborting command...
+
+There are pending nodes to be drained:
+ node01
+error: cannot delete Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet (use --force to override): alone/alone-pod, alone/web-server
+
+`kubectl get pod -n alone`{{execute}}
+Preserve the alone pods
+
+`kubectl get pod/alone-pod -n alone -o yaml >pod-alone-alone-pod.yaml`{{execute}}
+`kubectl get pod/web-server -n alone -o yaml >pod-alone-web-server.yaml`{{execute}}
+
+`kubectl drain node01 --ignore-daemonsets --force `{{execute HOST1}}
 
 <pre>
 node/node01 already cordoned
