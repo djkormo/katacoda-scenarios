@@ -44,6 +44,7 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 
 
 sed -i 's/\/etc\/kubernetes\/pki\/ca.crt/\/etc\/kubernetes\/pki\/cacert.crt/g' /var/lib/kubelet/config.yaml
-kubectl delete node node01
+kubectl delete node01
+systemctl stop kubelet
 
 sleep 10
