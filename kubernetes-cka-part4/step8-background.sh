@@ -33,18 +33,14 @@ kubectl delete svc --all -n zeta
 kubectl delete deploy --all -n lambda
 kubectl delete svc --all -n lambda
 
-kubectl delete deploy --all -n kappa
-kubectl delete svc --all -n kappa
-
 sleep 10
-
 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-deployment.yaml -n kappa 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step5/nginx-service.yaml -n kappa 
 
 
 sed -i 's/\/etc\/kubernetes\/pki\/ca.crt/\/etc\/kubernetes\/pki\/cacert.crt/g' /var/lib/kubelet/config.yaml
-kubectl delete node01
+kubectl delete node node01
 systemctl stop kubelet
 
 sleep 10

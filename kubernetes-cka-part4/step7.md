@@ -31,7 +31,7 @@ CHECK
 
 `kubectl get deploy nginx-deployment -n lambda -o yaml | grep "replicas: 6" && echo "done"`{{execute}}
 
-`systemctl status kubelet | grep running && echo "done"` {{execute}} 
+`systemctl status kubelet | grep running && echo "done"`{{execute}} 
 
 `kubectl get pod -n lambda | grep nginx-deployment | grep Running  && echo "done"`{{execute}} 
 

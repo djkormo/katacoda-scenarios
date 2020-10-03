@@ -125,3 +125,46 @@ psql -U postgresadmin -d postgresdb
 select * from pg_tables;
 
 \quit
+
+
+STEP 3 
+
+
+**1.Create a deploy named nginx-deployment using image nginx:1.18.0 on port 80.**
+
+kubectl create deployment nginx-deployment --image=nginx:1.18.0 -n alpha \
+-o yaml --dry-run=client > nginx-deployment-alpha.yaml
+
+kubectl apply -f nginx-deployment-alpha.yaml -n alpha
+
+
+**2.Expose deployment nginx-deployment named nginx-service using ClusterIP.**
+kubectl expose deploy nginx-deployment -n alpha -o yaml --port 80 --name=nginx-service \
+--dry-run=client  > nginx-service-alpha.yaml
+
+kubectl apply -f nginx-service-alpha.yaml -n alpha
+
+**3.Change image in nginx-deployment to nginx:1.19.2 Record the change**
+
+kubectl set image deploy nginx-deployment -n alpha nginx=nginx:1.19.2 \
+  -o yaml --dry-run=client > nginx-deployment2-alpha.yaml
+
+kubectl apply -f nginx-deployment2-alpha.yaml -n alpha --record
+
+kubectl rollout history deploy/nginx-deployment -n alpha
+
+
+**4.Rollback nginx-deployment to previous version**
+
+kubectl rollout undo deployment nginx-deployment -n alpha
+
+kubectl rollout history deploy/nginx-deployment -n alpha
+
+**5.Scale deployment nginx-deployment to 5 replicas**
+
+kubectl scale deploy nginx-deployment -n alpha --replicas=5
+
+**6. Use busybox image to get access to nginx webpage. Store the content to /var/answers/nginx.html**
+
+kubectl run busybox -it --rm --image=busybox -- sh
+
