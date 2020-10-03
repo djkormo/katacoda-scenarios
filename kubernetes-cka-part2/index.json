@@ -20,7 +20,6 @@
         "foreground": "clear.sh",
         "answer": "step2-answer.md"
       },
-
       {
         "title": "Scaling,rolling, rollback deployments",
         "text": "step3.md",
@@ -28,8 +27,15 @@
         "background": "step3-background.sh",
         "foreground": "clear.sh",
         "answer": "step3-answer.md"
+      }, 
+      {
+        "title": "Limits, requests",
+        "text": "step4.md",
+        "verify": "step4-verify.sh",
+        "background": "step4-background.sh",
+        "foreground": "clear.sh",
+        "answer": "step4-answer.md"
       } 
-      
     ],
     "intro": {
       "text": "000.intro.md",
