@@ -62,6 +62,13 @@ envFrom:
   - configMapRef:
     name: postgresql-configmap
 ```
+
+```yaml
+
+
+```
+
+
 Based on 
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 
@@ -102,6 +109,11 @@ envFrom:
     name: postgresql-configmap-nopass
 - secretRef:
     name: postgresql-secret
+```
+
+
+```yaml
+
 ```
 
 kubectl apply -f  postgresql-cm-secret.yaml  -n alpha
@@ -167,4 +179,30 @@ kubectl scale deploy nginx-deployment -n alpha --replicas=5
 **6. Use busybox image to get access to nginx webpage. Store the content to /var/answers/nginx.html**
 
 kubectl run busybox -it --rm --image=busybox -- sh
+
+
+
+STEP 4
+
+**1.Create a pod named nginx-pod-limit using image nginx:1.18.0 on port 80 add 200m CPU limit and 700Mi memory limit**
+
+kubectl run nginx-pod-limit -n alpha --image=nginx:1.18.0 --limits="memory=700Mi,cpu=200m"   -o yaml --dry-run=client >pod-nginx-limit.yaml
+
+kubectl apply -f pod-nginx-limit.yaml -n alpha
+
+**2.Create a pod named nginx-pod-request using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request**
+
+
+kubectl run nginx-pod-request -n alpha --image=nginx:1.18.0 --requests="memory=500Mi,cpu=100m"   -o yaml --dry-run=client >pod-nginx-request.yaml
+
+kubectl apply -f pod-nginx-request.yaml -n alpha
+
+**3.Create a pod named nginx-pod-request-limit using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
+
+**4.Create deployment  nginx-deployment-request-limit  using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
+
+
+**5.Expose deployment nginx-deployment-request-limit named nginx-service-request-limit using ClusterIP and port 80.**
+
+
 

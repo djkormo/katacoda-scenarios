@@ -1,74 +1,21 @@
-To continue you have to 
 
 Examples how to start:
 
-<pre>
+Using copy and paste in vim
 
-1. 
+Cut and paste:
 
-kubectl run postgresql --image=postgres:12.4 --port 5432  -o yaml --dry-run=client
+    Position the cursor where you want to begin cutting.
+    Press v to select characters, or uppercase V to select whole lines, or Ctrl-v to select rectangular blocks (use Ctrl-q if Ctrl-v is mapped to paste).
+    Move the cursor to the end of what you want to cut.
+    Press d to cut (or y to copy).
+    Move to where you would like to paste.
+    Press P to paste before the cursor, or p to paste after.
 
-2. 
+Copy and paste is performed with the same steps except for step 4 where you would press y instead of d:
 
-kubectl run postgresql-env --image=postgres:12.4 --port 5432  \
-  --env="POSTGRES_DB=postgresdb" --env="POSTGRES_USER=postgresadmin" --env=POSTGRES_PASSWORD=admin123 \
-  -o yaml --dry-run=client
+    d stands for delete in Vim, which in other editors is usually called cut
+    y stands for yank in Vim, which in other editors is usually called 
+    
 
-
-3. 
-
-kubectl create configmap postgresql-configmap   --from-literal="POSTGRES_DB=postgresdb"  \
-  --from-literal="POSTGRES_USER=postgresadmin" --from-literal="POSTGRES_PASSWORD=admin123" \
-  -n alpha -o yaml --dry-run=client
-
-4. 
-
-
-cp postgresql-pod.yaml postgresql-cm-pod.yaml
-
-vim postgresql-cm-pod.yaml
-
-change name to postgresql-cm
-add  
-```yaml
-envFrom:
-  - configMapRef:
-    name: postgresql-configmap
-```
-
-kubectl apply -f postgresql-cm-pod.yaml -n alpha
-
-5. 
-
-kubectl create configmap postgresql-configmap-nopass --from-literal="POSTGRES_DB=postgresdb" --from-literal=POSTGRES_USER=postgresadmin -o yaml --dry-run=client
-
-6.
-
-kubectl create secret generic posgresql-secret --from-literal="POSTGRES_PASSWORD=admin123"  -o yaml--dry-run=client
-
-7.
-
-cp  postgresql-cm-pod.yaml postgresql-cm-secret.yaml
-
-vim postgresql-cm-secret.yaml
-
-change name to postgresql-cm-secret
-change configmap name
-add secret reference
-
-```yaml
-envFrom:
-- configMapRef:
-    name: postgresql-configmap-nopass
-- secretRef:
-    name: postgresql-secret
-```
-
-kubectl apply -f  postgresql-cm-secret.yaml  -n alpha
-
-
-8. 
-
-kubectl expose pod/postgresql-cm-secret --name=postgresql-webservice -n alpha --dry-run
-
-</pre>
+https://vim.fandom.com/wiki/Copy,_cut_and_paste
