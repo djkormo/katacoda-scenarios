@@ -94,7 +94,8 @@ Preserve the alone pods
 `kubectl drain node01 --ignore-daemonsets --force `{{execute HOST1}}
 
 <pre>
-node/node01 already cordonedWARNING: deleting Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet: alone/alone-pod, alone/web-server; ignoring DaemonSet-managed Pods: kube-system/calico-node-pdjlj, kube-system/kube-proxy-kqlkj
+node/node01 already cordoned
+WARNING: deleting Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet: alone/alone-pod, alone/web-server; ignoring DaemonSet-managed Pods: kube-system/calico-node-pdjlj, kube-system/kube-proxy-kqlkj
 
 evicting pod alone/web-serverevicting pod alone/alone-pod
 evicting pod kube-system/calico-kube-controllers-59877c7fb4-fvshd

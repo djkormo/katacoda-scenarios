@@ -11,7 +11,10 @@ Show all namespaces
 `kubectl get ns`{{execute}}
 
 
-List all of objects in default namespace
+List all of pvc in vol namespace
 
-`kubectl get all -o wide`{{execute HOST1}}
+`kubectl get pvc -o wide n -vol `{{execute HOST1}}
+
+
+
 

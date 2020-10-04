@@ -9,7 +9,6 @@ Something happened during the night
 
 In default namespace there are no deployment and service objects
 
-
 Let's examine etcd configuration 
 
 `kubectl get pods -n kube-system`{{execute}}

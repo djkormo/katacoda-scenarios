@@ -6,7 +6,7 @@
   "details": {
     "steps": [
       {
-        "title": "TODO",
+        "title": "Understand storage classes, persistent volumes",
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "background": "install.sh",
