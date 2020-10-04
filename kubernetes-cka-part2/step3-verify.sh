@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 kubectl get deploy nginx-deployment -n alpha -o yaml |grep "containerPort: 80" \
   && kubectl get service nginx-service -n alpha -o yaml |grep "port: 80" \
   && kubectl rollout history deploy/nginx-deployment -n alpha --revision=2 | grep "nginx:1.19.2" \

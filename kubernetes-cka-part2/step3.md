@@ -6,6 +6,7 @@ All objects should by deployed into alpha namespace
 
 CHECK
 `kubectl get deploy nginx-deployment -n alpha -o yaml |grep "image: nginx:1.18.0" && echo "done"`{{execute}}
+
 `kubectl get deploy nginx-deployment -n alpha -o yaml |grep "containerPort: 80" && echo "done"`{{execute}} 
 CHECK
 
@@ -19,8 +20,8 @@ CHECK
 **3.Change image in nginx-deployment to nginx:1.19.2 Record the change**
 
 CHECK
-`kubectl get deploy nginx-deployment -n alpha -o yaml |grep "image: nginx:1.19.2" && echo "done"`{{execute}
-}  
+`kubectl get deploy nginx-deployment -n alpha -o yaml |grep "image: nginx:1.19.2" && echo "done"`{{execute}}  
+
 `kubectl get deploy nginx-deployment -n alpha -o yaml |grep "containerPort: 80" && echo "done"`{{execute}} 
 CHECK
 
@@ -30,7 +31,7 @@ CHECK
 CHECK
 `kubectl get deploy nginx-deployment -n alpha -o yaml |grep "image: nginx:1.18.0" && echo "done"`{{execute}}
 
-`kubectl rollout history deploy/nginx-deployment -n alpha`{{execute}}
+`kubectl rollout history deploy/nginx-deployment -n alpha |grep 2 &&  echo "done"`{{execute}}
 
 `kubectl rollout history deploy/nginx-deployment -n alpha --revision=2 | grep "nginx:1.19.2" && echo "done"`{{execute}}
 `kubectl rollout history deploy/nginx-deployment -n alpha --revision=3 | grep "nginx:1.18.0" && echo "done"`{{execute}}

@@ -132,10 +132,9 @@ CHECK
 `kubectl get svc postgresql-webservice -n alpha |grep 5432 && echo "done" `{{execute}}
 CHECK
 
-
 `kubectl get pod,cm,secret,svc,ep -n alpha`{{execute}}
-
 <pre>
+
 NAME                       READY   STATUS             RESTARTS   AGE
 pod/postgresql             0/1     CrashLoopBackOff   8          17m
 pod/postgresql-cm          1/1     Running            0          5m6s

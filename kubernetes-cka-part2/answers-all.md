@@ -1,24 +1,15 @@
 STEP 1
 
-1. run
 
 kubectl run web --image=nginx:1.11.9-alpine --port 80  -o yaml --dry-run=client > web-pod.yaml
-
-
-2. use
 
 edit vim web-pod.yaml
 
 add port 443
 
-save 
-
-3. deploy
-
 kubectl apply -f web-pod.yaml -n alpha
 
 kubectl expose pod/web --name=webservice -n alpha
-
 
 STEP 2
 
@@ -30,7 +21,8 @@ kubectl run postgresql --image=postgres:12.4 --port 5432  \
 kubectl apply -f postgresql-pod.yaml -n alpha
 
 
-2. 
+**2.Create a pod named postgresql-env using image postgres:12.4 on port 5432.**
+
 
 kubectl run postgresql-env --image=postgres:12.4 --port 5432  \
   --env="POSTGRES_DB=postgresdb" --env="POSTGRES_USER=postgresadmin" --env=POSTGRES_PASSWORD=admin123 \
@@ -38,7 +30,7 @@ kubectl run postgresql-env --image=postgres:12.4 --port 5432  \
 
 kubectl apply -f postgresql-env-pod.yaml -n alpha
 
-3. 
+**3.Create a configmap named postgresql-configmap with following content**
 
 kubectl create configmap postgresql-configmap   --from-literal="POSTGRES_DB=postgresdb"  \
   --from-literal="POSTGRES_USER=postgresadmin" \
@@ -48,7 +40,7 @@ kubectl create configmap postgresql-configmap   --from-literal="POSTGRES_DB=post
 kubectl apply -f postgresql-configmap.yaml -n alpha
 
 
-4. 
+**4.Create a pod named postgresql-cm using image postgres:12.4 on port 5432.**
 
 
 cp postgresql-env-pod.yaml postgresql-cm-pod.yaml
@@ -86,13 +78,13 @@ spec:
   restartPolicy: Always
 ```
 
+kubectl apply -f postgresql-cm-pod.yaml -n alpha
 
 Based on 
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 
-kubectl apply -f postgresql-cm-pod.yaml -n alpha
 
-5. 
+**5.Create a configmap named postgresql-configmap-nopass with following content**
 
 kubectl create configmap postgresql-configmap-nopass \
   --from-literal="POSTGRES_DB=postgresdb" \
@@ -111,7 +103,7 @@ and remove POSTGRES_PASSWORD
 kubectl apply -f postgresql-configmap-nopass.yaml -n alpha
 
 
-6.
+**6.Create a secret named postgresql-secret with following content**
 
 kubectl create secret generic postgresql-secret \
 --from-literal="POSTGRES_PASSWORD=admin123"  \
@@ -119,7 +111,8 @@ kubectl create secret generic postgresql-secret \
 
 kubectl apply -f postgresql-secret.yaml -n alpha
 
-7.
+
+**7.Create a pod named postgresql-cm-secret using image postgres:12.4, on port 5432.**
 
 cp  postgresql-cm-pod.yaml postgresql-cm-secret.yaml
 
@@ -164,7 +157,7 @@ spec:
 
 kubectl apply -f  postgresql-cm-secret.yaml  -n alpha
 
-8. 
+**8.Create a service as ClusterIP to expose pod postgresql-cm-secret, named as postgresql-webservice**
 
 kubectl expose pod/postgresql-cm-secret --name=postgresql-webservice -n alpha
 
@@ -265,20 +258,20 @@ STEP 4
 
 **1.Create a pod named nginx-pod-limit using image nginx:1.18.0 on port 80 add 200m CPU limit and 700Mi memory limit**
 
-kubectl run nginx-pod-limit -n alpha --image=nginx:1.18.0 --limits="memory=700Mi,cpu=200m"   -o yaml --dry-run=client >pod-nginx-limit.yaml
+kubectl run nginx-pod-limit -n alpha --image=nginx:1.18.0 --limits="memory=700Mi,cpu=200m" --port=80  -o yaml --dry-run=client >pod-nginx-limit.yaml
 
 kubectl apply -f pod-nginx-limit.yaml -n alpha
 
 **2.Create a pod named nginx-pod-request using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request**
 
 
-kubectl run nginx-pod-request -n alpha --image=nginx:1.18.0 --requests="memory=500Mi,cpu=100m"   -o yaml --dry-run=client >pod-nginx-request.yaml
+kubectl run nginx-pod-request -n alpha --image=nginx:1.18.0 --requests="memory=500Mi,cpu=100m" --port=80  -o yaml --dry-run=client >pod-nginx-request.yaml
 
 kubectl apply -f pod-nginx-request.yaml -n alpha
 
 **3.Create a pod named nginx-pod-request-limit using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
 
-kubectl run nginx-pod-request-limit -n alpha --image=nginx:1.18.0 \
+kubectl run nginx-pod-request-limit -n alpha --image=nginx:1.18.0 --port=80 \
   --requests="memory=500Mi,cpu=100m"  --limits="memory=700Mi,cpu=200m" \
   -o yaml --dry-run=client >pod-nginx-request-limit.yaml
 
@@ -302,12 +295,21 @@ kubectl get pod nginx-pod-request-limit -n alpha -o yaml | grep resources: -A6
         cpu: 100m
         memory: 500Mi
 ```
+
+add  missing port
+look here
+kubectl get pod nginx-pod-request-limit -n alpha -o yaml | grep resources: -A6
+```yaml
+        name: nginx
+        ports:
+        - containerPort: 80
+```
+
 The whole file
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
   labels:
     app: nginx-deployment-request-limit
   name: nginx-deployment-request-limit
@@ -315,27 +317,28 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: nginx-deployment-request-limit
+    matchLabels:      
+    app: nginx-deployment-request-limit
   strategy: {}
   template:
-    metadata:
-      creationTimestamp: null
+    metadata:      
+    creationTimestamp: null
       labels:
         app: nginx-deployment-request-limit
-    spec:
-      containers:
+    spec:      
+    containers:
       - image: nginx:1.18.0
         name: nginx
+        ports:        
+        - containerPort: 80
         resources:
           limits:
-            cpu: 200m
             memory: 700Mi
+            cpu: 200m
           requests:
-            cpu: 100m
             memory: 500Mi
+            cpu: 100m
 ```
-
 
 kubectl apply -f nginx-deployment-request-limit.yaml -n alpha
 

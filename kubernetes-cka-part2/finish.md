@@ -1,11 +1,11 @@
 
-You will learn how to 
+You have learned how to 
 
 a) create pods and services
 
-b) create deployments
+b) create deployments, rollouts and rollbacks, scale applications
 
-c) create jobs and cronjobs
+c) control limits and resources 
 
 
 https://training.linuxfoundation.org/cka-program-changes-2020/
