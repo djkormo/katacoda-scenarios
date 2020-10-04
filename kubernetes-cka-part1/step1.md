@@ -52,7 +52,8 @@ error: unable to drain node "node01", aborting command...
 
 There are pending nodes to be drained:
  node01
-error: cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/kube-proxy-chm2m, kube-system/kube-router-ssqcq
+cannot delete Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet (use --force to override): alone/alone-pod, alone/web-server
+cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/calico-node-pdjlj, kube-system/kube-proxy-kqlkj
 </pre>
 
 List all pods running on node01
@@ -85,30 +86,23 @@ There are pending nodes to be drained:
 error: cannot delete Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet (use --force to override): alone/alone-pod, alone/web-server
 </pre>
 
-node/node01 already cordoned
-error: unable to drain node "node01", aborting command...
-
-There are pending nodes to be drained:
- node01
-error: cannot delete Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet (use --force to override): alone/alone-pod, alone/web-server
-
 `kubectl get pod -n alone`{{execute}}
 Preserve the alone pods
 
 `kubectl get pod/alone-pod -n alone -o yaml >pod-alone-alone-pod.yaml`{{execute}}
 `kubectl get pod/web-server -n alone -o yaml >pod-alone-web-server.yaml`{{execute}}
-
 `kubectl drain node01 --ignore-daemonsets --force `{{execute HOST1}}
 
 <pre>
-node/node01 already cordoned
-WARNING: ignoring DaemonSet-managed Pods: kube-system/kube-proxy-pz94c, kube-system/kube-router-brhfw
-evicting pod default/my-nginx-6b474476c4-6rq86
-evicting pod default/my-nginx-6b474476c4-tcswf
-evicting pod default/my-nginx-6b474476c4-wqr6d
-pod/my-nginx-6b474476c4-tcswf evicted
-pod/my-nginx-6b474476c4-wqr6d evicted
-pod/my-nginx-6b474476c4-6rq86 evicted
+node/node01 already cordonedWARNING: deleting Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet: alone/alone-pod, alone/web-server; ignoring DaemonSet-managed Pods: kube-system/calico-node-pdjlj, kube-system/kube-proxy-kqlkj
+
+evicting pod alone/web-serverevicting pod alone/alone-pod
+evicting pod kube-system/calico-kube-controllers-59877c7fb4-fvshd
+evicting pod kube-system/coredns-f9fd979d6-hjks6
+
+pod/web-server evicted
+pod/calico-kube-controllers-59877c7fb4-fvshd evicted
+pod/coredns-f9fd979d6-hjks6 evictedpod/alone-pod evicted
 node/node01 evicted
 </pre>
 
@@ -135,5 +129,18 @@ On master node
 
 `kubectl get pod -o wide`{{execute}}} 
 
+What we have in alone namespace
+
+`kubectl get pod -n alone`{{execute}}} 
+
+CHECK
+
+`kubectl get nodes | grep 1.19.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+
+`kubectl get pod alone-pod web-server -n alone | grep Running |wc -l | grep 2 && echo "done"`{{execute}}
+CHECK
+
+
 
 To continue you should have 1.19 Kubernetes cluster with two nodes (ready)
+

@@ -19,7 +19,7 @@
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "foreground": "clear.sh",
-        "background": "install.sh",
+        "background": "step1-background.sh",
         "answer": "step1-answer.md"
       },
       {
@@ -27,6 +27,7 @@
         "text": "step2.md",
         "verify": "step2-verify.sh",
         "foreground": "clear.sh",
+        "background": "step2-background.sh",
         "answer": "step2-answer.md"
       },
       {
@@ -65,7 +66,7 @@
     "dashboards": [
       {
         "name": "Kubernetes.io",
-        "href": "https://kubernetes.io"
+        "href": "https://kubernetes.io/docs/home/"
       }
     ],
     "hideintro": false,
