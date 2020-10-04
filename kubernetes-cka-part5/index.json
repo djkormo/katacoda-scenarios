@@ -9,7 +9,7 @@
         "title": "Understand storage classes, persistent volumes",
         "text": "step1.md",
         "verify": "step1-verify.sh",
-        "background": "install.sh",
+        "background": "step1-background.sh",
         "foreground": "foreground.sh",
         "answer": "step1-answer.md"
       }
