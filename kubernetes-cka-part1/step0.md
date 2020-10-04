@@ -13,11 +13,11 @@ It means that you have only 58 minutes to finish the lab!!
 `kubeadm version -o short`{{execute}}
 
 
-If you need a cluster available.. let's make our hand go to work...
+If you need a cluster available.. let's make our hands go to work...
 
 The Kubernetes nodes are not configured. If you want to configure the nodes then you'd need to run kubeadm which has been set and configured. For example, for following command will initialise the master with the latest version installed.
 
-`kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 10.5.0.0/16`{{execute HOST1}}
+``kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16`{{execute HOST1}}
 
 Move cluster config file to your home directory.
 
@@ -27,15 +27,20 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config`{{execute}}
 
 Initialize cluster networking:
 
+
+Use kuberouter
+
 `kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml`{{execute}}
+
+Or use calico
+
+` kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml`{{execute}}
+
 
  Create an example deployment:
 
  `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
 
-Create an example pods:
-
- `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
 
 `ssh node01`{{execute}}
 On worker node (node01) 
@@ -43,7 +48,7 @@ execute kubeadm join .... command.
 
 Return to master (controlplane) node
 
-`exit`{{execute HOST2}}
+`exit`{{copy}}
 
 Hint
 
@@ -67,4 +72,13 @@ Example objects in default namespace
 
 `kubectl get all -o wide`{{execute}}
 
+
+CHECK
+
+`kubectl get nodes | grep 1.18.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+
+CHECK
+
+
 To continue you should have 1.18 Kubernetes cluster with two nodes (ready)
+
