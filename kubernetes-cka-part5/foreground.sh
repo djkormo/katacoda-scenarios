@@ -17,5 +17,4 @@ echo "Almost ready!!!"
 sleep 10;
 source ~/.bashrc
 
-
 clear
