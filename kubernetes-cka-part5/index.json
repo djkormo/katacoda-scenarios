@@ -42,7 +42,7 @@
     "dashboards": [
       {
         "name": "Kubernetes.io",
-        "href": "https://kubernetes.io"
+        "href": "https://kubernetes.io/docs/home/"
       }
     ],
     "hideintro": false,
