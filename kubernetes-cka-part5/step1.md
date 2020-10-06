@@ -94,6 +94,9 @@ Volume Mount: /var/log/nginx/
 
 cp pod-webapp-volume.yaml pod-webapp-volume-host.yaml
 
+kubectl apply -f pod-webapp-volume-host.yaml -n vol
+
+
 CHECK
 
 `kubectl get pod webapp-volume-host -n vol -o yaml |grep " containerPort: 80" && echo "done"`{{execute}}
@@ -102,9 +105,10 @@ CHECK
 
 `kubectl get pod webapp-volume-host -n vol |grep Running && echo "done"`{{execute}}  
 
-`kubectl get pod webapp-volume-host -n vol -o yaml | grep "emptyDir: {}" && echo "done"`{{execute}}
+`kubectl get pod webapp-volume-host -n vol -o yaml | grep "hostPath:" && echo "done"`{{execute}}
 
 `kubectl get pod webapp-volume-host -n vol -o yaml | grep volumeMounts: -A1 | grep "mountPath: /var/log/nginx" && echo "done"`{{execute}}
+
 CHECK
 
 
