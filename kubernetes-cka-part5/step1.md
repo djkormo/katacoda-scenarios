@@ -14,7 +14,7 @@ List all of  storage class
 
 `kubectl get sc`{{execute}}
 
-List all objects in vol naemspace
+List all objects in vol namespace
 
 `kubectl get all,ep -n vol`{{execute}}
 
@@ -28,13 +28,22 @@ kubectl run webapp -n nginx --image=nginx:latest --port=80  -n log -o yaml --dry
 
 kubectl apply -f pod-webapp.yaml -n vol
 
+**2.Add to webapp pod volume named nginx-volume using emptyDir and mounted at /opt/data**
 
-**2. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
+Name this pod pod-webapp-volume and deploy in vol namespace
+
+cp pod-webapp.yaml pod-webapp-volume.yaml
+
+**3. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
 
 Name: webapp-host
+
 Image Name: nginx:latest
+
 Volume HostPath: var/log/nginx/
+
 Volume Mount: /var/log/nginx/
+
 
 cp pod-webapp.yaml pod-webapp-host.yaml
 
@@ -44,38 +53,45 @@ kubectl explain pod.spec.volumes
 and
 kubectl explain pod.spec.containers.volumeMounts
 
+add
+```yaml
+    volumeMounts:
+    - name: nginx-volume
+      mountPath: /opt/data
+  volumes:
+  - name: nginx-volume
+    emptyDir: {}
+```
 
-
-**3. Create a 'Persistent Volume' with the given specification.**
+**4. Create a 'Persistent Volume' with the given specification.**
 
     Volume Name: pv-data
-    Storage: 50Mi
-    Access modes: ReadWriteMany
-    Host Path: /var/log/data 
 
+    Storage: 50Mi
+
+    Access modes: ReadWriteMany
+
+    Host Path: /var/log/data 
 
 
 
 `kubectl get sc`{{execute}}
 
 CHECK
-
 `kubectl get pv`{{execute}}
-
 CHECK
 
 
-**4.Create a 'Persistent Volume Claim' with the given specification.***
+**5.Create a 'Persistent Volume Claim' with the given specification.***
 
-    Volume Name: pv-log
+    Volume Name: pvc-log
     Storage: 30Mi
     Access modes: ReadWriteMany
     Host Path: /var/log/data 
 
-**5. Correct PVC to Bind to PV**
+**6. Correct PVC to Bind to PV**
 
-
-**6. Update the webapp-volume pod to use the persistent volume claim as its storage.** 
+**7. Update the webapp-volume pod to use the persistent volume claim as its storage.** 
 
     Name: webapp
     Image Name: kodekloud/event-simulator
@@ -105,7 +121,6 @@ spec:
       ports:
         - containerPort: 80
 ```
-
 
 
 ```yaml
