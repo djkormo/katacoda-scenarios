@@ -24,9 +24,17 @@ All namespaced objects should be deployed in **vol** namespace
 
 **1. Create webapp pod based on image nginx:latest and port 80**
 
-kubectl run webapp -n nginx --image=nginx:latest --port=80  -n log -o yaml --dry-run=client > pod-webapp.yaml
+kubectl run webapp -n nginx --image=nginx:latest --port=80  -n vol -o yaml --dry-run=client > pod-webapp.yaml
 
 kubectl apply -f pod-webapp.yaml -n vol
+
+CHECK
+
+`kubectl get pod webapp -n vol -o yaml |grep " containerPort: 80" && echo "done"`{{execute}}
+`kubectl get pod webapp -n vol -o yaml  |grep 'image: nginx:latest' && echo "done"`{{execute}}
+`kubectl get pod webapp -n vol |grep Running && echo "done"`{{execute}}  
+
+CHECK
 
 **2.Add to webapp pod volume named nginx-volume using emptyDir and mounted at /opt/data**
 
