@@ -124,11 +124,17 @@ CHECK
     Host Path: /var/log/data 
 </pre>
 
-
-`kubectl get sc`{{execute}}
-
 CHECK
-`kubectl get pv`{{execute}}
+
+`kubectl get pv pv-data && echo "done" `{{execute}}
+
+
+`kubectl get pv pv-data -o yaml | grep "storage: 50Mi" && echo "done"`{{execute}}
+
+`kubectl get pv pv-data -o yaml |grep "ReadWriteMany" && echo "done"`{{execute}}
+
+`kubectl get pv pv-data -o yaml | grep "path: /var/log/data" && echo "done"`{{execute}}
+
 CHECK
 
 
@@ -137,11 +143,35 @@ CHECK
 <pre>
     Volume Name: pvc-log
     Storage: 30Mi
-    Access modes: ReadWriteMany
+    Access modes: ReadWriteOnce
     Host Path: /var/log/data 
 </pre>
 
+
+
+
+CHECK
+
+`kubectl get pvc pvc-log -n vol && echo "done"`{{execute}}
+
+`kubectl get pvc pvc-log -n vol -o yaml | grep "storage: 30Mi" && echo "done"`{{execute}}
+
+`kubectl get pvc pvc-log -n vol -o yaml | grep "ReadWriteOnce" && echo "done"`{{execute}}
+
+CHECK
+
+
 **6. Correct PVC to Bind to PV**
+
+
+CHECK
+
+`kubectl get pv pv-data |grep Bound && echo "done"`{{execute}}
+
+`kubectl get pvc pvc-log -n vol |grep Bound && echo "done"`{{execute}}
+
+CHECK
+
 
 **7. Create the webapp-volume-pvc pod to use the persistent volume claim as its storage.** 
 <pre>
@@ -153,6 +183,11 @@ Volume Name: pvc-log
 </pre>
 
 
+CHECK
+
+
+CHECK
+
 List all of pv
 
 `kubectl get sc,pv `{{execute}}
@@ -160,8 +195,6 @@ List all of pv
 List all of pvc in vol namespace
 
 `kubectl get pvc -o wide -n vol`{{execute}}
-
-
 
 
 

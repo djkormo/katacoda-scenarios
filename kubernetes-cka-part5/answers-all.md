@@ -19,6 +19,37 @@ Volume HostPath: emptyDir()
 Volume Mount: /opt/data/
 </pre>
 
+cp  pod-webapp.yaml pod-webapp-volume.yaml
+
+change pod name and add volume
+
+kubectl apply -f pod-webapp-volume.yaml -n vol
+
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: webapp-volume
+  name: webapp-volume
+  namespace: vol
+spec:
+  containers:
+  - image: nginx:latest
+    name: webapp-volume
+    ports:
+    - containerPort: 80
+    resources: {}
+    volumeMounts:
+    - name: nginx-volume
+      mountPath: /opt/data
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: nginx-volume
+    emptyDir: {}
+```
 
 **3. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
 <pre>
@@ -28,6 +59,13 @@ Image Name: nginx:latest
 Volume HostPath: /var/log/nginx/
 Volume Mount: /var/log/nginx/
 </pre>
+
+
+cp  pod-webapp-volume.yaml pod-webapp-volume-host.yaml
+
+change pod name and change volume
+
+kubectl apply -f pod-webapp-volume-host.yaml -n vol
 
 
 ```yaml
@@ -57,60 +95,62 @@ spec:
 ```
 
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    run: webapp-volume
-  name: webapp-volume
-  namespace: vol
-spec:
-  containers:
-  - image: nginx:latest
-    name: webapp-volume
-    ports:
-    - containerPort: 80
-    resources: {}
-    volumeMounts:
-    - name: nginx-volume
-      mountPath: /opt/data
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-  volumes:
-  - name: nginx-volume
-    emptyDir: {}
-```
 
-controlplane $ cat pv.yaml
+**4. Create a 'Persistent Volume' with the given specification.**
+<pre>
+    Volume Name: pv-data
+    Storage: 50Mi
+    Access modes: ReadWriteMany
+    Host Path: /var/log/data 
+</pre>
+
+vim pv-data.yaml
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-log
+  name: pv-data
 spec:
   capacity:
-    storage: 100Mi
+    storage: 50Mi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: /pv/log
+    path: /var/log/data
 ``` 
 
-controlplane $ cat pvc.yaml
+kubectl apply -f pv-data.yaml
+
+
+**5.Create a 'Persistent Volume Claim' with the given specification.***
+
+<pre>
+    Volume Name: pvc-log
+    Storage: 30Mi
+    Access modes: ReadWriteOnce
+    Host Path: /var/log/data 
+</pre>
+
+vim pvc-log.yaml
+
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: claim-log-1
+  name: pvc-log
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 50Mi
-```      
+      storage: 30Mi
+```     
+
+kubectl apply -f pvc-log.yaml -n vol
+
+
 controlplane $ kubectl get pod
 <pre>
 NAME     READY   STATUS    RESTARTS   AGE
