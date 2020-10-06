@@ -14,6 +14,10 @@ List all of  storage class
 
 `kubectl get sc`{{execute}}
 
+List all objects in vol naemspace
+
+`kubectl get all,ep -n vol`{{execute}}
+
 
 All namespaced objects should be deployed in **vol** namespace
 
@@ -21,8 +25,8 @@ All namespaced objects should be deployed in **vol** namespace
 **1. Create webapp pod based on image nginx:latest and port 80**
 
 kubectl run webapp -n nginx --image=nginx:latest --port=80  -n log -o yaml --dry-run=client > pod-webapp.yaml
-kubectl apply -f pod-webapp.yaml -n vol
 
+kubectl apply -f pod-webapp.yaml -n vol
 
 
 **2. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
