@@ -24,14 +24,18 @@ All namespaced objects should be deployed in **vol** namespace
 
 **1. Create webapp pod based on image nginx:latest and port 80**
 
-kubectl run webapp -n nginx --image=nginx:latest --port=80  -n vol -o yaml --dry-run=client > pod-webapp.yaml
-
-kubectl apply -f pod-webapp.yaml -n vol
+<pre>
+Pod name:  webapp
+Image Name: nginx:latest
+Container port: 80
+</pre>
 
 CHECK
 
 `kubectl get pod webapp -n vol -o yaml |grep " containerPort: 80" && echo "done"`{{execute}}
+
 `kubectl get pod webapp -n vol -o yaml  |grep 'image: nginx:latest' && echo "done"`{{execute}}
+
 `kubectl get pod webapp -n vol |grep Running && echo "done"`{{execute}}  
 
 CHECK
@@ -112,7 +116,6 @@ CHECK
 CHECK
 
 
-
 **4. Create a 'Persistent Volume' with the given specification.**
 <pre>
     Volume Name: pv-data
@@ -158,135 +161,6 @@ List all of pvc in vol namespace
 
 `kubectl get pvc -o wide -n vol`{{execute}}
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: webapp
-  namespace: vol
-spec:
-  containers:
-    - name: nginx
-      image: nginx
-      ports:
-        - containerPort: 80
-```
-
-
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: local-storage
-  capacity:
-    storage: 50Mi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
-```
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-volume
-  namespace: vol
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 30Mi
-  storageClassName: local-storage
-```
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: webapp-volume
-  namespace: vol
-spec:
-  volumes:
-    - name: pvc-storage
-      persistentVolumeClaim:
-        claimName: pvc-volume
-  containers:
-    - name: nginx-volume
-      image: nginx
-      ports:
-        - containerPort: 80
-      volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
-          name: pvc-storage
-```
-
-
-cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: Pod
-metadata:
-  name: webapp
-  namespace: vol
-spec:
-  containers:
-    - name: nginx
-      image: nginx
-      ports:
-        - containerPort: 80
----        
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-volume
-spec:
-  storageClassName: local-storage
-  capacity:
-    storage: 50Mi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"      
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-volume
-  namespace: vol
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 30Mi
-  storageClassName: local-storage
----  
-apiVersion: v1
-kind: Pod
-metadata:
-  name: webapp-volume
-  namespace: vol
-spec:
-  volumes:
-    - name: pvc-storage
-      persistentVolumeClaim:
-        claimName: pvc-volume
-  containers:
-    - name: nginx-volume
-      image: nginx
-      ports:
-        - containerPort: 80
-      volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
-          name: pvc-storage           
-EOF
 
 
 
