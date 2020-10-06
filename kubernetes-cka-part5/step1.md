@@ -20,20 +20,29 @@ All namespaced objects should be deployed in **vol** namespace
 
 **1. Create webapp pod based on image nginx:latest and port 80**
 
-
 kubectl run webapp -n nginx --image=nginx:latest --port=80  -n log -o yaml --dry-run=client > pod-webapp.yaml
 kubectl apply -f pod-webapp.yaml -n vol
 
 
 
-**1. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
+**2. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
 
-Name: webapp
+Name: webapp-host
 Image Name: nginx:latest
 Volume HostPath: var/log/nginx/
 Volume Mount: /var/log/nginx/
 
-**1. Create a 'Persistent Volume' with the given specification.**
+cp pod-webapp.yaml pod-webapp-host.yaml
+
+
+Look at
+kubectl explain pod.spec.volumes
+and
+kubectl explain pod.spec.containers.volumeMounts
+
+
+
+**3. Create a 'Persistent Volume' with the given specification.**
 
     Volume Name: pv-data
     Storage: 50Mi
@@ -52,17 +61,17 @@ CHECK
 CHECK
 
 
-**2.Create a 'Persistent Volume' with the given specification.***
+**4.Create a 'Persistent Volume Claim' with the given specification.***
 
     Volume Name: pv-log
     Storage: 30Mi
     Access modes: ReadWriteMany
     Host Path: /var/log/data 
 
-**3. Correct PVC to Bind to PV**
+**5. Correct PVC to Bind to PV**
 
 
-**4.Update the webapp pod to use the persistent volume claim as its storage.** 
+**6. Update the webapp-volume pod to use the persistent volume claim as its storage.** 
 
     Name: webapp
     Image Name: kodekloud/event-simulator
