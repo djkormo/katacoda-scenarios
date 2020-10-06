@@ -128,12 +128,15 @@ CHECK
 
 `kubectl get pv pv-data && echo "done" `{{execute}}
 
+`kubectl get pv pv-data |grep Available && echo "done"`{{execute}}
 
 `kubectl get pv pv-data -o yaml | grep "storage: 50Mi" && echo "done"`{{execute}}
 
 `kubectl get pv pv-data -o yaml |grep "ReadWriteMany" && echo "done"`{{execute}}
 
 `kubectl get pv pv-data -o yaml | grep "path: /var/log/data" && echo "done"`{{execute}}
+
+
 
 CHECK
 
@@ -144,15 +147,14 @@ CHECK
     Volume Name: pvc-log
     Storage: 30Mi
     Access modes: ReadWriteOnce
-    Host Path: /var/log/data 
 </pre>
-
-
 
 
 CHECK
 
 `kubectl get pvc pvc-log -n vol && echo "done"`{{execute}}
+
+`kubectl get pvc pvc-log  -n vol |grep Pending && echo "done"`{{execute}}
 
 `kubectl get pvc pvc-log -n vol -o yaml | grep "storage: 30Mi" && echo "done"`{{execute}}
 
@@ -161,7 +163,7 @@ CHECK
 CHECK
 
 
-**6. Correct PVC to Bind to PV**
+**6.Correct PVC to Bind to PV**
 
 
 CHECK
@@ -173,30 +175,28 @@ CHECK
 CHECK
 
 
-**7. Create the webapp-volume-pvc pod to use the persistent volume claim as its storage.** 
+**7.Create the webapp-volume-pvc pod to use the persistent volume claim as its storage.** 
 <pre>
 Name: webapp-volume-pvc
 Image Name: nginx:latest
-Volume: PersistentVolumeClaim=claim-log-1
-Volume Mount: /log 
+Volume: PersistentVolumeClaim=pvc-log
+Volume Mount: /var/log/nginx/
 Volume Name: pvc-log
 </pre>
 
-
 CHECK
 
+`kubectl get pod webapp-volume-pvc -n vol -o yaml |grep " containerPort: 80" && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume-pvc -n vol -o yaml  |grep 'image: nginx:latest' && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume-pvc -n vol |grep Running && echo "done"`{{execute}}  
+
+`kubectl get pod webapp-volume-pvc -n vol -o yaml | grep "claimName: pvc-log" && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume-pvc -n vol -o yaml | grep volumeMounts: -A1 | grep "mountPath: /var/log/nginx" && echo "done"`{{execute}}
 
 CHECK
-
-List all of pv
-
-`kubectl get sc,pv `{{execute}}
-
-List all of pvc in vol namespace
-
-`kubectl get pvc -o wide -n vol`{{execute}}
-
-
 
 
 

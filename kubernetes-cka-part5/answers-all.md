@@ -151,20 +151,59 @@ spec:
 kubectl apply -f pvc-log.yaml -n vol
 
 
-controlplane $ kubectl get pod
-<pre>
-NAME     READY   STATUS    RESTARTS   AGE
-webapp   1/1     Running   0          6s
-controlplane $ kubectl get pv
-NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                 STORAGECLASS   REASON   AGE
-pv-log   100Mi      RWX            Retain           Bound    default/claim-log-1                           94s
-</pre>
+**6. Correct PVC to Bind to PV**
+
+change ReadWriteOnce to ReadWriteMany
+
+kubectl get pv
 
 <pre>
-controlplane $ kubectl get pvc
-NAME          STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-claim-log-1   Bound    pv-log   100Mi      RWX                           22s
+NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                 STORAGECLASS   REASON   AGE
+pv-log   50Mi      RWX            Retain           Bound    default/pvc-log                           94s
+</pre>
+
+kubectl get pvc -n vol
 <pre>
+NAME          STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+pvc-log   Bound    pv-log   50Mi      RWX                           22s
+<pre>
+
+----------
+
+**7. Create the webapp-volume-pvc pod to use the persistent volume claim as its storage.** 
+<pre>
+Name: webapp-volume-pvc
+Image Name: nginx:latest
+Volume: PersistentVolumeClaim=pvc-log
+Volume Mount: /var/log/nginx/
+Volume Name: pvc-log
+</pre>
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: webapp-volume-pvc
+  name: webapp-volume-pvc
+  namespace: vol
+spec:
+  containers:
+  - image: nginx:latest
+    name: webapp-volume-pvc
+    ports:
+    - containerPort: 80
+    resources: {}
+    volumeMounts:
+    - name: pvc-log
+      mountPath: /var/log/nginx/
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: pvc-log
+    persistentVolumeClaim:
+      claimName: pvc-log
+```
 
 
 ```yaml
