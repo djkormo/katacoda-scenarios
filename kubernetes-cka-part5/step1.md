@@ -38,23 +38,19 @@ CHECK
 
 **2.Add to webapp pod volume named nginx-volume using emptyDir and mounted at /opt/data**
 
+<pre>
+Pod name:  webapp-volume
+Volume Name: nginx-volume
+Image Name: nginx:latest
+Container port: 80
+Volume HostPath: emptyDir()
+Volume Mount: /opt/data/
+</pre>
+
+
 Name this pod pod-webapp-volume and deploy in vol namespace
 
 cp pod-webapp.yaml pod-webapp-volume.yaml
-
-**3. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
-
-Name: webapp-host
-
-Image Name: nginx:latest
-
-Volume HostPath: var/log/nginx/
-
-Volume Mount: /var/log/nginx/
-
-
-cp pod-webapp.yaml pod-webapp-host.yaml
-
 
 Look at
 kubectl explain pod.spec.volumes
@@ -71,16 +67,55 @@ add
     emptyDir: {}
 ```
 
+vim apply -f pod-webapp-volume.yaml -n vol
+
+CHECK
+
+`kubectl get pod webapp-volume -n vol -o yaml |grep " containerPort: 80" && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume -n vol -o yaml  |grep 'image: nginx:latest' && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume -n vol |grep Running && echo "done"`{{execute}}  
+
+`kubectl get pod webapp-volume -n vol -o yaml | grep "emptyDir: {}" && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume -n vol -o yaml | grep volumeMounts: -A1 | grep "mountPath: /opt/data" && echo "done"`{{execute}}
+
+CHECK
+
+**3. Configure a volume to store pod webapp logs at /var/log/webapp on the host**
+<pre>
+Pod name: webapp-volume-host
+Volume Name: webapp-host
+Image Name: nginx:latest
+Volume HostPath: /var/log/nginx/
+Volume Mount: /var/log/nginx/
+</pre>
+
+cp pod-webapp-volume.yaml pod-webapp-volume-host.yaml
+
+CHECK
+
+`kubectl get pod webapp-volume-host -n vol -o yaml |grep " containerPort: 80" && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume-host -n vol -o yaml  |grep 'image: nginx:latest' && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume-host -n vol |grep Running && echo "done"`{{execute}}  
+
+`kubectl get pod webapp-volume-host -n vol -o yaml | grep "emptyDir: {}" && echo "done"`{{execute}}
+
+`kubectl get pod webapp-volume-host -n vol -o yaml | grep volumeMounts: -A1 | grep "mountPath: /var/log/nginx" && echo "done"`{{execute}}
+CHECK
+
+
+
 **4. Create a 'Persistent Volume' with the given specification.**
-
+<pre>
     Volume Name: pv-data
-
     Storage: 50Mi
-
     Access modes: ReadWriteMany
-
     Host Path: /var/log/data 
-
+</pre>
 
 
 `kubectl get sc`{{execute}}
@@ -92,19 +127,24 @@ CHECK
 
 **5.Create a 'Persistent Volume Claim' with the given specification.***
 
+<pre>
     Volume Name: pvc-log
     Storage: 30Mi
     Access modes: ReadWriteMany
     Host Path: /var/log/data 
+</pre>
 
 **6. Correct PVC to Bind to PV**
 
-**7. Update the webapp-volume pod to use the persistent volume claim as its storage.** 
+**7. Create the webapp-volume-pvc pod to use the persistent volume claim as its storage.** 
+<pre>
+Name: webapp-volume-pvc
+Image Name: nginx:latest
+Volume: PersistentVolumeClaim=claim-log-1
+Volume Mount: /log 
+Volume Name: pvc-log
+</pre>
 
-    Name: webapp
-    Image Name: kodekloud/event-simulator
-    Volume: PersistentVolumeClaim=claim-log-1
-    Volume Mount: /log 
 
 List all of pv
 
@@ -113,8 +153,6 @@ List all of pv
 List all of pvc in vol namespace
 
 `kubectl get pvc -o wide -n vol`{{execute}}
-
-
 
 ```yaml
 apiVersion: v1
