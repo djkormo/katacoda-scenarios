@@ -6,12 +6,20 @@
   "details": {
     "steps": [
       {
-        "title": "Understand storage classes, persistent volumes",
+        "title": "Understand persistent volumes, persistent volume claims",
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "background": "step1-background.sh",
         "foreground": "foreground.sh",
         "answer": "step1-answer.md"
+      },
+      {
+        "title": "Understand storage classes",
+        "text": "step2.md",
+        "verify": "step2-verify.sh",
+        "background": "step2-background.sh",
+        "foreground": "foreground.sh",
+        "answer": "step2-answer.md"
       }
       
     ],
