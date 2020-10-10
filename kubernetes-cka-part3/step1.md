@@ -25,4 +25,6 @@ Run weavescope to  check cluster networking
 
 `kubectl expose pod $pod -n weave --name=weave-svc --external-ip=[[HOST_IP]] --port=4040 --target-port=4040`{{execute}}
 
+`kubectl get all,ep -n weave`{{execute}}
+
 
