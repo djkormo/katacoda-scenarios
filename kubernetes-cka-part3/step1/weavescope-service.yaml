@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: weave-scope-service
+spec:
+  selector:
+    app: weave-scope
+  ports:
+  - protocol: TCP
+    port: 4040
+    nodePort: 4040
+  type: NodePort
