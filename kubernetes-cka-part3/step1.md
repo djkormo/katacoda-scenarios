@@ -16,3 +16,13 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
 
+
+Optional.
+
+Run weavescope to  check cluster networking
+
+`pod=$(kubectl get pod -n weave --selector=name=weave-scope-app -o jsonpath={.items..metadata.name})`{{execute}}
+
+`kubectl expose pod $pod -n weave --name=weave-svc --external-ip=[[HOST_IP]] --port=4040 --target-port=4040`{{execute}}
+
+
