@@ -39,7 +39,6 @@
 
   "environment": {
     "showdashboard": true,
-    "showvisualise": true,
     "dashboards": [
       {
         "name": "Kubernetes.io",
