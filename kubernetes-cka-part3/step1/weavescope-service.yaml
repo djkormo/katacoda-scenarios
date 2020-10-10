@@ -8,5 +8,5 @@ spec:
   ports:
   - protocol: TCP
     port: 4040
-    nodePort: 4040
+    nodePort: 30040
   type: NodePort
