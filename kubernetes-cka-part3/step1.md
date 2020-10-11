@@ -29,9 +29,9 @@ Run weavescope to check cluster networking
 `kubectl get all,ep -n weave`{{execute}}
 
 
-**1. What IP address is assigned to  master node ?**
+**1. What IP address is assigned to node01 node ?**
 
-Answer put in file /var/log/answers/ip-master
+Answer put in file /var/log/answers/ip-masnode01ter
 
 **2. What is MAC address assigned to node01?**
 
