@@ -1,6 +1,5 @@
 **Network exercises**
 
-
 Show list of cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}

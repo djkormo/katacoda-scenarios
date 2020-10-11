@@ -6,7 +6,7 @@
   "details": {
     "steps": [
       {
-        "title": "TODO",
+        "title": "Networking",
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "background": "install.sh",
@@ -53,6 +53,6 @@
     "uimessage1": "\u001b[32mSetting up your Kubernetes playground...\u001b[m\r\n"
   },
   "backend": {
-    "imageid": "kubernetes-cluster-running:1.18"
+    "imageid": "kubernetes-cluster-running:1.19"
   }
 }
