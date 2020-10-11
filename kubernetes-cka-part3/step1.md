@@ -29,3 +29,29 @@ Run weavescope to check cluster networking
 `kubectl get all,ep -n weave`{{execute}}
 
 
+**1. What IP address is assigned to  master node ?**
+
+Answer put in file /var/log/answers/ip-master
+
+**2. What is MAC address assigned to node01?**
+
+Answer put in file /var/log/answers/mac-node01
+
+**3 What is the port the kube-scheduler is listening on in the master node**
+
+Answer put in file /var/log/answers/kube-scheduler-port
+
+**4 What is the port the kube-proxy is listening on in the node01 node**
+
+Answer put in file /var/log/answers/kube-proxy-port
+
+**5 What ports is the etcd listening on ?**
+
+Answer put in file /var/log/answers/etcd-port
+
+
+
+
+
+
+
