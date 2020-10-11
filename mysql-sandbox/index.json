@@ -1,6 +1,6 @@
 {
-  "title": "SQL Sandbox",
-  "description": "SQL Sandbox",
+  "title": "MySQL Sandbox",
+  "description": "MySQL Sandbox",
   "private": true,
   "details": {
     "steps": [
