@@ -7,6 +7,7 @@ echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
 
+upgrade.sh
 
 # create a vimrc
 cat <<EOF >>.vimrc

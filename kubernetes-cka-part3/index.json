@@ -53,6 +53,6 @@
     "uimessage1": "\u001b[32mSetting up your Kubernetes playground...\u001b[m\r\n"
   },
   "backend": {
-    "imageid": "kubernetes-cluster-running:1.19"
+    "imageid": "kubernetes-cluster-running:1.18"
   }
 }
