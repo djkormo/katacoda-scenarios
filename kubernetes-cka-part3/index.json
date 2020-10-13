@@ -6,12 +6,36 @@
   "details": {
     "steps": [
       {
-        "title": "TODO",
+        "title": "Networking",
         "text": "step1.md",
         "verify": "step1-verify.sh",
-        "background": "install.sh",
-        "foreground": "foreground.sh",
+        "background": "step1-background.sh",
+        "foreground": "step1-foreground.sh",
         "answer": "step1-answer.md"
+      },
+      {
+        "title": "Networking",
+        "text": "step2.md",
+        "verify": "step2-verify.sh",
+        "background": "step2-background.sh",
+        "foreground": "step2-foreground.sh",
+        "answer": "step2-answer.md"
+      },
+      {
+        "title": "Networking",
+        "text": "step3.md",
+        "verify": "step3-verify.sh",
+        "background": "step3-background.sh",
+        "foreground": "step3-foreground.sh",
+        "answer": "step3-answer.md"
+      },
+      {
+        "title": "Networking",
+        "text": "step4.md",
+        "verify": "step4-verify.sh",
+        "background": "step4-background.sh",
+        "foreground": "step4-foreground.sh",
+        "answer": "step4-answer.md"
       }
       
     ],
@@ -43,8 +67,11 @@
       {
         "name": "Kubernetes.io",
         "href": "https://kubernetes.io/docs/home/"
-      }
+      },
+
+      {"name": "WeaveScope on 4040 port", "port": 4040}
     ],
+  
     "hideintro": false,
     "uilayout": "terminal-iframe",
     "uimessage1": "\u001b[32mSetting up your Kubernetes playground...\u001b[m\r\n"
