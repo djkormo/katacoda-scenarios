@@ -1,5 +1,4 @@
 echo off
-sleep 10; bash /usr/local/bin/wait.sh
 
 free_time()
 {
@@ -15,5 +14,11 @@ PROMPT_COMMAND=prompt
 
 #sleep 10;
 source ~/.bashrc
+
+clear
+
+sleep 10; bash /usr/local/bin/wait.sh
+
+
 
 clear
