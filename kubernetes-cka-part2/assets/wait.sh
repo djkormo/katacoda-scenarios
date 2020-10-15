@@ -24,7 +24,7 @@ showProgress()
 {
   echo -n "Starting cluster"
   waitForCompletion /opt/.clusterstarted
-  echo -n "Installing Tekton Pipelines"
+  echo -n "Upgrading cluster"
   waitForCompletion /opt/.clusterupgraded
   #echo -n "Installing Tekton Dashboard"
   #waitForCompletion /opt/.dashboardinstalled
