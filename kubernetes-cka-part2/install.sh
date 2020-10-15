@@ -34,5 +34,6 @@ date >> /opt/.clusterupgraded
 
 echo "Upgrading node"
 ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y && systemctl restart kubelet"  >> /var/log/install
+
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
