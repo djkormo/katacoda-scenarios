@@ -28,12 +28,12 @@ systemctl restart kubelet
 
 
 echo "Upgrading cluster"
-launch.sh
+upgrade.sh
 echo "done" >> /opt/.clusterupgraded
 
-ssh node01
+#ssh node01
 
-apt-get update
-apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y
-systemctl restart kubelet
+#apt-get update
+#apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y
+#systemctl restart kubelet
 
