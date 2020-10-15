@@ -1,8 +1,6 @@
 echo off
 sleep 10; bash /usr/local/bin/wait.sh
 
-echo "Almost ready!!!"
-
 free_time()
 {
     uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print 60-$2" "$3 }'
