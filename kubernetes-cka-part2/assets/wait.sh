@@ -26,8 +26,8 @@ showProgress()
   waitForCompletion /opt/.clusterstarted
   echo -n "Upgrading cluster"
   waitForCompletion /opt/.clusterupgraded
-  #echo -n "Installing Tekton Dashboard"
-  #waitForCompletion /opt/.dashboardinstalled
+  echo -n "Upgrading nodes"
+  waitForCompletion /opt/.nodeupgraded
   #echo -n "Installing Tekton CLI"
   #waitForCompletion /opt/.tkninstalled
   #echo -n "Waiting for pods to be ready"
