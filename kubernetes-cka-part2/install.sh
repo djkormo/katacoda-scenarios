@@ -6,6 +6,7 @@ apt-get update
 echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
+date >> /opt/.clusterstarted
 
 free_mem()
 {
@@ -29,7 +30,9 @@ systemctl restart kubelet
 echo "Upgrading cluster"
 upgrade.sh
 echo "done" >> /opt/.clusterupgraded
+date >> /opt/.clusterupgraded
 
 echo "Upgrading node"
 ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y && systemctl restart kubelet"
 echo "done" >> /opt/.nodeupgraded
+date >> /opt/.nodeupgraded

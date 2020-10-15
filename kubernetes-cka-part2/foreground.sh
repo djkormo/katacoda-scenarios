@@ -1,5 +1,5 @@
 echo off
-#sleep 10; bash /usr/local/bin/wait.sh
+sleep 10; bash /usr/local/bin/wait.sh
 
 free_time()
 {
