@@ -19,6 +19,6 @@ clear
 
 sleep 10; bash /usr/local/bin/wait.sh
 
-
-
 clear
+
+watch kubectl get nodes

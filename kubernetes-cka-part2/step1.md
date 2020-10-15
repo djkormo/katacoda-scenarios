@@ -1,6 +1,8 @@
 
-Lets try to control remainning time to reset our sandbow
 
+When all nodes are `Ready 1/1` click ```clear```{{execute interrupt}}
+
+Lets try to control remainning time to reset our sandbow
 
 <pre>
 58 min root@master
@@ -12,7 +14,7 @@ Show list of cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
-Here we have cluster with 1.18 version
+Here we have cluster with 1.19 version
 
 Show all namespaces
 
