@@ -56,6 +56,17 @@
           "file": ".bashrc",
           "target": "/root/"
         }
+      ],
+      "host02": [
+        {
+          "file": "wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": ".bashrc",
+          "target": "/root/"
+        }
       ]
     }
   },
