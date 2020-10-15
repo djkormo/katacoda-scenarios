@@ -26,14 +26,9 @@ systemctl restart kubelet
 kubeadm upgrade apply v1.19.0 -y
 systemctl restart kubelet
 
-
 echo "Upgrading cluster"
 upgrade.sh
 echo "done" >> /opt/.clusterupgraded
 
-#ssh node01
-
-#apt-get update
-#apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y
-#systemctl restart kubelet
+ssh root@[[HOST2_IP]] "apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y && systemctl restart kubelet"
 
