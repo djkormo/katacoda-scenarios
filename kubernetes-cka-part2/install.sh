@@ -28,3 +28,9 @@ systemctl restart kubelet
 
 
 
+ssh node01
+
+apt-get update
+apt-get install kubeadm=1.19.0-00 kubelet=1.19.0-00 -y
+systemctl restart kubelet
+
