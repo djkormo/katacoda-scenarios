@@ -27,6 +27,9 @@ kubeadm upgrade apply v1.19.0 -y
 systemctl restart kubelet
 
 
+echo "Upgrading cluster"
+launch.sh
+echo "done" >> /opt/.clusterupgraded
 
 ssh node01
 
