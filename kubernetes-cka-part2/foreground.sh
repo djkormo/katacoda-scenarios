@@ -1,5 +1,5 @@
 echo off
-sleep 10; bash /usr/local/bin/wait.sh
+#sleep 10; bash /usr/local/bin/wait.sh
 
 free_time()
 {
@@ -13,7 +13,7 @@ export PS1="$(free_time) \[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[
 }
 PROMPT_COMMAND=prompt
 
-sleep 10;
+#sleep 10;
 source ~/.bashrc
 
 clear
