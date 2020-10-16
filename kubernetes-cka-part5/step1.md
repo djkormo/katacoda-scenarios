@@ -1,10 +1,16 @@
 **Storage exercices**
 
+
+**When all nodes are `Ready with version 1.19`** 
+
+click ```clear```{{execute interrupt}}
+
+
 Show list of cluster nodes
 
 `kubectl get nodes`{{execute}}
 
-Here we have cluster with 1.18 version
+Here we have cluster with 1.19 version
 
 Show all namespaces
 

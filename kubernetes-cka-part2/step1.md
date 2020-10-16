@@ -1,6 +1,8 @@
 
 
-When all nodes are `Ready  with version 1.19` click ```clear```{{execute interrupt}}
+**When all nodes are `Ready with version 1.19`** 
+
+click ```clear```{{execute interrupt}}
 
 Lets try to control remainning time to reset our sandbow
 
