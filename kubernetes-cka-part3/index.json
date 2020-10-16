@@ -41,13 +41,25 @@
     ],
     "intro": {
       "text": "000.intro.md",
-      "credits": "https://kubernetes.io/"
+      "credits": "https://kubernetes.io/",
+      "courseData": "install.sh"
     },
     "finish": {
       "text": "finish.md"
     },
     "assets": {
       "host01": [
+        {
+          "file": "wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": ".bashrc",
+          "target": "/root/"
+        }
+      ],
+      "host02": [
         {
           "file": "wait.sh",
           "target": "/usr/local/bin/",

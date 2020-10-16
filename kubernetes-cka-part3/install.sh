@@ -6,6 +6,19 @@ apt-get update
 echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
+date >> /opt/.clusterstarted
+
+free_mem()
+{
+    awk '/MemFree/{print $2}' /proc/meminfo
+}
+
+free_time()
+{
+    uptime -p 
+}
+
+source ~/.bashrc
 
 
 apt-get update >> /var/log/install
@@ -24,15 +37,3 @@ ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.19.0-00 kubel
 
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
-
-
-# create a vimrc
-cat <<EOF >>.vimrc
-" Created on $(date)
-set nocompatible
-syntax enable
-filetype plugin indent on
-set paste
-set tabstop=2
-set autoindent
-EOF

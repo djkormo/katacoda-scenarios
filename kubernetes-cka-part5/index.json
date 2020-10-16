@@ -25,7 +25,8 @@
     ],
     "intro": {
       "text": "000.intro.md",
-      "credits": "https://kubernetes.io/docs/home/"
+      "credits": "https://kubernetes.io/docs/home/",
+      "courseData": "install.sh"
     },
     "finish": {
       "text": "finish.md"
