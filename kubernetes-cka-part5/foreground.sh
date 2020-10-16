@@ -18,3 +18,5 @@ sleep 10;
 source ~/.bashrc
 
 clear
+
+watch kubectl get nodes 
