@@ -6,7 +6,7 @@
 <pre>
 NAME     STATUS   ROLES    AGE   VERSION
 master   Ready    master   3m   v1.19.0
-node01   Ready    <none>   3m   v1.19.0
+node01   Ready    worker   3m   v1.19.0
 </pre>
 
 click ```clear```{{execute interrupt}} to begin
