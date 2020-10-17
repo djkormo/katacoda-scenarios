@@ -79,6 +79,8 @@ CHECK
 
 CHECK
 
-
 To continue you should have 1.18 Kubernetes cluster with two nodes (ready)
 
+:no_entry:
+
+**To move to the next step make sure to have all checks with "done"**

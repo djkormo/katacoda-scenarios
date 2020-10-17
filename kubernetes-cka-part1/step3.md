@@ -111,6 +111,9 @@ endpoints/my-nginx-svc   10.5.1.10:80,10.5.1.8:80,10.5.1.9:80   46m
 
 To continue you have to restore etcd from /opt/etcd-backup.db file
 
+:no_entry:
+
+**To move to the next step make sure to have all checks with "done"**
 
 Literature:
 
