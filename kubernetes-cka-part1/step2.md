@@ -114,13 +114,15 @@ ETCDCTL_API=3 ... snapshot status-w table /opt/etcd-backup.db
 </pre>
 
 
+CHECK
+
+`[ -f /opt/etcd-backup.db ] && [ -f /opt/etcd-backup.db ] && echo "done"`{{execute}}
+
+CHECK
+
 To continue you have to backup etcd to /opt/etcd-backup.db file
 
-
-:no_entry:
-
 **To move to the next step make sure to have all checks with "done"**
-
 
 
 Literature:

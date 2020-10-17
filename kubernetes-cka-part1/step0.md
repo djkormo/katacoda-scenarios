@@ -81,17 +81,4 @@ CHECK
 
 To continue you should have 1.18 Kubernetes cluster with two nodes (ready)
 
-#### Warning
-
-| | ico | shortcode | ico | shortcode | |
-| - | :-: | - | :-: | - | - |
-| [top](#symbols) | :warning: | `:warning:` | :children_crossing: | `:children_crossing:` | [top](#table-of-contents) |
-| [top](#symbols) | :no_entry: | `:no_entry:` | :no_entry_sign: | `:no_entry_sign:` | [top](#table-of-contents) |
-| [top](#symbols) | :no_bicycles: | `:no_bicycles:` | :no_smoking: | `:no_smoking:` | [top](#table-of-contents) |
-| [top](#symbols) | :do_not_litter: | `:do_not_litter:` | :non-potable_water: | `:non-potable_water:` | [top](#table-of-contents) |
-| [top](#symbols) | :no_pedestrians: | `:no_pedestrians:` | :no_mobile_phones: | `:no_mobile_phones:` | [top](#table-of-contents) |
-| [top](#symbols) | :underage: | `:underage:` | :radioactive: | `:radioactive:` | [top](#table-of-contents) |
-| [top](#symbols) | :biohazard: | `:biohazard:` | | | [top](#table-of-contents) |
-
-
 **To move to the next step make sure to have all checks with "done"**

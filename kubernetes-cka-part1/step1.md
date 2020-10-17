@@ -132,19 +132,16 @@ On master node
 
 What we have in alone namespace
 
-`kubectl get pod -n alone`{{execute}}} 
+`kubectl get all -n alone`{{execute}}} 
 
 CHECK
 
 `kubectl get nodes | grep 1.19.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 `kubectl get pod alone-pod web-server -n alone | grep Running |wc -l | grep 2 && echo "done"`{{execute}}
+
 CHECK
 
-
-
 To continue you should have 1.19 Kubernetes cluster with two nodes (ready)
-
-:no_entry:
 
 **To move to the next step make sure to have all checks with "done"**
