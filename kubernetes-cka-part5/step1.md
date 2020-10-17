@@ -1,9 +1,15 @@
-**Storage exercices**
+# Storage exercices
 
 
-**When all nodes are `Ready with version 1.19`** 
+**When all nodes are ready and version v1.19.0** 
 
-click ```clear```{{execute interrupt}}
+<pre>
+NAME     STATUS   ROLES    AGE   VERSION
+master   Ready    master   3m   v1.19.0
+node01   Ready    <none>   3m   v1.19.0
+</pre>
+
+click ```clear```{{execute interrupt}} to begin
 
 
 Show list of cluster nodes
@@ -203,6 +209,10 @@ CHECK
 `kubectl get pod webapp-volume-pvc -n vol -o yaml | grep volumeMounts: -A1 | grep "mountPath: /var/log/nginx" && echo "done"`{{execute}}
 
 CHECK
+
+
+**To move to the next step make sure to have all checks with "done"**
+
 
 
 

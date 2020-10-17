@@ -1,8 +1,14 @@
 
 
-**When all nodes are `Ready with version 1.19`** 
+**When all nodes are ready and version v1.19.0** 
 
-click ```clear```{{execute interrupt}}
+<pre>
+NAME     STATUS   ROLES    AGE   VERSION
+master   Ready    master   3m   v1.19.0
+node01   Ready    <none>   3m   v1.19.0
+</pre>
+
+click ```clear```{{execute interrupt}} to begin
 
 Lets try to control remainning time to reset our sandbow
 
@@ -21,7 +27,6 @@ Here we have cluster with 1.19 version
 Show all namespaces
 
 `kubectl get ns`{{execute}}
-
 
 List all of objects in default namespace
 
@@ -70,4 +75,6 @@ CHECK
 `kubectl get svc webservice -n alpha |grep 80 && kubectl get svc webservice -n alpha |grep 443 &&  echo "done" `{{execute}}
 CHECK
 
-To move to the next step make sure to have all checks with "done"
+**To move to the next step make sure to have all checks with "done"**
+
+

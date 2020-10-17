@@ -1,4 +1,5 @@
-**Troubleshooting exercises**
+# Troubleshooting exercises
+
 
 Show all namespaces
 
@@ -18,3 +19,6 @@ Inspect objects deployed in beta namespace
 CHECK
 `kubectl get svc frontend -n beta -o yaml |grep "nodePort: 30001" && kubectl get svc frontend -n beta -o yaml |grep "targetPort: 80" && echo "done" `{{execute}}
 CHECK
+
+
+**To move to the next step make sure to have all checks with "done"**

@@ -69,3 +69,6 @@ CHECK
 CHECK
 `kubectl get service nginx-service-request-limit -n alpha -o yaml |grep "port: 80" && echo "done" `{{execute}} 
 CHECK
+
+
+**To move to the next step make sure to have all checks with "done"**

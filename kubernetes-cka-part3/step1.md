@@ -1,10 +1,15 @@
 **Network exercises**
 
 
-**When all nodes are `Ready with version 1.19`** 
+**When all nodes are ready and version v1.19.0** 
 
-click ```clear```{{execute interrupt}}
+<pre>
+NAME     STATUS   ROLES    AGE   VERSION
+master   Ready    master   3m   v1.19.0
+node01   Ready    <none>   3m   v1.19.0
+</pre>
 
+click ```clear```{{execute interrupt}} to begin
 
 
 Show list of cluster nodes
@@ -55,6 +60,11 @@ Answer put in file /var/log/answers/kube-proxy-port
 **5 What ports is the etcd listening on ?**
 
 Answer put in file /var/log/answers/etcd-port
+
+
+
+**To move to the next step make sure to have all checks with "done"**
+
 
 
 

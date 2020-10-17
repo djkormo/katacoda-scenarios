@@ -1,4 +1,4 @@
-**Troubleshooting exercises**
+# Troubleshooting exercises 
 
 Show all namespaces
 
@@ -30,3 +30,6 @@ CHECK
 `kubectl get pod -n kappa | grep nginx-deployment | grep Running && echo "done"`{{execute}}
 
 CHECK
+
+
+**To move to the next step make sure to have all checks with "done"**

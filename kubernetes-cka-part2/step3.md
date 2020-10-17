@@ -42,3 +42,6 @@ CHECK
 
 `kubectl get pod -n alpha -o  name -l app=nginx-deployment |wc -l | grep 5 && echo "done"`{{execute}}
 
+
+**To move to the next step make sure to have all checks with "done"**
+

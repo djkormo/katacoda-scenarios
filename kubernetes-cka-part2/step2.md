@@ -158,3 +158,7 @@ NAME                             ENDPOINTS                                      
 endpoints/postgresql-webservice   10.244.1.10:5432,10.244.1.6:5432,10.244.1.8:5432   4s
 endpoints/webservice             10.244.1.3:80,10.244.1.3:443                       22m
 </pre>
+
+
+**To move to the next step make sure to have all checks with "done"**
+

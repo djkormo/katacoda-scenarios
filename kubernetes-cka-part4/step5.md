@@ -1,4 +1,4 @@
-**Troubleshooting exercises**
+# Troubleshooting exercises 
 
 Show all namespaces
 
@@ -25,3 +25,9 @@ CHECK
 `kubectl get pod -n kube-system |grep kube-scheduler |grep Running && echo "done"`{{execute}}
 
 CHECK
+
+
+**To move to the next step make sure to have all checks with "done"**
+
+
+

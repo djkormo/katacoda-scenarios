@@ -1,4 +1,4 @@
-**Storage exercices**
+# Storage exercices
 
 Show list of cluster nodes
 
@@ -201,3 +201,9 @@ CHECK
 
 
 https://medium.com/@ihernandezjr/a-kubernetes-developer-quick-guide-to-tricky-manifests-part-2-volume-mounts-ac28a8fb9786
+
+
+
+**To move to the next step make sure to have all checks with "done"**
+
+

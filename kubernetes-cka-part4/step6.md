@@ -1,4 +1,4 @@
-**Troubleshooting exercises**
+# Troubleshooting exercises 
 
 Show all namespaces
 
@@ -28,3 +28,10 @@ CHECK
 `kubectl get deploy nginx-deployment -n zeta -o yaml | grep "replicas: 4" && echo "done"`{{execute}}
 
 CHECK
+
+
+
+**To move to the next step make sure to have all checks with "done"**
+
+
+

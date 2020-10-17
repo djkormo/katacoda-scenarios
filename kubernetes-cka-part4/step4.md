@@ -1,4 +1,4 @@
-**Troubleshooting exercises**
+# Troubleshooting exercises 
 
 Show all namespaces
 
@@ -26,3 +26,7 @@ CHECK
 `kubectl get svc redis-master -n delta -o yaml |grep "targetPort: 6379"`{{execute}}
 
 CHECK
+
+
+
+**To move to the next step make sure to have all checks with "done"**

@@ -18,6 +18,8 @@ List all of objects in default namespace
 
 
 
+**To move to the next step make sure to have all checks with "done"**
+
 
 
 

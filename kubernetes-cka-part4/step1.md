@@ -1,9 +1,15 @@
-**Troubleshooting exercises**
+# Troubleshooting exercises
 
+**When all nodes are ready and version v1.19.0** 
 
-**When all nodes are `Ready with version 1.19`** 
+<pre>
+NAME     STATUS   ROLES    AGE   VERSION
+master   Ready    master   3m   v1.19.0
+node01   Ready    <none>   3m   v1.19.0
+</pre>
 
-click ```clear```{{execute interrupt}}
+click ```clear```{{execute interrupt}} to begin
+
 
 
 Show list of cluster nodes
@@ -37,3 +43,7 @@ Inspect objects deployed in alpha namespace
 CHECK
 `kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}
 CHECK
+
+
+
+**To move to the next step make sure to have all checks with "done"**
