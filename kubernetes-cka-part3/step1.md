@@ -43,7 +43,7 @@ Run weavescope to check cluster networking
 
 **1. What IP address is assigned to node01 node ?**
 
-Answer put in file /var/log/answers/ip-masnode01ter
+Answer put in file /var/log/answers/ip-master
 
 **2. What is MAC address assigned to node01?**
 
