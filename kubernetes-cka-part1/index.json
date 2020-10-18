@@ -37,7 +37,17 @@
         "background": "step3-in-background.sh",
         "foreground": "clear.sh",
         "answer": "step3-answer.md"
+      },
+      {
+        "title": "Manage role based access control (RBAC)",
+        "text": "step4.md",
+        "verify": "step4-verify.sh",
+        "background": "step4-in-background.sh",
+        "foreground": "clear.sh",
+        "answer": "step4-answer.md"
       }
+
+
     ],
     "intro": {
       "text": "000.intro.md",
