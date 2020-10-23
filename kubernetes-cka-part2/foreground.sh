@@ -21,4 +21,6 @@ sleep 10; bash /usr/local/bin/wait.sh
 
 clear
 
+kubectl wait node --all --for=condition=Ready --timeout=3m
+
 watch kubectl get nodes

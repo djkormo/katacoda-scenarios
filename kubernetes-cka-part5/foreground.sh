@@ -18,4 +18,6 @@ source ~/.bashrc
 
 clear
 
+kubectl wait node --all --for=condition=Ready --timeout=3m
+
 watch kubectl get nodes 
