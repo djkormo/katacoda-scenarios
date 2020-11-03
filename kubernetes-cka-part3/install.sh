@@ -22,6 +22,7 @@ source ~/.bashrc
 
 
 apt-get update >> /var/log/install
+apt-get install dnsutils -y >> /var/log/install
 apt-get install kubeadm=1.19.0-00 kubectl=1.19.0-00 kubelet=1.19.0-00 -y  >> /var/log/install
 systemctl restart kubelet  >> /var/log/install
 kubeadm upgrade apply v1.19.0 -y  >> /var/log/install
