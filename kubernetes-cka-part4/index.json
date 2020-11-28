@@ -26,7 +26,7 @@
         "text": "step3.md",
         "verify": "step3-verify.sh",
         "background": "step3-background.sh",
-        "foreground": "step2-foreground.sh",
+        "foreground": "step3-foreground.sh",
         "answer": "step3-answer.md"
       },
       {
