@@ -1,5 +1,8 @@
 # Troubleshooting exercises
 
+Wait until pods in beta namespace are deployed
+
+click ```clear```{{execute interrupt}} to begin
 
 Show all namespaces
 
