@@ -1,5 +1,10 @@
 * Troubleshooting exercises 
 
+
+Wait until pods in **lambda** namespace are deployed
+
+click ```clear```{{execute interrupt}} to begin
+
 Show all namespaces
 
 `kubectl get ns`{{execute}}

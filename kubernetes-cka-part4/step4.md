@@ -1,5 +1,9 @@
 # Troubleshooting exercises 
 
+Wait until pods in **delta** namespace are deployed
+
+click ```clear```{{execute interrupt}} to begin
+
 Show all namespaces
 
 `kubectl get ns`{{execute}}
