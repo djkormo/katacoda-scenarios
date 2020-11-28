@@ -20,3 +20,4 @@ source ~/.bashrc
 clear
 
 watch kubectl get nodes
+
