@@ -21,8 +21,6 @@ Deploy nginx-deployment.yaml and clusterip.service.yaml
 Objects should be in alpha namespace
 
 
-`cat /manifests/clusterip-service.yaml;echo`{{execute}}
-
 **Remember** - In order to troubleshoot you want to use some of these followings k8s commands:
 
 ```
@@ -39,10 +37,15 @@ kubectl get events
 [**k8s cheatsheet**](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 
-CHECK
-`kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}
-CHECK
+`kubectl get all -n alpha`{{execute}}
 
+
+CHECK
+`kubectl get svc clusterip-nginx-service -n alpha -o yaml | grep "port: 3000" &&  echo "done"`{{execute}}
+`kubectl get ep clusterip-nginx-service -n alpha -o yaml &&  echo "done"`{{execute}}
+`kubectl get deploy nginxx -n alpha -o yaml &&  echo "done"`{{execute}}
+
+CHECK
 
 
 **To move to the next step make sure to have all checks with "done"**
