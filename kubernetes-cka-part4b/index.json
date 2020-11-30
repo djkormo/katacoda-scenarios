@@ -33,7 +33,7 @@
           "file": ".bashrc",
           "target": "/root/"
         },
-        {"file": "*.yaml", 
+        {"file": "nginx-deployment.yaml", 
         "target": "/manifests"}
       ]
     }
