@@ -8,37 +8,33 @@ master   Ready    master   3m   v1.19.0
 node01   Ready    worker   3m   v1.19.0
 </pre>
 
+
+
+Wait until pods in **alpha** namespace are deployed
+
 click ```clear```{{execute interrupt}} to begin
 
+There're two broken pods.
 
+Also, try to create this service which won't start:
 
-Show list of cluster nodes
+`cat clusterip-service.yml;echo`{{execute}}
 
-`kubectl get nodes`{{execute HOST1}}
+**Remember** - In order to troubleshoot you want to use some of these followings k8s commands:
 
-Here we have cluster with 1.19 version
+```
+kubectl describe deployment/<deployname>
+kubectl describe replicaset/<rsname>
+kubectl get pods
+kubectl get deployments
+kubectl get replicaset
+kubectl describe pod/<podname>
+kubectl logs <podname> --previous
+kubectl get events
+```
 
-Show all namespaces
+[**k8s cheatsheet**](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
-`kubectl get ns`{{execute}}
-
-List all of objects in default namespace
-
-`kubectl get all -o wide`{{execute}}
-
-
-![Guestbook architecture](./assets/guestbook-architecture.png)
-
-
-Inspect objects deployed in alpha namespace
-
-
-`kubectl get all,ep -n alpha`{{execute}}
-
-
-**Try to fix kubernetes objects to see application in Application tab on 30001 port.**
-
-![Web application](./assets/guestbook-web.png)
 
 CHECK
 `kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}

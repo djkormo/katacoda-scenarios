@@ -17,19 +17,10 @@ kubectl create ns alpha
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 
 
-kubectl delete deploy --all -n alpha
-kubectl delete svc --all -n alpha
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-master-deployment.yaml -n alpha 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-master-service.yaml -n alpha 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-slave-deployment.yaml -n alpha 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-slave-service.yaml -n alpha 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-deployment.yaml -n alpha 
-
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-service.yaml -n alpha 
-
+sleep 1
+cd /manifests
+ls
+kubectl run fix-me --image=nginx:3
+kubectl apply -f nginx-deployment.yml
+clear
 

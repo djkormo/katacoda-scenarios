@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: test-container
+          image: nginx
+          resources:
+            requests:
+              memory: 5Gi

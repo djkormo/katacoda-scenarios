@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: clusterip-nginx-service
+spec:
+  selector:
+  app: nginx
+  ports:
+  - protocol: TCP
+      port: 3000
+      targetPort: 8080

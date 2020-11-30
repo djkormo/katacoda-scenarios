@@ -32,7 +32,8 @@
         {
           "file": ".bashrc",
           "target": "/root/"
-        }
+        },
+        {"file": "*.yaml", "target": "/manifests"}
       ]
     }
   },
