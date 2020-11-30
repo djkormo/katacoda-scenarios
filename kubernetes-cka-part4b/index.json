@@ -34,7 +34,9 @@
           "target": "/root/"
         },
         {"file": "nginx-deployment.yaml", 
-        "target": "/manifests"}
+        "target": "/manifests"},
+        {"file": "clusterip-service.yaml", 
+          "target": "/manifests"}
       ]
     }
   },

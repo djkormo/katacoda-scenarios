@@ -9,16 +9,19 @@ node01   Ready    worker   3m   v1.19.0
 </pre>
 
 
-
-Wait until pods in **alpha** namespace are deployed
-
 click ```clear```{{execute interrupt}} to begin
+
+Check /manifests directory
+
+Deploy nginx-de3ployment.yaml and clusterip.service.yaml
+
+Objects should be in alpha namespace
 
 There're two broken pods.
 
 Also, try to create this service which won't start:
 
-`cat clusterip-service.yml;echo`{{execute}}
+`cat clusterip-service.yaml;echo`{{execute}}
 
 **Remember** - In order to troubleshoot you want to use some of these followings k8s commands:
 
