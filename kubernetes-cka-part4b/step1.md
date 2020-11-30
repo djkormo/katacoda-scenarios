@@ -13,15 +13,15 @@ click ```clear```{{execute interrupt}} to begin
 
 Check /manifests directory
 
-Deploy nginx-de3ployment.yaml and clusterip.service.yaml
+Deploy nginx-deployment.yaml and clusterip.service.yaml
+
+`cat /manifests/nginx-deployment.yaml;echo`{{execute}}
+`cat /manifests/clusterip-service.yaml;echo`{{execute}}
 
 Objects should be in alpha namespace
 
-There're two broken pods.
 
-Also, try to create this service which won't start:
-
-`cat clusterip-service.yaml;echo`{{execute}}
+`cat /manifests/clusterip-service.yaml;echo`{{execute}}
 
 **Remember** - In order to troubleshoot you want to use some of these followings k8s commands:
 
