@@ -42,8 +42,8 @@ kubectl get events
 
 CHECK
 `kubectl get svc clusterip-nginx-service -n alpha -o yaml | grep "port: 3000" &&  echo "done"`{{execute}}
-`kubectl get ep clusterip-nginx-service -n alpha -o yaml &&  echo "done"`{{execute}}
-`kubectl get deploy nginxx -n alpha -o yaml &&  echo "done"`{{execute}}
+`kubectl get ep clusterip-nginx-service -n alpha -o yaml | grep 8080  &&  echo "done"`{{execute}}
+`kubectl get deploy nginxx -n alpha | grep "1\/1" &&  echo "done"`{{execute}}
 
 CHECK
 
