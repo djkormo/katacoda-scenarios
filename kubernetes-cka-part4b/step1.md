@@ -40,7 +40,7 @@ kubectl get events
 `kubectl get all,ep -n alpha`{{execute}}
 
 
-All pods should be ready nad running. Endpoint for service should be expoded.
+**All** pods should be ready and running. Endpoint for service should be exposed.
 
 
 CHECK

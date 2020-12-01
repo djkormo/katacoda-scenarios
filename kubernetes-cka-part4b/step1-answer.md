@@ -1,8 +1,7 @@
-To continue you should 
+**Not so easy!**
 
-Examples how to start
+To continue you should check kubernetes.io documentation
 
 <pre>
 ...
-
 </pre>
