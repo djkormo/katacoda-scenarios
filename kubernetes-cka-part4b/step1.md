@@ -37,14 +37,17 @@ kubectl get events
 [**k8s cheatsheet**](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 
-`kubectl get all -n alpha`{{execute}}
+`kubectl get all,ep -n alpha`{{execute}}
+
+
+All pods should be ready nad running. Endpoint for service should be expoded.
 
 
 CHECK
 `kubectl get svc clusterip-nginx-service -n alpha -o yaml | grep "port: 3000" &&  echo "done"`{{execute}}
 `kubectl get ep clusterip-nginx-service -n alpha -o yaml | grep 8080  &&  echo "done"`{{execute}}
 `kubectl get deploy nginxx -n alpha | grep "1\/1" &&  echo "done"`{{execute}}
-
+`kubectl get pod fix-me -n alpha | grep "1\/1" &&  echo "done"`{{execute}}
 CHECK
 
 
