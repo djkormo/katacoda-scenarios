@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: configmap-pod
+  namespace: beta
 spec:
   containers:
     - name: test-container

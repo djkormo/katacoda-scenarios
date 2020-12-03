@@ -18,7 +18,7 @@ Deploy nginx-deployment.yaml and clusterip.service.yaml
 `cat /manifests/nginx-deployment.yaml;echo`{{execute}}
 `cat /manifests/clusterip-service.yaml;echo`{{execute}}
 
-Objects should be in alpha namespace
+Objects should be deployed in **alpha** namespace
 
 
 **Remember** - In order to troubleshoot you want to use some of these followings k8s commands:
