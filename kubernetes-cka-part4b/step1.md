@@ -13,7 +13,7 @@ click ```clear```{{execute interrupt}} to begin
 
 Check /manifests directory
 
-Deploy nginx-deployment.yaml and clusterip.service.yaml
+Deploy nginx-deployment.yaml and clusterip.service.yaml to alpha namespace
 
 `cat /manifests/nginx-deployment.yaml;echo`{{execute}}
 `cat /manifests/clusterip-service.yaml;echo`{{execute}}
@@ -40,7 +40,7 @@ kubectl get events
 `kubectl get all,ep -n alpha`{{execute}}
 
 
-**All** pods should be ready and running. Endpoint for service should be exposed.
+**All** pods should be ready and running. Endpoints for service should be exposed.
 
 
 CHECK
