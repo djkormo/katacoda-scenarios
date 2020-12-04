@@ -25,8 +25,9 @@ ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.19.0-00 kubel
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
 
-
+mkdir /manifests
 kubectl create ns alpha
+
 
 #kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/wordpress/mysql-deployment.yaml -n alpha 
 

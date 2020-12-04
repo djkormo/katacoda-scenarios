@@ -16,3 +16,5 @@ spec:
               name: special-config
               key: special.how
 
+  restartPolicy: Never        
+
