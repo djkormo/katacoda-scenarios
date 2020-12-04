@@ -38,9 +38,9 @@ kubectl get events
 CHECK
 
 
-`kubectl get pod configmap-pod -n beta | grep "1\/1" &&  echo "done"` {{execute}}
+`kubectl get pod configmap-pod -n beta | grep "1\/1" &&  echo "done"`{{execute}}
 
-`kubectl get pod secret-pod -n beta | grep "1\/1" &&  echo "done"` {{execute}}
+`kubectl get pod secret-pod -n beta | grep "0\/1" | grep "Completed" &&  echo "done"`{{execute}}
 
 CHECK
 

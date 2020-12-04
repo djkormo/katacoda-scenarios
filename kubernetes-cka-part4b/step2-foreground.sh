@@ -1,5 +1,5 @@
 echo off
 clear
-watch kubectl get nodes
+watch kubectl get pods -n beta
 
 
