@@ -11,6 +11,9 @@ Show all namespaces
 
 Objects should be deployed in **beta** namespace
 
+Look at two not running pods.
+
+
 **Remember** - In order to troubleshoot you want to use some of these followings k8s commands:
 
 ```
@@ -33,7 +36,12 @@ kubectl get events
 
 
 CHECK
-`kubectl get svc frontend -n beta -o yaml |grep "nodePort: 30001" && kubectl get svc frontend -n beta -o yaml |grep "targetPort: 80" && echo "done" `{{execute}}
+
+
+`kubectl get pod configmap-pod -n beta | grep "1\/1" &&  echo "done"` {{execute}}
+
+`kubectl get pod secret-pod -n beta | grep "1\/1" &&  echo "done"` {{execute}}
+
 CHECK
 
 

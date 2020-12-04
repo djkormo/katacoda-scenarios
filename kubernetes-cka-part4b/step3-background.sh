@@ -1,15 +1,15 @@
 #!/bin/bash
 
 #kubectl create ns gamma
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4b/assets/gamma-namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4b/assets/gamma-namespace.yaml >>/var/log/step3-background.log 
 
-kubectl delete all  --all -n alpha
-kubectl delete all --all -n beta
+kubectl delete all  --all -n alpha >>/var/log/step3-background.log 
+kubectl delete all --all -n beta >>/var/log/step3-background.log 
 
-kubectl apply -f  https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4b/assets/exceeding-pod.yaml -n  gamma
+kubectl apply -f  https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4b/assets/exceeding-pod.yaml -n  gamma >>/var/log/step2-background.log 
 
 
-kubectl apply -f  https://github.com/djkormo/katacoda-scenarios/blob/master/kubernetes-cka-part4b/assets/exceeding-resource.yaml  -n  gamma
+kubectl apply -f  https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4b/assets/exceeding-resource.yaml  -n  gamma >>/var/log/step2-background.log 
 
 
 

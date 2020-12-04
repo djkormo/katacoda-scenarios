@@ -1,16 +1,23 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: gateway
   name: gateway
 spec:
+  selector:
+    matchLabels:
+      app: gateway
   template:
     metadata:
       labels:
         app: gateway
     spec:
       containers:
-        - name: test-container
-          image: nginx
-          resources:
-            requests:
-              memory: 5Gi
+      - image: nginx
+        imagePullPolicy: Always
+        name: test-container
+        resources:
+          requests:
+            memory: 5Gi
+  
