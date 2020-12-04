@@ -7,22 +7,16 @@ echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
 
-kubectl create ns alpha
-
-# based on 
-# https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
-
 ## Installing metrics server 
 
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 
+git clone https://github.com/vocon-it/metrics-server
 
-sleep 1
-cd /manifests
-#ls
+kubectl apply -f ./metrics-server/deploy/1.8+/
+
+kubectl create ns alpha
+
 kubectl run fix-me --image=nginx:3 -n alpha
-#kubectl apply -f nginx-deployment.yml
-#clear
 
 
 
