@@ -32,7 +32,7 @@ kubectl get events
 
 
 
-`kubectl get all,ep -n beta`{{execute}}
+`kubectl get all,ep,cm,secret -n beta`{{execute}}
 
 
 CHECK
@@ -41,7 +41,7 @@ CHECK
 `kubectl get pod configmap-pod -n beta | grep "0\/1"| grep "Completed" &&  echo "done"`{{execute}}
 
 `kubectl get pod secret-pod -n beta | grep "0\/1" | grep "Completed" &&  echo "done"`{{execute}}
-`kubectl get pod configmap-pod -n beta -o yaml | grep configMapKeyRef -A2 | grep"name: special-config" &&  echo "done"`{{execute}} 
+`kubectl get pod configmap-pod -n beta -o yaml | grep configMapKeyRef -A2 | grep "name: special-config" &&  echo "done"`{{execute}} 
 CHECK
 
 

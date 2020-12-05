@@ -53,6 +53,60 @@ spec:
       terminationGracePeriodSeconds: 30
 status: {}
 ```
+
+Or using STDIN
+
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app
+    name: nginx-name
+  name: nginxx
+  namespace: alpha
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  revisionHistoryLimit: 2147483647
+  selector:
+    matchLabels:
+      app: nginx-app
+      name: nginx-name
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx-app
+        name: nginx-name
+    spec:
+      containers:
+      - image: httpd
+        imagePullPolicy: IfNotPresent
+        name: nginx-container
+        ports:
+        - containerPort: 8030
+          name: http
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
+EOF
+
+
+
 /manifests/clusterip-service.yaml
 
 ```yaml
@@ -70,7 +124,27 @@ spec:
     targetPort: 8080
 ```
 pod-fix-me.yaml
-```
+
+Or using STDIN
+
+cat <<EOF | kubectl apply -f -
+kind: Service
+apiVersion: v1
+metadata:
+  name: clusterip-nginx-service
+  namespace: alpha
+spec:
+  selector:
+    app: nginx-app
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 8080
+EOF
+
+fix-me-pod.yaml
+
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -85,6 +159,28 @@ spec:
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
+```
+
+Or using STDIN
+
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: fix-me
+  name: fix-me
+spec:
+  containers:
+  - image: nginx
+    name: fix-me
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+EOF
 ```
 
 ```
@@ -126,6 +222,7 @@ Warning  FailedMount  25s (x8 over 88s)  kubelet, node01  MountVolume.SetUp fail
 ```
 kubectl create configmap special-config -n beta -o yaml --dry-run=client --from-literal='special.how=nothing'
 ```
+
 ```yaml
 apiVersion: v1
 data:
@@ -135,6 +232,22 @@ metadata:
   name: special-config
   namespace: beta
 ```
+
+or using STDIN 
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  special.how: nothing
+kind: ConfigMap
+metadata:
+  name: special-config
+  namespace: beta
+EOF
+```
+
+
 ```
 kubectl create secret generic myothersecret --from-literal='password=secret'   -n beta -o yaml   --dry-run=client
 ```
@@ -149,7 +262,36 @@ metadata:
   namespace: beta
 ```
 
+or using STDIN
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  password: c2VjcmV0
+kind: Secret
+metadata:
+  name: myothersecret
+  namespace: beta
+EOF  
+```
+
+
 STEP3
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+  namespace: gamma
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+EOF
 
 
 STEP4
