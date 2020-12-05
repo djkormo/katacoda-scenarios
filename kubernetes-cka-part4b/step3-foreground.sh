@@ -1,4 +1,4 @@
 echo off
 clear
-watch kubectl get pods -n gamma
+watch kubectl get deploy -n gamma
 

@@ -1,6 +1,6 @@
 # Troubleshooting exercises
 
-Wait until pods in **gamma** namespace are deployed
+Wait until deployments in **gamma** namespace appear
 
 click ```clear```{{execute interrupt}} to begin
 
