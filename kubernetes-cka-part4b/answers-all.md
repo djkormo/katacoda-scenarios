@@ -288,5 +288,58 @@ spec:
     type: Container
 EOF
 
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gateway
+  name: gateway
+spec:
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: test-container
+        resources:
+          requests:
+            memory: 100Mi
+EOF
+
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-deployment
+ labels:
+   app: nginx
+   namespace: gamma
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: nginx
+ template:
+   metadata:
+     labels:
+       app: nginx
+   spec:
+     containers:
+     - name: nginx
+       image: nginx:1.7.9
+       resources:
+         limits:
+           memory: 2Gi
+       ports:
+       - containerPort: 80
+EOF
+
 STEP4
 
