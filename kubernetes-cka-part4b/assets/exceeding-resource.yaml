@@ -19,5 +19,5 @@ spec:
         name: test-container
         resources:
           requests:
-            memory: 5Gi
+            memory: 2Gi
   
