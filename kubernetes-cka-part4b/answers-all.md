@@ -16,9 +16,7 @@ metadata:
   name: nginxx
   namespace: alpha
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       app: nginx-app
@@ -30,7 +28,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: nginx-app
         name: nginx-name
@@ -43,15 +40,8 @@ spec:
         - containerPort: 8030
           name: http
           protocol: TCP
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status: {}
 ```
 
 Or using STDIN
@@ -66,9 +56,7 @@ metadata:
   name: nginxx
   namespace: alpha
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       app: nginx-app
@@ -80,7 +68,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: nginx-app
         name: nginx-name
@@ -139,7 +126,6 @@ fix-me-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
   labels:
     run: fix-me
   name: fix-me
@@ -161,7 +147,6 @@ cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
   labels:
     run: fix-me
   name: fix-me
@@ -266,7 +251,7 @@ kind: Secret
 metadata:
   name: myothersecret
   namespace: beta
-EOF  
+EOF
 ```
 
 
