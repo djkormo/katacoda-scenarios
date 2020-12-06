@@ -6,6 +6,8 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 
 kubectl apply -f https://k8s.io/examples/admin/resource/cpu-constraints.yaml --namespace=gamma  >>/var/log/step3-background.log
 
+kubectl apply -f https://k8s.io/examples/admin/resource/cpu-defaults.yaml --namespace=gamma >>/var/log/step3-background.log
+
 kubectl delete all --all -n alpha >>/var/log/step3-background.log 
 kubectl delete all --all -n beta >>/var/log/step3-background.log 
 

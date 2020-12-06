@@ -60,7 +60,6 @@ cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: app
     name: nginx-name
@@ -94,15 +93,7 @@ spec:
         - containerPort: 8030
           name: http
           protocol: TCP
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status: {}
 EOF
 
 
@@ -152,6 +143,7 @@ metadata:
   labels:
     run: fix-me
   name: fix-me
+  namespace: alpha
 spec:
   containers:
   - image: nginx
@@ -173,6 +165,7 @@ metadata:
   labels:
     run: fix-me
   name: fix-me
+  namespace: alpha
 spec:
   containers:
   - image: nginx
@@ -293,6 +286,22 @@ spec:
     limits.memory: 2Gi
 EOF
 
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+  namespace: gamma
+spec:
+  limits:
+  - default:
+      cpu: 1
+      memory: 200m
+    defaultRequest:
+      cpu: 0.5
+      memory: 100m
+    type: Container
+EOF
 
 STEP4
 
