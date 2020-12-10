@@ -1,12 +1,12 @@
-STEP 1
+## STEP 1
 
 
 **1. Create webapp pod based on image nginx:latest and port 80**
-
+```bash
 kubectl run webapp -n nginx --image=nginx:latest --port=80  -n vol -o yaml --dry-run=client > pod-webapp.yaml
 
 kubectl apply -f pod-webapp.yaml -n vol
-
+```
 
 **2.Add to webapp pod volume named nginx-volume using emptyDir and mounted at /opt/data**
 
@@ -19,12 +19,14 @@ Volume HostPath: emptyDir()
 Volume Mount: /opt/data/
 </pre>
 
+```bash
 cp  pod-webapp.yaml pod-webapp-volume.yaml
-
+```
 change pod name and add volume
 
+```bash
 kubectl apply -f pod-webapp-volume.yaml -n vol
-
+```
 
 ```yaml
 apiVersion: v1
@@ -60,13 +62,15 @@ Volume HostPath: /var/log/nginx/
 Volume Mount: /var/log/nginx/
 </pre>
 
-
+```bash
 cp  pod-webapp-volume.yaml pod-webapp-volume-host.yaml
+```
 
 change pod name and change volume
 
+```bash
 kubectl apply -f pod-webapp-volume-host.yaml -n vol
-
+```
 
 ```yaml
 apiVersion: v1
@@ -104,7 +108,9 @@ spec:
     Host Path: /var/log/data 
 </pre>
 
+```bash
 vim pv-data.yaml
+```
 
 ```yaml
 apiVersion: v1
@@ -118,10 +124,11 @@ spec:
     - ReadWriteMany
   hostPath:
     path: /var/log/data
-``` 
+```
 
+```bash
 kubectl apply -f pv-data.yaml
-
+```
 
 **5.Create a 'Persistent Volume Claim' with the given specification.***
 
@@ -132,8 +139,9 @@ kubectl apply -f pv-data.yaml
     Host Path: /var/log/data 
 </pre>
 
+```
 vim pvc-log.yaml
-
+```
 
 ```yaml
 apiVersion: v1
@@ -146,29 +154,33 @@ spec:
   resources:
     requests:
       storage: 30Mi
-```     
+```    
 
+```bash
 kubectl apply -f pvc-log.yaml -n vol
-
+```
 
 **6. Correct PVC to Bind to PV**
 
 change ReadWriteOnce to ReadWriteMany
 
+```bash
 kubectl get pv
-
+```
 <pre>
 NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                 STORAGECLASS   REASON   AGE
 pv-log   50Mi      RWX            Retain           Bound    default/pvc-log                           94s
 </pre>
 
+```bash
 kubectl get pvc -n vol
+```
+
 <pre>
 NAME          STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 pvc-log   Bound    pv-log   50Mi      RWX                           22s
-<pre>
+</pre>
 
-----------
 
 **7. Create the webapp-volume-pvc pod to use the persistent volume claim as its storage.** 
 <pre>
@@ -275,7 +287,9 @@ spec:
           name: pvc-storage
 ```
 
+Deploying the all resources at once
 
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -335,3 +349,4 @@ spec:
         - mountPath: "/usr/share/nginx/html"
           name: pvc-storage           
 EOF
+```

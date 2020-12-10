@@ -1,4 +1,4 @@
-STEP 1
+## STEP 1
 
 
 **1. What IP address is assigned to node01 node ?**
