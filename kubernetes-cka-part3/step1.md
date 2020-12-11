@@ -42,6 +42,9 @@ Run weavescope to check cluster networking
 `kubectl get all,ep -n weave`{{execute}}
 
 
+## Let's begin!
+
+
 **01. What IP address is assigned to node01 node ?**
 
 Answer put in file /var/log/answers/01-ip-master.txt
