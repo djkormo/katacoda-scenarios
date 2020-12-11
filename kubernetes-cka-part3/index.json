@@ -28,16 +28,7 @@
         "background": "step3-background.sh",
         "foreground": "step3-foreground.sh",
         "answer": "step3-answer.md"
-      },
-      {
-        "title": "Networking",
-        "text": "step4.md",
-        "verify": "step4-verify.sh",
-        "background": "step4-background.sh",
-        "foreground": "step4-foreground.sh",
-        "answer": "step4-answer.md"
       }
-      
     ],
     "intro": {
       "text": "000.intro.md",
