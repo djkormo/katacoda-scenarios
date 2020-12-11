@@ -6,6 +6,7 @@
 
 kubectl get node node01 -o wide 
 
+
 echo "172.17.0.75" > /var/log/answers/ip-node1
 
 cat /var/log/answers/ip-node1

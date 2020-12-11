@@ -1,4 +1,5 @@
 **Network exercises**
+# TODO IN DEVELOPMENT
 
 Show list of cluster nodes
 
@@ -14,6 +15,33 @@ Show all namespaces
 List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
+
+
+
+**11. What ports is the etcd listening on ?**
+What is the IP address of the Default Gateway on master node
+
+**12. What ports is the etcd listening on ?**
+Inspect the kubelet service and identify the network plugin configured for Kubernetes
+
+
+**13. What is the path configured with all binaries of CNI supported plugins**
+
+
+**14. What is the CNI plugin configured to be used on this kubernetes cluster**
+
+**15. What is the Networking Solution used by this cluster**
+
+**16. How many cni agents/peers are deployed in this cluster**
+
+**17. What is the range of IP addresses configured for PODs on this cluster**
+
+**18. Identify the DNS solution implemented in this cluster**
+
+**19. How many pods of the DNS server are deployed**
+
+**20. What is the name of the service created for accessing DNS**
+
 
 
 
