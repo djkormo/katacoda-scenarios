@@ -1,6 +1,5 @@
-To continue you should 
+To continue you should learn a lot
 
-Examples how to start
 
 <pre>
 ...

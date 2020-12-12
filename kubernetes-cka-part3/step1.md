@@ -49,13 +49,21 @@ Run weavescope to check cluster networking
 
 Answer put in file /var/log/answers/01-ip-master.txt
 
+
+```cat /var/log/answers/01-ip-master.txt```{{execute}}
+
 **02. What is MAC address assigned to node01?**
 
 Answer put in file /var/log/answers/02-mac-node01.txt
 
+
+```cat /var/log/answers/02-mac-node01.txt```{{execute}}
+
 **03 What is the port the kube-scheduler is listening on in the master node**
 
 Answer put in file /var/log/answers/03-kube-scheduler-port.txt
+
+```cat /var/log/answers/03-kube-scheduler-port```{{execute}}
 
 **04 What is the port the kube-proxy is listening on in the node01 node**
 
@@ -63,29 +71,42 @@ Answer put in file /var/log/answers/04-kube-proxy-port.txt
 
 **05 What ports is the etcd listening on ?**
 
+```cat /var/log/answers/04-kube-proxy-port.txt```{{execute}}
+
 Answer put in file /var/log/answers/05-etcd-port.txt
 
+```cat /var/log/answers/05-etcd-port.txt```{{execute}}
 
 **06 What is the network interface configured for cluster connectivity on the master node?**
 
 Answer put in file /var/log/answers/06-network-interface.txt
 
+```cat /var/log/answers/06-network-interface```{{execute}}
+
 **07 What is the IP address assigned to the master node on its interface ?**
 
 Answer put in file /var/log/answers/07-ip-master.txt
 
+```cat /var/log/answers/07-ip-master.txt```{{execute}}
+
 **08 What is the MAC address of the interface on the master node ?**
 
-Answer put in file /var/log/answers/08-mac-maste.txt
+Answer put in file /var/log/answers/08-mac-master.txt
+
+```cat /var/log/answers/08-mac-master```{{execute}}
 
 **09 What is the IP address assigned to node01 ?**
 
-Answer put in file /var/log/answers/09-ip-master.txt
+Answer put in file /var/log/answers/09-ip-node01.txt
+
+```cat /var/log/answers/09-ip-node01.txt```{{execute}}
 
 **10 What is the MAC address assigned to node01 ?**
 
 Answer put in file /var/log/answers/10-mac-node01.txt
 
+
+```cat /var/log/answers/10-mac-node01.txt```{{execute}}
 
 ```echo "done"```{{execute}}
 
