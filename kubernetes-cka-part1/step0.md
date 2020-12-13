@@ -39,7 +39,7 @@ Or use calico
 
 Or flannel
 
-`kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-legacy.yml`{{execute}}
+`kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml`{{execute}}
 
  Create an example deployment:
 
