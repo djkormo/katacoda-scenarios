@@ -96,20 +96,28 @@ cat /var/log/answers/02-masternode-name.txt
 
 Answer put in file /var/log/answers/03-kube-scheduler-port.txt
 
+
+netstat -nplt 
+netstat -nplt | grep kube-schedule |
+netstat -nplt | grep kube-schedule | grep -v tcp6
+netstat -nplt | grep kube-schedule | grep -v tcp6 | awk '{print $4}' 
+netstat -nplt | grep kube-schedule | grep -v tcp6 | awk '{print $4}' > /var/log/answers/03-kube-scheduler-port.txt
+
+cat /var/log/answers/03-kube-scheduler-port.txt
+
 **04 What is the port the kube-proxy is listening on in the node01 node**
 
+
 Answer put in file /var/log/answers/04-kube-proxy-port.txt
+
+
 
 **05 What ports is the etcd listening on ?**
 
 Answer put in file /var/log/answers/05-etcd-port.txt
 
 ```
-netstat -nplt 
-netstat -nplt | grep kube-scheduler |
-netstat -nplt | grep kube-scheduler | grep -v tcp6
-netstat -nplt | grep kube-scheduler | grep -v tcp6 | awk '{print $4}' 
-netstat -nplt | grep kube-scheduler | grep -v tcp6 | awk '{print $4}' > /var/log/answers/05-etcd-port.txt
+
 
 cat /var/log/answers/05-etcd-port.txt
 ```
