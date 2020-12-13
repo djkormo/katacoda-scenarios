@@ -45,19 +45,19 @@ Run weavescope to check cluster networking
 ## Let's begin!
 
 
-**01. What IP address is assigned to node01 node ?**
+**01. What number of nodes we have (including master) ?**
 
-Answer put in file /var/log/answers/01-ip-master.txt
-
-
-```cat /var/log/answers/01-ip-master.txt```{{execute}}
-
-**02. What is MAC address assigned to node01?**
-
-Answer put in file /var/log/answers/02-mac-node01.txt
+Answer put in file /var/log/answers/01-node-number.txt
 
 
-```cat /var/log/answers/02-mac-node01.txt```{{execute}}
+```cat /var/log/answers/01-node-number.txt.txt```{{execute}}
+
+**02. What is the name of node master?**
+
+Answer put in file /var/log/answers/02-masternode-name.txt
+
+
+```cat /var/log/answers/02-masternode-name.txt```{{execute}}
 
 **03 What is the port the kube-scheduler is listening on in the master node**
 

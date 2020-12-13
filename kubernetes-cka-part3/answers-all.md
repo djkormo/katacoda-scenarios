@@ -59,21 +59,37 @@ cat /var/log/answers/etcd-port
 
 # STEP 1
 
-**01. What IP address is assigned to node01 node ?**
 
-Answer put in file /var/log/answers/01-ip-master.txt
+**01. What number of nodes we have (including master) ?**
 
-**02. What is MAC address assigned to node01?**
+Answer put in file /var/log/answers/01-node-number.txt
 
-Answer put in file /var/log/answers/02-mac-node01.txt
+kubectl get nodes 
+kubectl get nodes | grep -v NAME
+kubectl get nodes | grep -v NAME | wc  -l
+kubectl get nodes | grep -v NAME | wc  -l > /var/log/answers/01-node-number.txt
+cat 
 
-arp node01
 
-arp node01 -a $ipAddress | awk '{print $4}'
+```cat /var/log/answers/01-node-number.txt.txt```{{execute}}
 
-arp node01 -a $ipAddress | awk '{print $4}' > /var/log/answers/02-mac-node01.txt
+**02. What is the name of node master?**
 
-cat /var/log/answers/02-mac-node01.txt
+Answer put in file /var/log/answers/02-masternode-name.txt
+
+```
+kubectl get node
+
+kubectl get node -l node-role.kubernetes.io/master= -o name
+
+kubectl get node -l node-role.kubernetes.io/master= |grep -v NAME | awk '{print$1}'
+
+kubectl get node -l node-role.kubernetes.io/master= |grep -v NAME | awk '{print$1}' > /var/log/answers/02-masternode-name.txt
+
+cat /var/log/answers/02-masternode-name.txt
+
+```
+
 
 **03 What is the port the kube-scheduler is listening on in the master node**
 
@@ -88,48 +104,92 @@ Answer put in file /var/log/answers/04-kube-proxy-port.txt
 
 Answer put in file /var/log/answers/05-etcd-port.txt
 
+```
+netstat -nplt 
+netstat -nplt | grep kube-scheduler |
+netstat -nplt | grep kube-scheduler | grep -v tcp6
+netstat -nplt | grep kube-scheduler | grep -v tcp6 | awk '{print $4}' 
+netstat -nplt | grep kube-scheduler | grep -v tcp6 | awk '{print $4}' > /var/log/answers/05-etcd-port.txt
+
+cat /var/log/answers/05-etcd-port.txt
+```
 
 **06 What is the network interface configured for cluster connectivity on the master node?**
 
 Answer put in file /var/log/answers/06-network-interface.txt
 
+
+```
+ip link show ens3
+
+echo "ens3" > /var/log/answers/06-network-interface.txt
+
+cat /var/log/answers/06-network-interface.txt
+
+```
+
 **07 What is the IP address assigned to the master node on its interface ?**
 
 Answer put in file /var/log/answers/07-ip-master.txt
 
+```
 master_node=$(kubectl get node -l node-role.kubernetes.io/master= -o name)
 
 kubectl get $master_node -o wide
+
 kubectl get $master_node -o wide | awk '{print $6}'
+
 kubectl get $master_node -o wide | awk '{print $6}' | grep -v INTERNAL
+
 kubectl get $master_node -o wide | awk '{print $6}' | grep -v INTERNAL > /var/log/answers/07-ip-master.txt
 
 cat /var/log/answers/07-ip-master.txt
+```
 
 **08 What is the MAC address of the interface on the master node ?**
 
 Answer put in file /var/log/answers/08-mac-master.txt
 
+```
 ip link show ens3
+
 ip link show ens3 | awk '{print $1}'
+
 ip link show ens3 | awk '{print $2}' |grep -v ens3
+
 ip link show ens3 | awk '{print $2}' |grep -v ens3 > /var/log/answers/08-mac-master.txt
+
 cat /var/log/answers/08-mac-master.txt
+```
 
 **09 What is the IP address assigned to node01 ?**
 
 Answer put in file /var/log/answers/09-ip-node01.txt
 
+```
 kubectl get node node01 -o wide
+
 kubectl get node node01 -o wide | awk '{print $6}' 
+
 kubectl get node node01 -o wide | awk '{print $6}' | grep -v INTERNAL
+
 kubectl get node node01 -o wide | awk '{print $6}' | grep -v INTERNAL > /var/log/answers/09-ip-node01.txt
 cat /var/log/answers/09-ip-node01.txt
+```
 
 **10 What is the MAC address assigned to node01 ?**
 
 Answer put in file /var/log/answers/10-mac-node01.txt
 
+```
+arp node01
+
+arp node01 -a $ipAddress | awk '{print $4}'
+
+arp node01 -a $ipAddress | awk '{print $4}' > /var/log/answers/02-mac-node01.txt
+
+cat /var/log/answers/10-mac-node01.txt
+```
 
 # STEP 2
 
