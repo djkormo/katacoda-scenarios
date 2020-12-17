@@ -55,6 +55,11 @@
         {
           "file": ".bashrc",
           "target": "/root/"
+        },
+        {
+          "file": "install-krew.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
         }
       ],
       "host02": [
