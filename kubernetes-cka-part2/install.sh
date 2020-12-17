@@ -38,18 +38,9 @@ ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.19.0-00 kubel
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
 
-echo "$hostname start" >> /opt/.krewinstall
+echo "start" >> /opt/.krewinstall
 
-(
-  set -x; cd "$(mktemp -d)" &&
-  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
-  tar zxvf krew.tar.gz &&
-  KREW=./krew-"$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed -e 's/x86_64/amd64/' -e 's/arm.*$/arm/')" &&
-  "$KREW" install krew
-  cd ~
-) 
+install-krew.sh >> /opt/.krewinstall
 
-
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" >> /opt/.krewinstall
-
-echo "end" >> /opt/.krewinstall
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+echo "done" >> /opt/.krewinstall
