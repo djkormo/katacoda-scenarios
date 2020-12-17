@@ -41,6 +41,11 @@ Or flannel
 
 `kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml`{{execute}}
 
+or weave
+
+`kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"`{{execute}}
+
+
  Create an example deployment:
 
  `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}

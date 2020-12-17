@@ -43,4 +43,5 @@ echo "start" >> /opt/.krewinstall
 install-krew.sh >> /opt/.krewinstall
 
 export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+
 echo "done" >> /opt/.krewinstall
