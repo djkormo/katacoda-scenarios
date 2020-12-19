@@ -14,6 +14,7 @@ PROMPT_COMMAND=prompt
 
 #sleep 10;
 source ~/.bashrc
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 clear
 
