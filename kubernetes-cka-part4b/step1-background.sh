@@ -8,6 +8,16 @@ launch.sh
 echo "done" >> /opt/.clusterstarted
 
 
+echo "start" >> /opt/.krewinstall
+
+install-krew.sh >> /opt/.krewinstall
+
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+
+echo "done" >> /opt/.krewinstall
+
+
+
 
 ## Installing metrics server 
 git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log

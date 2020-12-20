@@ -16,6 +16,15 @@ clear
 sleep 10;
 source ~/.bashrc
 
+echo "start" >> /opt/.krewinstall
+
+install-krew.sh >> /opt/.krewinstall
+
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+
+echo "done" >> /opt/.krewinstall
+
+
 clear
 
 kubectl wait node --all --for=condition=Ready --timeout=3m
