@@ -24,6 +24,14 @@ set autoindent
 EOF
 
 
+echo "start" >> /opt/.krewinstall
+
+install-krew.sh >> /opt/.krewinstall
+
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+
+echo "done" >> /opt/.krewinstall
+
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part3/step1/weavescope-deploy.yaml -n weave
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part3/step1/weavescope-service.yaml -n weave
 
