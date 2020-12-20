@@ -16,6 +16,8 @@ PROMPT_COMMAND=prompt
 sleep 10;
 source ~/.bashrc
 
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+
 clear
 
 kubectl wait node --all --for=condition=Ready --timeout=3m

@@ -7,6 +7,13 @@ echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
 
+
+echo "start" >> /opt/.krewinstall
+install-krew.sh >> /opt/.krewinstall
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+echo "done" >> /opt/.krewinstall
+
+
 kubectl create ns alpha
 
 # based on 
@@ -15,7 +22,6 @@ kubectl create ns alpha
 ## Installing metrics server 
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
-
 
 kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
