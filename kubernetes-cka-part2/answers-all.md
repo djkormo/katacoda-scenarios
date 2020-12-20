@@ -394,3 +394,64 @@ kubectl expose deploy/nginx-deployment-request-limit --name nginx-service-reques
 
 kubectl apply -f nginx-service-request-limit.yaml -n alpha
 ```
+
+
+## STEP 5
+
+**1.Create a pod named nginx-pod-master using image nginx:1.18.0 on port 80. Deploy pod only on master (control plane) node. Do not use taints and tolerations.**
+
+kubectl run nginx-pod-master -n alpha --image=nginx:1.18.0 -o yaml --dry-run=client >05-nginx-pod-master.yaml
+
+vim 05-nginx-pod-master.yaml
+add 
+nodeName: controlplane
+
+CHECK
+`kubectl get pod nginx-pod-master -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master -o yaml -n alpha | grep limits: -A2 | grep "cpu: 200m" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master -o yaml -n alpha | grep limits: -A2 | grep "memory: 700Mi" && echo "done"`{{execute}} 
+
+CHECK
+
+
+**2.Create a pod named nginx-pod-master-taints using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
+
+CHECK
+
+`kubectl get pod nginx-pod-master-taints -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-taints -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-taints -o yaml -n alpha | grep requests: -A2 | grep "cpu: 100m" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-taints -o yaml -n alpha | grep requests: -A2 | grep "memory: 500Mi" && echo "done"`{{execute}} 
+
+CHECK
+
+**3.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
+
+CHECK
+
+`kubectl get pod nginx-pod-request-limit -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-request-limit -n alpha -o yaml |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-request-limit -o yaml -n alpha | grep limits: -A2 | grep "cpu: 200m" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-request-limit -o yaml -n alpha | grep limits: -A2 | grep "memory: 700Mi" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-request-limit -o yaml -n alpha | grep requests: -A2 | grep "cpu: 100m" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-request-limit -o yaml -n alpha | grep requests: -A2 | grep "memory: 500Mi" && echo "done"`{{execute}} 
+
+CHECK
+
+
+
+k create deployment nginx-ds-my-scheduler --image=nginx=1.18.0 -o yaml -n aplha --dry-run=client > 05.nginx-ds-my-scheduler.yaml
+
+vim 05.nginx-ds-my-scheduler.yaml
