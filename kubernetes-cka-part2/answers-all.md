@@ -398,7 +398,7 @@ kubectl apply -f nginx-service-request-limit.yaml -n alpha
 
 ## STEP 5
 
-**1.Create a pod named nginx-pod-master using image nginx:1.18.0 on port 80. Deploy pod only on master (control plane) node. Do not use taints and tolerations.**
+**1.Create a pod named nginx-pod-master-name using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node name**
 
 kubectl run nginx-pod-master -n alpha --image=nginx:1.18.0 -o yaml --dry-run=client >05-nginx-pod-master.yaml
 
@@ -417,8 +417,12 @@ CHECK
 
 CHECK
 
+**2.Create a pod named nginx-pod-master-selector using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node selector**
 
-**2.Create a pod named nginx-pod-master-taints using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
+
+
+
+**3.Create a pod named nginx-pod-master-taints using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
 
 CHECK
 
@@ -432,7 +436,7 @@ CHECK
 
 CHECK
 
-**3.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
+**4.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
 
 CHECK
 
@@ -450,8 +454,15 @@ CHECK
 
 CHECK
 
+**5.Create second scheduler on kubernetes cluster named my-scheduler using ports 54321  and 54322**
 
 
-k create deployment nginx-ds-my-scheduler --image=nginx=1.18.0 -o yaml -n aplha --dry-run=client > 05.nginx-ds-my-scheduler.yaml
+
+```
+kubectl create deployment nginx-ds-my-scheduler --image=nginx=1.18.0 -o yaml -n alpha --dry-run=client > 05.nginx-ds-my-scheduler.yaml
+```
 
 vim 05.nginx-ds-my-scheduler.yaml
+
+
+**6.Create a deployment named nginx-deployment-my-scheduler using image nginx:1.18.0 on port 80 and my-scheduler scheduler**

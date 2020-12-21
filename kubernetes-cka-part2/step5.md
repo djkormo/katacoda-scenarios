@@ -2,23 +2,93 @@ Scaling deployments
 
 All objects should by deployed into **alpha** namespace
 
-**1.Create a pod named nginx-pod-master using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations.**
+**1.Create a pod named nginx-pod-master-name using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node name**
+
+```
+kubectl run nginx-pod-master-name -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-master-name.yaml
+
+vim 05-nginx-pod-master-name.yaml
+```
+add 
+nodeName: controlplane
+save file
+
+```
+kubectl apply -f 05-nginx-pod-master-name.yaml
+kubectl get pod nginx-pod-master-name -n alpha -o wide
+```
+
+<pre>
+NAME                    READY   STATUS    RESTARTS   AGE   IP           NODE           NOMINATED NODE   READINESS GATES
+nginx-pod-master-name   1/1     Running   0          17s   10.244.0.5   controlplane   <none>           <none>
+
+</pre>
 
 CHECK
-`kubectl get pod nginx-pod-master -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-master-name -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master  -n alpha -o wide | grep controlplane && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-master-name -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-master-name  -n alpha -o wide | grep controlplane && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master  -n alpha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-master-name  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-name  -n alpha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
 
 CHECK
 
 
-**2.Create a pod named nginx-pod-master-taints using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
+**2.Create a pod named nginx-pod-master-selector using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node selector**
+
+Check labels on nodes. 
+
+# kubectl label node controlplane whereareyou=here
+
+k get nodes --show-labels
+<pre>
+NAME           STATUS   ROLES    AGE   VERSION   LABELS
+controlplane   Ready    master   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=here
+node01         Ready    <none>   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux
+</pre>
+
+```
+kubectl run nginx-pod-master-selector -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-master-selector.yaml
+
+vim 05-nginx-pod-master-selector.yaml
+```
+add 
+nodeName: controlplane
+  nodeSelector:
+    whereareyou: "here"
+save file
+
+```
+kubectl apply -f 05-nginx-pod-master-selector.yaml
+kubectl get pod nginx-pod-master-selector -n alpha -o wide
+kubectl describe pod nginx-pod-master-selector -n alpha
+```
+<pre>
+  Warning  FailedScheduling  24s         0/2 nodes are available: 1 node(s) didn't match node selector, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
+</pre>
+
+CHECK
+
+`kubectl get pod nginx-pod-master-selector -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-selector -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-selector  -n alpha -o yaml | grep nodeSelector -A1 | grep whereareyou && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-name  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
+
+`kubectl get pod nginx-pod-master-selector  -n alpha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
+
+
+CHECK
+
+
+**3.Create a pod named nginx-pod-master-taints using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
 
 CHECK
 
@@ -32,7 +102,7 @@ CHECK
 
 CHECK
 
-**3.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit. Running on all cluster nodes.**
+**4.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit. Running on all cluster nodes.**
 
 CHECK
 
@@ -50,7 +120,7 @@ CHECK
 
 CHECK
 
-**4.Create second scheduler on kubernetes cluster named my-scheduler using ports 54321  and 54322**
+**5.Create second scheduler on kubernetes cluster named my-scheduler using ports 54321  and 54322**
 
 CHECK
 
@@ -60,7 +130,7 @@ CHECK
 
 CHECK
 
-**5.Create a deployment named nginx-deployment-my-scheduler using image nginx:1.18.0 on port 80 and my-scheduler scheduler**
+**6.Create a deployment named nginx-deployment-my-scheduler using image nginx:1.18.0 on port 80 and my-scheduler scheduler**
 
 CHECK
 
