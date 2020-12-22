@@ -45,3 +45,8 @@ install-krew.sh >> /opt/.krewinstall
 export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
 
 echo "done" >> /opt/.krewinstall
+
+## Installing metrics server 
+git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
+kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
+
