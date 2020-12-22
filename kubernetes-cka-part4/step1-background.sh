@@ -39,3 +39,8 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-service.yaml -n alpha 
 
 
+## Installing metrics server 
+git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
+kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
+
+

@@ -9,8 +9,8 @@
         "title": "Creating pods and services",
         "text": "step1.md",
         "verify": "step1-verify.sh",
-        "background": "install.sh",
-        "foreground": "foreground.sh",
+        "background": "step1-background.sh",
+        "foreground": "stap1-foreground.sh",
         "answer": "step1-answer.md"
       },
       {

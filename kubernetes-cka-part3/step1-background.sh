@@ -39,3 +39,9 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 pod=$(kubectl get pod -n weave --selector=name=weave-scope-app -o jsonpath={.items..metadata.name})
 
 kubectl expose pod $pod -n weave --name=weave-svc --external-ip=[[HOST_IP]] --port=4040 --target-port=4040
+
+
+## Installing metrics server 
+git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
+kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
+

@@ -54,3 +54,8 @@ date >> /opt/.nodeupgraded
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+
+## Installing metrics server 
+git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
+kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
+

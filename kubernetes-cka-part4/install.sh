@@ -60,3 +60,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/con
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/guestbook/frontend-deployment.yaml -n alpha 
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/guestbook/frontend-service.yaml -n alpha 
+
+
+## Installing metrics server 
+git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
+kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
