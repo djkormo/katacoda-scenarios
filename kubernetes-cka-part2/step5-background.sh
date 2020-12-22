@@ -16,4 +16,6 @@ kubectl delete cm --all -n alpha
 kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
 
+kubectl label node controlplane whereareyou=here
+
 sleep 10
