@@ -43,13 +43,15 @@ CHECK
 
 Check labels on nodes. 
 
-# kubectl label node controlplane whereareyou=here
+# kubectl label node controlplane whereareyou=master
+# kubectl label node node01 whereareyou=worker
 
 k get nodes --show-labels
 <pre>
 NAME           STATUS   ROLES    AGE   VERSION   LABELS
-controlplane   Ready    master   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=here
-node01         Ready    <none>   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux
+controlplane   Ready    master   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=master
+node01         Ready    <none>   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux,
+whereareyou=worker
 </pre>
 
 ```
