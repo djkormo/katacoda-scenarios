@@ -1,6 +1,17 @@
-Scaling deployments 
+Placing pods on proper nodes
+
+```
+kubectl describe nodes | egrep "Name:|Taints:"
+```{{execute}}
+
+Name:               controlplane
+Taints:             node-role.kubernetes.io/master:NoSchedule
+Name:               node01
+Taints:             <none>
+
 
 All objects should by deployed into **alpha** namespace
+
 
 **1.Create a pod named nginx-pod-master-name using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node name**
 
@@ -39,19 +50,22 @@ CHECK
 CHECK
 
 
-**2.Create a pod named nginx-pod-master-selector using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node selector**
+**2.Create a pod named nginx-pod-master-selector using image nginx:1.18.0 on port 80. Deploy pod only on master (cntrolplane) node. Do not use taints and tolerations. Use node selector**
 
 Check labels on nodes. 
 
 # kubectl label node controlplane whereareyou=master
 # kubectl label node node01 whereareyou=worker
+# kubectl taint node controlplane myKey=myValue:NoSchedule
+# kubectl taint node node01 myKey=myValue:NoSchedule
 
 k get nodes --show-labels
 <pre>
 NAME           STATUS   ROLES    AGE   VERSION   LABELS
-controlplane   Ready    master   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=master
-node01         Ready    <none>   26m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux,
-whereareyou=worker
+
+controlplane   Ready    master   32m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=master
+
+node01         Ready    <none>   32m   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux,whereareyou=worker
 </pre>
 
 ```
@@ -60,9 +74,9 @@ kubectl run nginx-pod-master-selector -n alpha --image=nginx:1.18.0 --port=80 -o
 vim 05-nginx-pod-master-selector.yaml
 ```
 add 
-nodeName: controlplane
   nodeSelector:
-    whereareyou: "here"
+    whereareyou: master
+
 save file
 
 ```
@@ -71,8 +85,13 @@ kubectl get pod nginx-pod-master-selector -n alpha -o wide
 kubectl describe pod nginx-pod-master-selector -n alpha
 ```
 <pre>
+  ...
+  Node-Selectors:  whereareyou=master
+  ...
   Warning  FailedScheduling  24s         0/2 nodes are available: 1 node(s) didn't match node selector, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
+  ...
 </pre>
+
 
 CHECK
 
@@ -82,7 +101,7 @@ CHECK
 
 `kubectl get pod nginx-pod-master-selector  -n alpha -o yaml | grep nodeSelector -A1 | grep whereareyou && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master-name  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-master-selector  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
 
 `kubectl get pod nginx-pod-master-selector  -n alpha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
 
@@ -90,7 +109,26 @@ CHECK
 CHECK
 
 
-**3.Create a pod named nginx-pod-master-taints using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
+**3.Create a pod named nginx-pod-master-tolerations using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints or tolerations.**
+
+
+
+```
+kubectl run nginx-pod-master-tolerations -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-master-tolerations.yaml
+
+vim 05-nginx-pod-master-tolerations.yaml
+```
+add 
+  tolerations:
+  - key: "myKey"
+    operator: "Equal"
+    value: "myValue"
+    effect: "NoSchedule"
+    
+save file
+
+```
+
 
 CHECK
 
