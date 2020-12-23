@@ -8,10 +8,8 @@
       {
         "title": "Creating pods and services",
         "text": "step1.md",
-        "verify": "step1-verify.sh",
         "background": "clear.sh",
-        "foreground": "clear.sh",
-        "answer": "step1-answer.md"
+        "foreground": "clear.sh"
       }
     ],
     "intro": {
