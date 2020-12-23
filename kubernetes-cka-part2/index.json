@@ -10,14 +10,14 @@
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "background": "step1-background.sh",
-        "foreground": "stap1-foreground.sh",
+        "foreground": "step1-foreground.sh",
         "answer": "step1-answer.md"
       },
       {
         "title": "Creating deployments",
         "text": "step2.md",
         "verify": "step2-verify.sh",
-        "foreground": "clear.sh",
+        "foreground": "step2-foreground.sh",
         "answer": "step2-answer.md"
       },
       {
@@ -25,7 +25,7 @@
         "text": "step3.md",
         "verify": "step3-verify.sh",
         "background": "step3-background.sh",
-        "foreground": "clear.sh",
+        "foreground": "step3-foreground.sh",
         "answer": "step3-answer.md"
       }, 
       {
@@ -33,7 +33,7 @@
         "text": "step4.md",
         "verify": "step4-verify.sh",
         "background": "step4-background.sh",
-        "foreground": "clear.sh",
+        "foreground": "step4-foreground.sh",
         "answer": "step4-answer.md"
       } 
     ],
