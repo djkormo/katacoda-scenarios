@@ -199,7 +199,8 @@ edit
 ```
  vim 05-ds-nginx-limits-resources.yaml
 ```
-TODO 
+change Deployment to DaemonSet
+remove replicas, strategy and statua
 
 ```
 apply -f 05-ds-nginx-limits-resources.yaml
