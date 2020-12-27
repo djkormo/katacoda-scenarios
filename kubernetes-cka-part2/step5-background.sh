@@ -7,8 +7,6 @@ echo "Starting cluster"
 launch.sh
 echo "done" >> /opt/.clusterstarted
 
-# based on 
-# https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
 kubectl delete pod --all -n alpha
 kubectl delete secret --all -n alpha
@@ -16,6 +14,11 @@ kubectl delete cm --all -n alpha
 kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
 
-kubectl label node controlplane whereareyou=here
+
+kubectl label node controlplane whereareyou=master --overwrite
+kubectl label node node01 whereareyou=worker --overwrite
+
+#kubectl taint node controlplane myKey=myValue:NoSchedule --overwrite
+#kubectl taint node node01 myKey=myValue:NoSchedule --overwrite
 
 sleep 10

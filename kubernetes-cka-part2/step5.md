@@ -1,14 +1,24 @@
 Placing pods on proper nodes
 
-```
+``` 
 kubectl describe nodes | egrep "Name:|Taints:"
 ```{{execute}}
 
+<pre>
 Name:               controlplane
 Taints:             node-role.kubernetes.io/master:NoSchedule
 Name:               node01
 Taints:             <none>
+</pre>
 
+``` 
+kubectl get nodes --show-labels
+```{{execute}}
+<pre>
+NAME           STATUS   ROLES    AGE     VERSION   LABELS
+controlplane   Ready    master   3m24s   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=master
+node01         Ready    <none>   2m51s   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux,whereareyou=worker
+<pre>
 
 All objects should by deployed into **alpha** namespace
 
@@ -17,7 +27,11 @@ All objects should by deployed into **alpha** namespace
 
 ```
 kubectl run nginx-pod-master-name -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-master-name.yaml
+```
 
+edit
+
+```
 vim 05-nginx-pod-master-name.yaml
 ```
 add 
@@ -26,9 +40,11 @@ save file
 
 ```
 kubectl apply -f 05-nginx-pod-master-name.yaml
-kubectl get pod nginx-pod-master-name -n alpha -o wide
 ```
 
+```
+kubectl get pod nginx-pod-master-name -n alpha -o wide
+```
 <pre>
 NAME                    READY   STATUS    RESTARTS   AGE   IP           NODE           NOMINATED NODE   READINESS GATES
 nginx-pod-master-name   1/1     Running   0          17s   10.244.0.5   controlplane   <none>           <none>
@@ -50,7 +66,7 @@ CHECK
 CHECK
 
 
-**2.Create a pod named nginx-pod-master-selector using image nginx:1.18.0 on port 80. Deploy pod only on master (cntrolplane) node. Do not use taints and tolerations. Use node selector**
+**2.Create a pod named nginx-pod-master-selector using image nginx:1.18.0 on port 80. Deploy pod only on node01 (worker) node. Do not use taints and tolerations. Use node selector**
 
 Check labels on nodes. 
 
@@ -69,41 +85,49 @@ node01         Ready    <none>   32m   v1.19.0   beta.kubernetes.io/arch=amd64,b
 </pre>
 
 ```
-kubectl run nginx-pod-master-selector -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-master-selector.yaml
-
-vim 05-nginx-pod-master-selector.yaml
+kubectl run nginx-pod-worker-selector -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-worker-selector.yaml
 ```
+
+edit
+
+```
+vim 05-nginx-pod-worker-selector.yaml
+```
+
 add 
   nodeSelector:
-    whereareyou: master
+    whereareyou: worker
 
 save file
 
 ```
-kubectl apply -f 05-nginx-pod-master-selector.yaml
-kubectl get pod nginx-pod-master-selector -n alpha -o wide
-kubectl describe pod nginx-pod-master-selector -n alpha
+kubectl apply -f 05-nginx-pod-worker-selector.yaml
+kubectl get pod nginx-pod-worker-selector -n alpha -o wide
+kubectl describe pod nginx-pod-worker-selector -n alpha | grep "Node-Selectors"
 ```
 <pre>
   ...
-  Node-Selectors:  whereareyou=master
+  Node-Selectors:  whereareyou=worker
   ...
-  Warning  FailedScheduling  24s         0/2 nodes are available: 1 node(s) didn't match node selector, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
+Events:
+  Type    Reason     Age   From             Message
+  ----    ------     ----  ----             -------
+  Normal  Scheduled  10s                    Successfully assigned alpha/nginx-pod-worker-selector to node01
   ...
 </pre>
 
 
 CHECK
 
-`kubectl get pod nginx-pod-master-selector -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-worker-selector -o yaml -n alpha |grep "containerPort: 80" && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master-selector -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-worker-selector -o yaml -n alpha |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master-selector  -n alpha -o yaml | grep nodeSelector -A1 | grep whereareyou && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-worker-selector  -n alpha -o yaml | grep nodeSelector -A1 | grep whereareyou && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master-selector  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-worker-selector  -n alpha -o wide | grep -v -i taint && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-master-selector  -n alpha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-worker-selector  -n alpha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
 
 
 CHECK
@@ -116,19 +140,41 @@ CHECK
 ```
 kubectl run nginx-pod-master-tolerations -n alpha --image=nginx:1.18.0 --port=80 -o yaml --dry-run=client >05-nginx-pod-master-tolerations.yaml
 
+edit
+
+```
 vim 05-nginx-pod-master-tolerations.yaml
 ```
 add 
   tolerations:
-  - key: "myKey"
-    operator: "Equal"
-    value: "myValue"
+  - key: "node-role.kubernetes.io/master
     effect: "NoSchedule"
     
 save file
 
 ```
+kubectl apply -f  05-nginx-pod-master-tolerations.yaml 
+```
 
+```
+kubectl get pod nginx-pod-master-tolerations -n alpha -o wide
+kubectl describe pod nginx-pod-master-tolerations -n alpha | grep "Tolerations"
+```
+
+TODO - NOT WORKING
+<pre>
+Node-Selectors:  <none>
+Tolerations:     node-role.kubernetes.io/master:NoSchedule
+                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From             Message
+  ----    ------     ----   ----             -------
+  Normal  Scheduled  8m                      Successfully assigned alpha/nginx-pod-master-tolerations to node01
+  Normal  Pulled     7m59s  kubelet, node01  Container image "nginx:1.18.0" already present on machine
+  Normal  Created    7m59s  kubelet, node01  Created container nginx-pod-master-tolerations
+  Normal  Started    7m58s  kubelet, node01  Started container nginx-pod-master-tolerations
+<pre>
 
 CHECK
 
@@ -143,6 +189,21 @@ CHECK
 CHECK
 
 **4.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit. Running on all cluster nodes.**
+
+```
+kubectl create  deployment  nginx-ds --image=nginx:1.18.0 --namespace=alpha --port=80 -o yaml --dry-run=client > 05-ds-nginx-limits-resources.yaml
+
+```
+edit
+
+```
+ vim 05-ds-nginx-limits-resources.yaml
+```
+TODO 
+
+```
+apply -f 05-ds-nginx-limits-resources.yaml
+```
 
 CHECK
 
