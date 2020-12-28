@@ -316,8 +316,20 @@ CHECK
 
 **6.Expose deployment nginx-deployment-my-scheduler named nginx-service-deployment-myscheduler using ClusterIP and port 80.**
 
+```
+kubectl expose deploy/nginx-deployment-my-scheduler -n beta --name nginx-service-deployment-my-scheduler -o yaml --dry-run=client > 05-service-deploy-nginx-my-scheduler.yaml
+```
+
+vim 05-service-deploy-nginx-my-scheduler.yaml
+
+add 
+namespace: beta
+
+
+kubectl apply -f 05-service-deploy-nginx-my-scheduler.yaml
+
 CHECK
-kubectl get service nginx-service-deployment-myscheduler -n beta
+kubectl get service nginx-service-deployment-my-scheduler -n beta
 
 CHECK
 
