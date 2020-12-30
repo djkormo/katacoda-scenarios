@@ -20,7 +20,4 @@ kubectl label node node01 whereareyou=worker --overwrite
 
 kubectl create ns beta 
 
-#kubectl taint node controlplane myKey=myValue:NoSchedule --overwrite
-#kubectl taint node node01 myKey=myValue:NoSchedule --overwrite
-
 sleep 10

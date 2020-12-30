@@ -14,6 +14,14 @@
         "answer": "step1-answer.md"
       },
       {
+        "title": "Creating pods and services",
+        "text": "step5.md",
+        "verify": "step5-verify.sh",
+        "background": "step5-background.sh",
+        "foreground": "step5-foreground.sh",
+        "answer": "step5-answer.md"
+      },
+      {
         "title": "Creating deployments",
         "text": "step2.md",
         "verify": "step2-verify.sh",
