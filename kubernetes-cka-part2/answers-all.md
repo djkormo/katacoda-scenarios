@@ -1,37 +1,148 @@
 ## STEP 1
 
 ```bash
-kubectl run web --image=nginx:1.11.9-alpine --port 80  -o yaml --dry-run=client > web-pod.yaml
+kubectl run web --image=nginx:1.11.9-alpine --port 80  -o yaml --dry-run=client > 01-web-pod.yaml
 ```
 
-edit vim web-pod.yaml
+edit
+
+```
+vim 01-web-pod.yaml
+```
 
 add port 443
-```bash
-kubectl apply -f web-pod.yaml -n alpha
 
-kubectl expose pod/web --name=webservice -n alpha
+```bash
+kubectl apply -f 01-web-pod.yaml -n alpha
+
+kubectl expose pod/web --name=webservice -n alpha -o yaml --dry-run=client > 01-webservice-service.yaml
 ```
+
+
+The complete yaml manifest
+
+```yaml
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: web
+  name: web
+  namespace: alpha 
+spec:
+  containers:
+  - image: nginx:1.11.9-alpine
+    name: web
+    ports:
+    - containerPort: 80
+    - containerPort: 443
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: web
+  name: webservice
+  namespace: alpha
+spec:
+  ports:
+  - name: port-1
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: port-2
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    run: web
+status:
+  loadBalancer: {}
+EOF
+```
+
 
 ## STEP 2
 
 **1.Create a pod named postgresql using image postgres:12.4 on port 5432**
 ```bash
 kubectl run postgresql --image=postgres:12.4 --port 5432  \
-  -o yaml --dry-run=client > postgresql-pod.yaml
+  -o yaml --dry-run=client > 02-postgresql-pod.yaml
 
-kubectl apply -f postgresql-pod.yaml -n alpha
+kubectl apply -f 02-postgresql-pod.yaml -n alpha
 ```
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: postgresql
+  name: postgresql
+spec:
+  containers:
+  - image: postgres:12.4
+    name: postgresql
+    ports:
+    - containerPort: 5432    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+EOF
+```
+
+
+
 
 **2.Create a pod named postgresql-env using image postgres:12.4 on port 5432.**
 
 ```bash
 kubectl run postgresql-env --image=postgres:12.4 --port 5432  \
   --env="POSTGRES_DB=postgresdb" --env="POSTGRES_USER=postgresadmin" --env=POSTGRES_PASSWORD=admin123 \
-  -o yaml --dry-run=client  > postgresql-env-pod.yaml
+  -o yaml --dry-run=client  > 02-postgresql-env-pod.yaml
 
-kubectl apply -f postgresql-env-pod.yaml -n alpha
+kubectl apply -f 02-postgresql-env-pod.yaml -n alpha
 ```
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: postgresql-env
+  name: postgresql-env
+spec:
+  containers:
+  - env:
+    - name: POSTGRES_DB
+      value: postgresdb
+    - name: POSTGRES_USER
+      value: postgresadmin
+    - name: POSTGRES_PASSWORD
+      value: admin123
+    image: postgres:12.4
+    name: postgresql-env
+    ports:
+    - containerPort: 5432
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+EOF
+```
+
 
 **3.Create a configmap named postgresql-configmap with following content**
 
@@ -39,17 +150,33 @@ kubectl apply -f postgresql-env-pod.yaml -n alpha
 kubectl create configmap postgresql-configmap   --from-literal="POSTGRES_DB=postgresdb"  \
   --from-literal="POSTGRES_USER=postgresadmin" \
   --from-literal="POSTGRES_PASSWORD=admin123" \
-  -n alpha -o yaml --dry-run=client > postgresql-configmap.yaml
+  -n alpha -o yaml --dry-run=client > 02-postgresql-configmap.yaml
 
-kubectl apply -f postgresql-configmap.yaml -n alpha
+kubectl apply -f 02-postgresql-configmap.yaml -n alpha
+```
+
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_PASSWORD: admin123
+  POSTGRES_USER: postgresadmin
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: postgresql-configmap
+  namespace: alpha
+EOF
 ```
 
 **4.Create a pod named postgresql-cm using image postgres:12.4 on port 5432.**
 
 ```bash
-cp postgresql-env-pod.yaml postgresql-cm-pod.yaml
+cp 02-postgresql-env-pod.yaml 02-postgresql-cm-pod.yaml
 
-vim postgresql-cm-pod.yaml
+vim 02-postgresql-cm-pod.yaml
 ```
 
 change name to postgresql-cm
@@ -60,9 +187,15 @@ envFrom:
   - configMapRef:
     name: postgresql-configmap
 ```
+
+```bash
+kubectl apply -f postgresql-cm-pod.yaml -n alpha
+```
+
 The whole file
 
 ```yaml
+cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -82,11 +215,9 @@ spec:
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
+EOF  
 ```
 
-```bash
-kubectl apply -f postgresql-cm-pod.yaml -n alpha
-```
 
 Based on 
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
@@ -98,21 +229,36 @@ https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap
 kubectl create configmap postgresql-configmap-nopass \
   --from-literal="POSTGRES_DB=postgresdb" \
   --from-literal=POSTGRES_USER=postgresadmin \
-  -o yaml --dry-run=client > postgresql-configmap-nopass.yaml
+  -o yaml --dry-run=client > 02-postgresql-configmap-nopass.yaml
 
-kubectl apply -f postgresql-configmap-nopass.yaml -n alpha
+kubectl apply -f 02-postgresql-configmap-nopass.yaml -n alpha
 ```
 
 or  
 
 ```bash
-cp postgresql-configmap.yaml postgresql-configmap-nopass.yaml
-vim postgresql-configmap-nopass.yaml
+cp 02-postgresql-configmap.yaml 02-postgresql-configmap-nopass.yaml
+vim 02-postgresql-configmap-nopass.yaml
 ```
 change name to postgresql-configmap-nopass
 and remove POSTGRES_PASSWORD
 ```
-kubectl apply -f postgresql-configmap-nopass.yaml -n alpha
+kubectl apply -f 02-postgresql-configmap-nopass.yaml -n alpha
+```
+
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: postgresadmin
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: postgresql-configmap-nopass
+  namespace: alpha
+EOF
 ```
 
 **6.Create a secret named postgresql-secret with following content**
@@ -120,17 +266,31 @@ kubectl apply -f postgresql-configmap-nopass.yaml -n alpha
 ```bash
 kubectl create secret generic postgresql-secret \
 --from-literal="POSTGRES_PASSWORD=admin123"  \
--o yaml  --dry-run=client  > postgresql-secret.yaml
+-o yaml  --dry-run=client  > 02-postgresql-secret.yaml
 
-kubectl apply -f postgresql-secret.yaml -n alpha
+kubectl apply -f 02-postgresql-secret.yaml -n alpha
+```
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: postgresadmin
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: postgresql-configmap-nopass
+  namespace: alpha
+EOF
 ```
 
 **7.Create a pod named postgresql-cm-secret using image postgres:12.4, on port 5432.**
 
 ```bash
-cp  postgresql-cm-pod.yaml postgresql-cm-secret.yaml
+cp  02-postgresql-cm-pod.yaml 02-postgresql-cm-secret.yaml
 
-vim postgresql-cm-secret.yaml
+vim 02-postgresql-cm-secret.yaml
 ```
 
 change name to postgresql-cm-secret
@@ -145,8 +305,15 @@ envFrom:
     name: postgresql-secret
 ```
 
+
+```bash
+kubectl apply -f  02-postgresql-cm-secret.yaml  -n alpha
+```
+
 The whole file
+
 ```yaml
+cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -168,17 +335,43 @@ spec:
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
+EOF  
 ```
 
-```bash
-kubectl apply -f  postgresql-cm-secret.yaml  -n alpha
-```
 
 **8.Create a service as ClusterIP to expose pod postgresql-cm-secret, named as postgresql-webservice**
 
 ```bash
-kubectl expose pod/postgresql-cm-secret --name=postgresql-webservice -n alpha
+kubectl expose pod/postgresql-cm-secret --name=postgresql-webservice -n alpha -o yaml --dry-run=client > 02-postgresql-webservice.yaml
+
+kubectl apply -f 02-postgresql-webservice.yaml -n alpha
+
 ```
+
+The whole file
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: postgresql-cm-secret
+  name: postgresql-webservice
+  namespace: alpha 
+spec:
+  ports:
+  - port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    run: postgresql-cm-secret
+status:
+  loadBalancer: {}
+EOF  
+```
+
 
 Based on 
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
@@ -210,18 +403,23 @@ select * from pg_tables;
 
 ```bash
 kubectl create deployment nginx-deployment --image=nginx:1.18.0 -n alpha \
--o yaml --dry-run=client > nginx-deployment-alpha.yaml
+-o yaml --dry-run=client > 03-nginx-deployment-alpha.yaml
 ```
 
-remember to add  80  containerPort
+remember to add  80 containerPort
 
 ```bash 
-vim nginx-deployment-alpha.yaml
+vim 03-nginx-deployment-alpha.yaml
+```
+
+```bash
+kubectl apply -f 03-nginx-deployment-alpha.yaml -n alpha --record
 ```
 
 the whole file
 
 ```yaml
+cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -248,30 +446,56 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
+EOF        
 ```
 
-```bash
-kubectl apply -f nginx-deployment-alpha.yaml -n alpha --record
-```
+
+
+
+
 **2.Expose deployment nginx-deployment named nginx-service using ClusterIP.**
 
 ```bash
 kubectl expose deploy nginx-deployment -n alpha -o yaml --port 80 --name=nginx-service \
---dry-run=client  > nginx-service-alpha.yaml
+--dry-run=client  > 03-nginx-service-alpha.yaml
 
-kubectl apply -f nginx-service-alpha.yaml -n alpha
+kubectl apply -f 03-nginx-service-alpha.yaml -n alpha
 ```
 
+the whole file
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx-deployment
+  name: nginx-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-deployment
+status:
+  loadBalancer: {}
+EOF  
+```
 **3.Change image in nginx-deployment to nginx:1.19.2 Record the change**
 
 ```bash
 kubectl set image deploy nginx-deployment -n alpha nginx=nginx:1.19.2 \
-  -o yaml --dry-run=client > nginx-deployment2-alpha.yaml
+  -o yaml --dry-run=client > 03-nginx-deployment2-alpha.yaml
 
-kubectl apply -f nginx-deployment2-alpha.yaml -n alpha --record
+kubectl apply -f 03-nginx-deployment2-alpha.yaml -n alpha --record
 
 kubectl rollout history deploy/nginx-deployment -n alpha
 ```
+
 
 **4.Rollback nginx-deployment to previous version**
 
