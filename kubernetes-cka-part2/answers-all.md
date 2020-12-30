@@ -522,17 +522,17 @@ kubectl run busybox -it --rm --image=busybox -- sh
 **1.Create a pod named nginx-pod-limit using image nginx:1.18.0 on port 80 add 200m CPU limit and 700Mi memory limit**
 
 ```bash
-kubectl run nginx-pod-limit -n alpha --image=nginx:1.18.0 --limits="memory=700Mi,cpu=200m" --port=80  -o yaml --dry-run=client >pod-nginx-limit.yaml
+kubectl run nginx-pod-limit -n alpha --image=nginx:1.18.0 --limits="memory=700Mi,cpu=200m" --port=80  -o yaml --dry-run=client >04-pod-nginx-limit.yaml
 
-kubectl apply -f pod-nginx-limit.yaml -n alpha
+kubectl apply -f 04-pod-nginx-limit.yaml -n alpha
 ```
 
 **2.Create a pod named nginx-pod-request using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request**
 
 ```
-kubectl run nginx-pod-request -n alpha --image=nginx:1.18.0 --requests="memory=500Mi,cpu=100m" --port=80  -o yaml --dry-run=client >pod-nginx-request.yaml
+kubectl run nginx-pod-request -n alpha --image=nginx:1.18.0 --requests="memory=500Mi,cpu=100m" --port=80  -o yaml --dry-run=client >04-pod-nginx-request.yaml
 
-kubectl apply -f pod-nginx-request.yaml -n alpha
+kubectl apply -f 04-pod-nginx-request.yaml -n alpha
 ```
 
 **3.Create a pod named nginx-pod-request-limit using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
@@ -540,20 +540,21 @@ kubectl apply -f pod-nginx-request.yaml -n alpha
 ```
 kubectl run nginx-pod-request-limit -n alpha --image=nginx:1.18.0 --port=80 \
   --requests="memory=500Mi,cpu=100m"  --limits="memory=700Mi,cpu=200m" \
-  -o yaml --dry-run=client >pod-nginx-request-limit.yaml
+  -o yaml --dry-run=client >04-pod-nginx-request-limit.yaml
 
-kubectl apply -f pod-nginx-request-limit.yaml -n alpha
+kubectl apply -f 04-pod-nginx-request-limit.yaml -n alpha
 ```
 
 **4.Create deployment  nginx-deployment-request-limit  using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
 
 ```bash
 kubectl create deployment nginx-deployment-request-limit -n alpha --image=nginx:1.18.0 \
-  -o yaml --dry-run=client > nginx-deployment-request-limit.yaml
+  -o yaml --dry-run=client > 04-nginx-deployment-request-limit.yaml
 ```
 add  missing resources
 look here
 kubectl get pod nginx-pod-request-limit -n alpha -o yaml | grep resources: -A6
+
 ```yaml
     resources:
       limits:
@@ -573,11 +574,16 @@ kubectl get pod nginx-pod-request-limit -n alpha -o yaml | grep resources: -A6
         - containerPort: 80
 ```
 
+```
+kubectl apply -f 04-nginx-deployment-request-limit.yaml -n alpha
+```
 The whole file
 
 ```yaml
+cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
+metadata:
   labels:
     app: nginx-deployment-request-limit
   name: nginx-deployment-request-limit
@@ -594,7 +600,7 @@ spec:
       labels:
         app: nginx-deployment-request-limit
     spec:      
-    containers:
+      containers:
       - image: nginx:1.18.0
         name: nginx
         ports:        
@@ -606,19 +612,38 @@ spec:
           requests:
             memory: 500Mi
             cpu: 100m
+EOF            
 ```
-
-kubectl apply -f nginx-deployment-request-limit.yaml -n alpha
 
 **5.Expose deployment nginx-deployment-request-limit named nginx-service-request-limit using ClusterIP and port 80.**
 
 ```bash
-kubectl expose deploy/nginx-deployment-request-limit --name nginx-service-request-limit --port 80 -n alpha \
-  -o yaml --dry-run=client > nginx-service-request-limit.yaml
+kubectl expose deploy/nginx-deployment-request-limit --name nginx-service-request-limit --port 80 -n alpha -o yaml --dry-run=client > 04-nginx-service-request-limit.yaml
 
-kubectl apply -f nginx-service-request-limit.yaml -n alpha
+kubectl apply -f 04-nginx-service-request-limit.yaml -n alpha
 ```
 
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx-deployment-request-limit
+  name: nginx-service-request-limit
+  namespace: alpha
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-deployment-request-limit
+status:
+  loadBalancer: {}
+EOF
+```
 
 ## STEP 5
 
