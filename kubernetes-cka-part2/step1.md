@@ -10,7 +10,7 @@ node01   Ready    worker   3m   v1.19.0
 
 click ```clear```{{execute interrupt}} to begin
 
-Lets try to control remainning time to reset our sandbow
+Lets try to control remainning time to reset our sandbox
 
 <pre>
 58 min root@master

@@ -14,7 +14,7 @@
         "answer": "step1-answer.md"
       },
       {
-        "title": "Creating pods and services",
+        "title": "Placing pods on proper nodes",
         "text": "step5.md",
         "verify": "step5-verify.sh",
         "background": "step5-background.sh",

@@ -576,7 +576,7 @@ CHECK
 
 `kubectl get pod nginx-pod-worker-selector  -n beta -o wide | grep -v -i taint && echo "done"`{{execute}} 
 
-`kubectl get pod nginx-pod-worker-selector  -n albetapha -o wide | grep -v -i toleration && echo "done"`{{execute}} 
+`kubectl get pod nginx-pod-worker-selector  -n beta -o wide | grep -v -i toleration && echo "done"`{{execute}} 
 
 
 CHECK
@@ -668,8 +668,10 @@ CHECK
 `kubectl get pod nginx-pod-master-tolerations -o yaml -n beta |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
 
 `kubectl get pod nginx-pod-master-tolerations  -n beta -o wide | grep controlplane && echo "done"`{{execute}} 
+
 `kubectl describe pod nginx-pod-master-tolerations -n beta | grep "Tolerations" && echo "done"`{{execute}}
-`kubectl describe pod nginx-pod-master-tolerations -n beta | grep "Node-Selectors" && echo "done"{{execute}}
+
+`kubectl describe pod nginx-pod-master-tolerations -n beta | grep "Node-Selectors" && echo "done"`{{execute}}
 
 CHECK
 

@@ -9,4 +9,5 @@
 #  && kubectl get deploy nginx-deployment-request-limit -n alpha -o yaml |grep "requests:" -A2 |grep "memory: 500Mi" \
 #  && kubectl get service nginx-service-request-limit -n alpha -o yaml |grep "port: 80" \
 #  && echo "done" 
+echo "done"
   

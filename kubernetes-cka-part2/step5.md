@@ -99,14 +99,15 @@ CHECK
 
 **5.Create second scheduler on kubernetes cluster named my-scheduler using ports  insecure 54321  and secure 54322**
 
+Pod should be running only on master (controlplane) node. Do not use taints, tolarations and node selectors
+
 CHECK
 
 `kubectl get pod -n kube-system -l component=kube-scheduler | grep my-scheduler && echo "done"`{{execute}} 
 
 `kubectl get pod -n kube-system -l component=kube-scheduler| grep Running && echo "done"`{{execute}} 
 
-`kubectl get pod -n kube-system --no-headers -l component=kube-scheduler| grep Running | wc -l | grep 2 && echo "done"`{
-{execute}}
+`kubectl get pod -n kube-system --no-headers -l component=kube-scheduler| grep Running | wc -l | grep 2 && echo "done"`{{execute}}
 
 CHECK
 
@@ -145,7 +146,11 @@ CHECK
 
 `kubectl get pod -n beta -l app=nginx-deployment-all-nodes -o wide | grep "Running"`{{execute}}
 
-`kubectl get pod -n beta -l app=nginx-deployment-all-nodes --no-headers |grep "Running" | wc -l`{{execute}}
+`kubectl get pod -n beta -l app=nginx-deployment-all-nodes --no-headers |grep "Running" |wc -l |grep 2 && echo "done"`{{execute}}
+
+`kubectl get pod -n beta -l app=nginx-deployment-all-nodes -o yaml | grep "affinity: "`{{execute}}
+
+`kubectl get deploy -n beta -l app=nginx-deployment-all-nodes -o yaml | grep "replicas: 5"`{{execute}}
 
 CHECK
 
