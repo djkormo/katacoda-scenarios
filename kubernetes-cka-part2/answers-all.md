@@ -102,13 +102,17 @@ EOF
 ```
 
 
-
-
 **2.Create a pod named postgresql-env using image postgres:12.4 on port 5432.**
+
+add to pod environment variables
+
+POSTGRES_DB: postgresdb
+POSTGRES_USER: postgresadmin
+POSTGRES_PASSWORD: admin123
 
 ```bash
 kubectl run postgresql-env --image=postgres:12.4 --port 5432  \
-  --env="POSTGRES_DB=postgresdb" --env="POSTGRES_USER=postgresadmin" --env=POSTGRES_PASSWORD=admin123 \
+  --env="POSTGRES_DB=postgresdb" --env="POSTGRES_USER=postgresadmin" --env="POSTGRES_PASSWORD=admin123" \
   -o yaml --dry-run=client  > 02-postgresql-env-pod.yaml
 
 kubectl apply -f 02-postgresql-env-pod.yaml -n alpha

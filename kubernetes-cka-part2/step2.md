@@ -35,7 +35,7 @@ Now we have to set database configuration values
 
 **2.Create a pod named postgresql-env using image postgres:12.4 on port 5432.**
 
-and add to pod environment variables
+add to pod environment variables
 
 POSTGRES_DB: postgresdb
 POSTGRES_USER: postgresadmin
