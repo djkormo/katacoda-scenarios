@@ -815,21 +815,6 @@ status: {}
 EOF
 ```    
 
-CHECK
-
-`kubectl get pod nginx-pod-worker-selector -o yaml -n beta |grep "containerPort: 80" && echo "done"`{{execute}} 
-
-`kubectl get pod nginx-pod-worker-selector -o yaml -n beta |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
-
-`kubectl get pod nginx-pod-worker-selector  -n beta -o yaml | grep nodeSelector -A1 | grep whereareyou && echo "done"`{{execute}} 
-
-`kubectl get pod nginx-pod-worker-selector  -n beta -o wide | grep -v -i taint && echo "done"`{{execute}} 
-
-`kubectl get pod nginx-pod-worker-selector  -n beta -o wide | grep -v -i toleration && echo "done"`{{execute}} 
-
-
-CHECK
-
 
 **3.Create a pod named nginx-pod-master-tolerations using image nginx:1.18.0 on port 80. Deploy pod only on master node. Use taints,tolerations and node selector.**
 
@@ -909,20 +894,6 @@ status: {}
 EOF
 ```    
 
-
-CHECK
-
-`kubectl get pod nginx-pod-master-tolerations -o yaml -n beta |grep "containerPort: 80" && echo "done"`{{execute}} 
-
-`kubectl get pod nginx-pod-master-tolerations -o yaml -n beta |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
-
-`kubectl get pod nginx-pod-master-tolerations  -n beta -o wide | grep controlplane && echo "done"`{{execute}} 
-
-`kubectl describe pod nginx-pod-master-tolerations -n beta | grep "Tolerations" && echo "done"`{{execute}}
-
-`kubectl describe pod nginx-pod-master-tolerations -n beta | grep "Node-Selectors" && echo "done"`{{execute}}
-
-CHECK
 
 **4.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit. Running on all cluster nodes.**
 
@@ -1013,21 +984,6 @@ spec:
 EOF
 ```
 
-
-CHECK
-
-`kubectl get daemonset nginx-ds -n beta  -o yaml |grep "containerPort: 80" && echo "done"`{{execute}} 
-
-`kubectl get daemonset nginx-ds -n beta -o yaml |grep "image: nginx:1.18.0" && echo "done"`{{execute}} 
-
-`kubectl get daemonset nginx-ds -n beta -o yaml  | grep limits: -A2 | grep "cpu: 200m" && echo "done"`{{execute}} 
-`kubectl get daemonset nginx-ds -n beta -o yaml  | grep limits: -A2 | grep "memory: 700Mi" && echo "done"`{{execute}} 
-
-`kubectl get daemonset nginx-ds -o yaml -n beta | grep requests: -A2 | grep "cpu: 100m" && echo "done"`{{execute}} 
-
-`kubectl get daemonset nginx-ds -o yaml -n beta | grep requests: -A2 | grep "memory: 500Mi" && echo "done"`{{execute}} 
-
-CHECK
 
 **5.Create second scheduler on kubernetes cluster named my-scheduler using ports  insecure 54321  and secure 54322**
 
@@ -1130,18 +1086,6 @@ status: {}
 EOF
 ```
 
-
-CHECK
-
-`kubectl get pod -n kube-system -l component=kube-scheduler | grep my-scheduler && echo "done"`{{execute}} 
-
-`kubectl get pod -n kube-system -l component=kube-scheduler| grep Running && echo "done"`{{execute}} 
-
-`kubectl get pod -n kube-system --no-headers -l component=kube-scheduler| grep Running | wc -l | grep 2 && echo "done"`{
-{execute}}
-
-CHECK
-
 **6.Create a deployment named nginx-deployment-my-scheduler using image nginx:1.18.0 on port 80 and my-scheduler scheduler**
 
 ```
@@ -1195,15 +1139,6 @@ EOF
 ```
 
 
-CHECK
-
-```kubectl get deploy nginx-deployment-my-scheduler -n beta```{{execute}}
-
-```kubectl get deploy nginx-deployment-my-scheduler -n beta -o yaml | grep "schedulerName: my-scheduler"```{{execute}}
-
-```kubectl get deploy nginx-deployment-my-scheduler -n beta --no-headers | grep "1/1" | wc -l | grep 1 && echo "done"`{{execute}}
-
-CHECK
 
 **7.Expose deployment nginx-deployment-my-scheduler named nginx-service-deployment-myscheduler using ClusterIP and port 80.**
 
@@ -1247,18 +1182,10 @@ status:
 EOF
 ```
 
-CHECK
-
-```kubectl get service nginx-service-deployment-my-scheduler -n beta```{{execute}}
-
-```kubectl get ep nginx-service-deployment-my-scheduler -n beta | grep ":80"```{{execute}}
-
-CHECK
 
 **8.Create a deployment named nginx-deployment-all-nodes using image nginx:1.18.0 on port 80 running on all (two) nodes. Regadless replicas above number od nodes. Use affinity**
 
-Set number of replicas = 10
-
+Set number of replicas = 5
 
 ```
 kubectl create  deployment  nginx-deployment-all-nodes --image=nginx:1.18.0  --namespace=beta --port=80 -o yaml --dry-run=client > 05-deploy-nginx-all-nodes.yaml
@@ -1322,14 +1249,4 @@ spec:
 status: {}
 EOF
 ```
-CHECK
 
-```kubectl get deploy nginx-deployment-all-nodes -n beta```{{}}
-
-```kubectl get pod -n beta -l app=nginx-deployment-all-nodes -o wide | grep "Running"```{{execute}}
-
-```kubectl get pod -n beta -l app=nginx-deployment-all-nodes --no-headers |grep "Running" | wc -l```{{execute}}
-
-CHECK
-
-**To move to the next step make sure to have all checks with "done"**
