@@ -22,7 +22,7 @@ node01         Ready    <none>   2m51s   v1.19.0   beta.kubernetes.io/arch=amd64
 
 All objects should by deployed into **beta** namespace.
 
-Create **beta** names space if is missing
+Create **beta** namespace if is missing
 
 
 **1.Create a pod named nginx-pod-master-name using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node name**
@@ -135,7 +135,7 @@ CHECK
 CHECK
 
 
-**3.Create a pod named nginx-pod-master-tolerations using image nginx:1.18.0 on port 80.Deploy pod only on master node. Use taints,tolerations and node selector.**
+**3.Create a pod named nginx-pod-master-tolerations using image nginx:1.18.0 on port 80. Deploy pod only on master node. Use taints,tolerations and node selector.**
 
 
 
@@ -201,10 +201,10 @@ kubectl create  deployment  nginx-ds --image=nginx:1.18.0 --namespace=beta --por
 edit
 
 ```
- vim 05-ds-nginx-limits-resources.yaml
+vim 05-ds-nginx-limits-resources.yaml
 ```
 change Deployment to DaemonSet
-remove replicas, strategy and statua
+remove replicas, strategy and status
 
 ```
 kubectl apply -f 05-ds-nginx-limits-resources.yaml
@@ -222,6 +222,12 @@ Why is not running on controlplane (master) node ?
  vim 05-ds-nginx-limits-resources.yaml
 
  add toleration 
+
+```yaml
+  tolerations:
+  - key: "node-role.kubernetes.io/master"
+    effect: "NoSchedule"
+```
 
 ```
 kubectl get pod -n beta -o wide | grep nginx-ds
