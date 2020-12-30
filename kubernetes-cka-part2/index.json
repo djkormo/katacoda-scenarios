@@ -14,14 +14,6 @@
         "answer": "step1-answer.md"
       },
       {
-        "title": "Placing pods on proper nodes",
-        "text": "step5.md",
-        "verify": "step5-verify.sh",
-        "background": "step5-background.sh",
-        "foreground": "step5-foreground.sh",
-        "answer": "step5-answer.md"
-      },
-      {
         "title": "Creating deployments",
         "text": "step2.md",
         "verify": "step2-verify.sh",
@@ -43,7 +35,15 @@
         "background": "step4-background.sh",
         "foreground": "step4-foreground.sh",
         "answer": "step4-answer.md"
-      } 
+      },
+      {
+        "title": "Placing pods on proper nodes",
+        "text": "step5.md",
+        "verify": "step5-verify.sh",
+        "background": "step5-background.sh",
+        "foreground": "step5-foreground.sh",
+        "answer": "step5-answer.md"
+      }
     ],
     "intro": {
       "text": "000.intro.md",
