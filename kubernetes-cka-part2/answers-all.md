@@ -89,12 +89,14 @@ metadata:
   labels:
     run: postgresql
   name: postgresql
+  namespace: alpha
 spec:
   containers:
   - image: postgres:12.4
     name: postgresql
     ports:
-    - containerPort: 5432    resources: {}
+    - containerPort: 5432
+    resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
@@ -127,6 +129,7 @@ metadata:
   labels:
     run: postgresql-env
   name: postgresql-env
+  namespace: alpha
 spec:
   containers:
   - env:
@@ -143,7 +146,6 @@ spec:
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
-status: {}
 EOF
 ```
 
@@ -279,12 +281,11 @@ kubectl apply -f 02-postgresql-secret.yaml -n alpha
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 data:
-  POSTGRES_DB: postgresdb
-  POSTGRES_USER: postgresadmin
-kind: ConfigMap
+  POSTGRES_PASSWORD: YWRtaW4xMjM=
+kind: Secret
 metadata:
   creationTimestamp: null
-  name: postgresql-configmap-nopass
+  name: postgresql-secret
   namespace: alpha
 EOF
 ```
