@@ -26,8 +26,11 @@ Error: Database is uninitialized and superuser password is not specified.
 
 CHECK
 `kubectl get pod postgresql -n alpha && echo "done"`{{execute}}
+
 `kubectl get pod postgresql -n alpha -o yaml |grep " containerPort: 5432" && echo "done"`{{execute}}
+
 `kubectl get pod postgresql -n alpha -o yaml  |grep 'image: postgres:12.4' && echo "done"`{{execute}}
+
 CHECK
 
 Now we have to set database configuration values
@@ -53,9 +56,13 @@ POSTGRES_PASSWORD: admin123
 
 
 CHECK
+
 `kubectl get pod postgresql-env -n alpha |grep Running && echo "done"`{{execute}}
+
 `kubectl get pod postgresql-env -n alpha -o yaml |grep "containerPort: 5432"&& echo "done"`{{execute}}
+
 `kubectl get pod postgresql-env -n alpha -o yaml  |grep 'image: postgres:12.4'&& echo "done"`{{execute}}
+
 CHECK
 
 
@@ -68,9 +75,13 @@ POSTGRES_PASSWORD: admin123
 
 CHECK
 `kubectl get cm postgresql-configmap -n alpha && echo "done"`{{execute}}
+
 `kubectl get cm postgresql-configmap -n alpha -o yaml | grep "POSTGRES_DB: postgresdb" && echo "done"`{{execute}}
+
 `kubectl get cm postgresql-configmap -n alpha -o yaml | grep "POSTGRES_USER: postgresadmin" && echo "done"`{{execute}}
+
 `kubectl get cm postgresql-configmap -n alpha -o yaml | grep "POSTGRES_PASSWORD: admin123" && echo "done"`{{execute}}
+
 CHECK
 
 
@@ -86,8 +97,11 @@ use:
 `kubectl explain pod.spec.containers.envFrom`{{execute}}
 
 CHECK
+
 `kubectl get pod postgresql-cm -n alpha | grep Running && echo "done"`{{execute}}
+
 `kubectl get pod postgresql-cm -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-cm && echo "done"`{{execute}}
+
 CHECK
 
 **5.Create a configmap named postgresql-configmap-nopass with following content**
@@ -97,9 +111,13 @@ POSTGRES_USER: postgresadmin
 
 
 CHECK
+
 `kubectl get cm postgresql-configmap-nopass -n alpha && echo "done"`{{execute}}
+
 `kubectl get cm postgresql-configmap-nopass -n alpha -o yaml | grep "POSTGRES_DB: postgresdb" && echo "done"`{{execute}}
+
 `kubectl get cm postgresql-configmap-nopass -n alpha -o yaml | grep "POSTGRES_USER: postgresadmin" && echo "done"`{{execute}}
+
 CHECK
 
 
@@ -108,8 +126,11 @@ CHECK
 POSTGRES_PASSWORD: admin123
 
 CHECK
+
 `kubectl get secret postgresql-secret -n alpha && echo "done"`{{execute}}
+
 `kubectl get secret postgresql-secret -n alpha -o yaml | grep POSTGRES_PASSWORD: && echo "done"`{{execute}}
+
 CHECK
 
 **7.Create a pod named postgresql-cm-secret using image postgres:12.4, on port 5432.**
@@ -120,16 +141,22 @@ and
 secret postgresql-secret
 
 CHECK
+
 `kubectl get pod postgresql-cm-secret -n alpha | grep Running && echo "done"`{{execute}}
+
 `kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-configmap-nopass && echo "done"`{{execute}}
+
 `kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret && echo "done"`{{execute}}
+
 CHECK
 
 
 **8.Create a service as ClusterIP to expose pod postgresql-cm-secret, named as postgresql-webservice**
 
 CHECK
+
 `kubectl get svc postgresql-webservice -n alpha |grep 5432 && echo "done" `{{execute}}
+
 CHECK
 
 `kubectl get pod,cm,secret,svc,ep -n alpha`{{execute}}

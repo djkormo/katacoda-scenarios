@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 kubectl get pod postgresql -n alpha -o yaml |grep " containerPort: 5432" \
   && kubectl get pod postgresql -n alpha -o yaml  |grep 'image: postgres:12.4' \
   && kubectl get pod postgresql-env -n alpha |grep Running \
@@ -18,4 +16,4 @@ kubectl get pod postgresql -n alpha -o yaml |grep " containerPort: 5432" \
   && kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret \
   && kubectl get svc postgresql-webservice -n alpha |grep 5432 && echo "done" > /var/log/02-check.log
 
-echo "done"
+cat 02-check.log  | grep "done" && echo "done"
