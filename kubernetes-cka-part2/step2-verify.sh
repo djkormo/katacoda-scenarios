@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-
+# #!/usr/bin/env bash
 #kubectl get pod postgresql -n alpha -o yaml |grep " containerPort: 5432" \
 #  && kubectl get pod postgresql -n alpha -o yaml  |grep 'image: postgres:12.4' \
 #  && kubectl get pod postgresql-env -n alpha |grep Running \
@@ -13,8 +12,9 @@
 #  && kubectl get cm postgresql-configmap-nopass -n alpha -o yaml | grep "POSTGRES_DB: postgresdb" \
 #  && kubectl get cm postgresql-configmap-nopass -n alpha -o yaml | grep "POSTGRES_USER: postgresadmin" \
 #  && kubectl get secret postgresql-secret -n alpha -o yaml | grep POSTGRES_PASSWORD: \
-kubectl get pod postgresql-cm-secret -n alpha | grep Running \
-  && kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-configmap-nopass \
-  && kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret \
-  && kubectl get svc postgresql-webservice -n alpha |grep 5432 && echo "done"
+#kubectl get pod postgresql-cm-secret -n alpha | grep Running \
+#  && kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep configMapRef -A1 | grep postgresql-configmap-nopass \
+#  && kubectl get pod postgresql-cm-secret -n alpha -o yaml |grep secretRef: -A1| grep postgresql-secret \
+#  && kubectl get svc postgresql-webservice -n alpha |grep 5432 && echo "done"
 
+echo "done"
