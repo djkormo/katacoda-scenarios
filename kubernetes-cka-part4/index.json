@@ -16,7 +16,6 @@
       {
         "title": "Troubleshooting 2",
         "text": "step2.md",
-        "verify": "step2-verify.sh",
         "background": "step2-background.sh",
         "foreground": "step2-foreground.sh",
         "answer": "step2-answer.md"
