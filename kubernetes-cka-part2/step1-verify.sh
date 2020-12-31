@@ -3,4 +3,4 @@ kubectl get pod web -n alpha |grep Running \
   && kubectl get svc webservice -n alpha |grep 80 \
   && kubectl get svc webservice -n alpha |grep 443 &&  echo "done"> /var/log/01-check.log
 
-cat 01-check.log  | grep "done" && echo "done"
+cat /var/log/01-check.log  | grep "done" && echo "done"
