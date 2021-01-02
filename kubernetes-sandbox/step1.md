@@ -1,6 +1,6 @@
 
 
-**When all nodes are ready and version v1.19.0** 
+**When all nodes are ready and version v1.19.x** 
 
 <pre>
 NAME     STATUS   ROLES    AGE   VERSION
