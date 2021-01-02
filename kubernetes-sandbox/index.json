@@ -1,0 +1,71 @@
+{
+  "title": "Kubernetes Sandbox",
+  "description": "Kubernetes Sandbox",
+  "difficulty": "intermediate",
+  "time": "45-60 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Creating pods and services",
+        "text": "step1.md",
+        "verify": "step1-verify.sh",
+        "background": "step1-background.sh",
+        "foreground": "step1-foreground.sh",
+        "answer": "step1-answer.md"
+      }
+    ],
+    "intro": {
+      "text": "000.intro.md",
+      "credits": "https://kubernetes.io/docs/home/",
+      "courseData": "install.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": ".bashrc",
+          "target": "/root/"
+        },
+        {
+          "file": "install-krew.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        }
+      ],
+      "host02": [
+        {
+          "file": "wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": ".bashrc",
+          "target": "/root/"
+        }
+      ]
+    }
+  },
+
+  "environment": {
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Kubernetes.io",
+        "href": "https://kubernetes.io/docs/home/"
+      }
+    ],
+    "hideintro": false,
+    "uilayout": "terminal",
+    "uimessage1": "\u001b[32mSetting up your Kubernetes playground...\u001b[m\r\n"
+  },
+  "backend": {
+    "imageid": "kubernetes-cluster-running:1.18"
+  }
+}
