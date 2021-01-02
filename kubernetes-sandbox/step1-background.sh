@@ -49,3 +49,6 @@ echo "done" >> /opt/.krewinstall
 git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
 kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 
+# Adding storage class
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part5/step1/storage-class.yaml
+
