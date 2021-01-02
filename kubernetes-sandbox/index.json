@@ -6,7 +6,7 @@
   "details": {
     "steps": [
       {
-        "title": "Creating pods and services",
+        "title": "Kubectl at your hands",
         "text": "step1.md",
         "verify": "step1-verify.sh",
         "background": "step1-background.sh",
