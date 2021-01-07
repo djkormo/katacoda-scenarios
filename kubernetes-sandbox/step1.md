@@ -32,5 +32,37 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
 
+Sample application is installed
+
+
+`kubectl get all,ep`{{execute}}
+
+https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
+
+https://learnk8s.io/blog/kubectl-productivity
 
 Have fun !
+
+Optionally you can configure bash completion
+
+`apt-get install bash-completion`{{execute}}
+
+`source /usr/share/bash-completion/bash_completion`{{execute}}
+
+`echo 'source <(kubectl completion bash)' >>~/.bashrc`{{execute}}
+
+`echo 'alias k=kubectl' >>~/.bashrc`{{execute}}
+
+`echo 'complete -F __start_kubectl k' >>~/.bashrc`{{execute}}
+
+Reload shell
+
+`source ~/.bashrc`{{execute}}
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+
+
+
+
+
