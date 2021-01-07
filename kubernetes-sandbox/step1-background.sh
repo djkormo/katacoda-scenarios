@@ -65,6 +65,8 @@ kubectl apply -f https://k8s.io/examples/application/guestbook/redis-slave-servi
 
 kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-deployment.yaml
 
-kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-service.yaml
+#kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-service.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/frontend-service.yaml
 
 
