@@ -59,7 +59,8 @@
       {
         "name": "Kubernetes.io",
         "href": "https://kubernetes.io/docs/home/"
-      }
+      },
+      {"name": "Application on 30001 port", "port": 30001}
     ],
     "hideintro": false,
     "uilayout": "terminal",

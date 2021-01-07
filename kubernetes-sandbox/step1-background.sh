@@ -52,3 +52,19 @@ kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 # Adding storage class
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part5/step1/storage-class.yaml
 
+
+## installing guestbook application 
+
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-deployment.yaml
+
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-service.yaml
+
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-slave-deployment.yaml
+
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-slave-service.yaml
+
+kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-deployment.yaml
+
+kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-service.yaml
+
+
