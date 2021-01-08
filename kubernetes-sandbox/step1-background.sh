@@ -70,3 +70,11 @@ kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-deployme
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/frontend-service.yaml
 
 
+pod=$(kubectl get pod -n default --selector=name=weave-scope-app -o jsonpath={.items..metadata.name})
+
+kubectl expose deploy/frontend -n default --name=external-in-katacoda  --external-ip=[[HOST_IP]] --port=8080 --target-port=8080
+
+
+
+
+
