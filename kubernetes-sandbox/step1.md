@@ -42,8 +42,10 @@ https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
 Expose app
 
-`kubectl expose deploy/frontend -n default --name=external-in-katacoda  --external-ip=[[HOST_IP]] --port=8080 --target-port=8080`{{execute}}
+`kubectl expose deploy/frontend -n default --name=frontend  --external-ip=[[HOST_IP]] --port=8080 --target-port=8080`{{execute}}
 
+
+Learn more and more
 
 https://learnk8s.io/blog/kubectl-productivity
 
