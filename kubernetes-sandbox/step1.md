@@ -32,19 +32,21 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute HOST1}}
 
-Sample application is installed
-
-
-`kubectl get all,ep`{{execute}}
+Sample application
 
 https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
-
-Expose app
-
-`kubectl expose deploy/frontend -n default --name=frontend  --external-ip=[[HOST_IP]] --port=8080 --target-port=8080`{{execute}}
+is installed in **default** namespace
 
 
+Check all objects 
+
+`kubectl get all,ep`{{execute}}
+
+
+Check events 
+
+`kubectl get events -n default --sort-by=.metadata.creationTimestamp`{{execute}}
 Learn more and more
 
 https://learnk8s.io/blog/kubectl-productivity
