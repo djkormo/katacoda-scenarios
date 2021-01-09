@@ -12,13 +12,13 @@ export PS1="$(free_time) \[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[
 }
 PROMPT_COMMAND=prompt
 
-#sleep 10;
+
 source ~/.bashrc
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 clear
 
-sleep 10; bash /usr/local/bin/wait.sh
+sleep 1; bash /usr/local/bin/wait.sh
 
 clear
 
