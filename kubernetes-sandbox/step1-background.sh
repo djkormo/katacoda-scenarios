@@ -65,12 +65,15 @@ kubectl apply -f https://k8s.io/examples/application/guestbook/redis-slave-servi
 
 kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-deployment.yaml
 
-#kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-service.yaml
+kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-service.yaml
 
 #kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step2/frontend-service.yaml
 
-kubectl expose deploy/frontend -n default --name=frontend  --external-ip=[[HOST_IP]] --port=8080 --target-port=8080
+kubectl patch svc/frontend --patch \
+  '{"spec": { "type": "NodePort", "ports": [ { "nodePort": 30001, "port": 80, "protocol": "TCP", "targetPort": 80 } ] } }'
 
+
+#kubectl expose deploy/frontend -n default --name=frontend  --external-ip=[[HOST_IP]] --port=8080 --target-port=8080
 
 
 

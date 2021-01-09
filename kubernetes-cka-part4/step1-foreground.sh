@@ -1,5 +1,5 @@
 echo off
-sleep 10; bash /usr/local/bin/wait.sh
+sleep 1; bash /usr/local/bin/wait.sh
 
 free_time()
 {
@@ -17,7 +17,17 @@ echo "Almost ready!!!"
 sleep 10;
 source ~/.bashrc
 
+echo "start" >> /opt/.krewinstall
+
+install-krew.sh >> /opt/.krewinstall
+
+export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+
+echo "done" >> /opt/.krewinstall
+
+
 clear
 
-watch kubectl get nodes
+kubectl wait node --all --for=condition=Ready --timeout=3m
 
+watch kubectl get nodes 
