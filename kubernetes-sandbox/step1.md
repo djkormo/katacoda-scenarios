@@ -55,6 +55,9 @@ Have fun !
 
 Optionally you can configure bash completion
 
+
+`cat ~/.bashrc`{{execute}}
+
 `apt-get install bash-completion`{{execute}}
 
 `source /usr/share/bash-completion/bash_completion`{{execute}}
