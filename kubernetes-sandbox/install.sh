@@ -59,6 +59,12 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
 kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 
+
+# installing nfs server
+
+kubectl create ns nfs
+k -n nfs apply -f https://gist.github.com/matthewpalmer/0f213028473546b14fd75b7ebf801115/raw/2c557c70696ca4406db53c955471de1d2d808e9a/nfs-server.yaml 
+
 ## installing guestbook application 
 
 kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-deployment.yaml
