@@ -63,7 +63,8 @@ kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 # installing nfs server
 
 kubectl create ns nfs
-k -n nfs apply -f https://gist.github.com/matthewpalmer/0f213028473546b14fd75b7ebf801115/raw/2c557c70696ca4406db53c955471de1d2d808e9a/nfs-server.yaml 
+
+k -n nfs apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-sandbox/nfs-server.yaml
 
 ## installing guestbook application 
 
