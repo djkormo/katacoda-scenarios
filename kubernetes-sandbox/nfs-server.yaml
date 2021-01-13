@@ -39,10 +39,14 @@ metadata:
 spec:
   containers:
     - name: nfs-server-container
-      image: cpuguy83/nfs-server
+      #image: cpuguy83/nfs-server
+      image: itsthenetwork/nfs-server-alpine
       securityContext:
         privileged: true  
       args:
         # Pass the paths to share to the Docker image
         - /exports
+      env:
+      - name: SHARED_DIRECTORY
+        value: /nfsshare  
   nodeName: controlplane    
