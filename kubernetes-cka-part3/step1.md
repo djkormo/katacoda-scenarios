@@ -15,7 +15,7 @@ click ```clear```{{execute interrupt}} to begin
 
 Show list of cluster nodes
 
-`kubectl get nodes`{{execute HOST1}}
+`kubectl get nodes`{{execute}}
 
 Here we have cluster with 1.19 version
 
@@ -26,7 +26,7 @@ Show all namespaces
 
 List all of objects in default namespace
 
-`kubectl get all -o wide`{{execute HOST1}}
+`kubectl get all -o wide`{{execute}}
 
 
 **Optional**

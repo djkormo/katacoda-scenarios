@@ -52,6 +52,6 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 kubectl create ns yaobank 
 kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part3/step1/yaobank.yaml -n yaobank
 
-kubectl expose deploy/summary -n yaobank --name=summary-svc --external-ip=[[HOST_IP]] --port=8080 --target-port=80
+kubectl expose deploy/customer -n yaobank --name=customer-svc --external-ip=[[HOST_IP]] --port=8080 --target-port=80
 
 
