@@ -16,12 +16,11 @@ It means that you have only 58 minutes to finish the lab!!
 If you need a cluster available.. let's make our hands go to work...
 
 
-
 The Kubernetes nodes are not configured. If you want to configure the nodes then you'd need to run kubeadm which has been set and configured. 
 
 Let's download images 
 
-`kubeadm config images pull --kubernetes-version $(kubeadm version -o short)`{{executes}}
+`kubeadm config images pull --kubernetes-version $(kubeadm version -o short)`{{execute}}
 
 For example, for following command will initialise the master with the latest version installed.
 
