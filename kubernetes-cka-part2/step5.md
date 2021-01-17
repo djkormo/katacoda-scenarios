@@ -44,7 +44,6 @@ CHECK
 Check labels on nodes. 
 
 
-
 CHECK
 
 `kubectl get pod nginx-pod-worker-selector -o yaml -n beta |grep "containerPort: 80" && echo "done"`{{execute}} 
