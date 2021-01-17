@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+
 
 #kubectl get pod nginx-pod-request-limit -n alpha -o yaml | grep "image: nginx:1.18.0" \
 #  && kubectl get deploy nginx-deployment-request-limit -n alpha -o yaml | grep "image: nginx:1.18.0" \
@@ -9,5 +9,6 @@
 #  && kubectl get deploy nginx-deployment-request-limit -n alpha -o yaml |grep "requests:" -A2 |grep "memory: 500Mi" \
 #  && kubectl get service nginx-service-request-limit -n alpha -o yaml |grep "port: 80" \
 #  && echo "done" 
-echo "done"
-  
+echo "done" /var/log/05-check.log
+
+cat  /var/log/05-check.log  | grep "done" && echo "done"

@@ -16,6 +16,7 @@
       {
         "title": "Creating deployments",
         "text": "step2.md",
+        "verify": "step2-verify.sh",
         "foreground": "step2-foreground.sh",
         "answer": "step2-answer.md"
       },

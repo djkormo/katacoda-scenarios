@@ -3,7 +3,6 @@
 ```bash
 kubectl run web --image=nginx:1.11.9-alpine --port 80  -o yaml --dry-run=client > 01-web-pod.yaml
 ```
-
 edit
 
 ```
@@ -674,7 +673,6 @@ node01         Ready    <none>   2m51s   v1.19.0   beta.kubernetes.io/arch=amd64
 All objects should by deployed into **beta** namespace.
 
 Create **beta** namespace if needed
-
 
 **1.Create a pod named nginx-pod-master-name using image nginx:1.18.0 on port 80. Deploy pod only on master node. Do not use taints and tolerations. Use node name**
 
