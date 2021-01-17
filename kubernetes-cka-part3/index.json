@@ -72,7 +72,8 @@
         "href": "https://kubernetes.io/docs/home/"
       },
 
-      {"name": "WeaveScope on 4040 port", "port": 4040}
+      {"name": "WeaveScope on 4040 port", "port": 4040},
+      {"name": "Yaobank on 8080 port", "port": 8080}
     ],
   
     "hideintro": false,

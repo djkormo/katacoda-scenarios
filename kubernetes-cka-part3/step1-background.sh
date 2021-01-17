@@ -45,3 +45,13 @@ kubectl expose pod $pod -n weave --name=weave-svc --external-ip=[[HOST_IP]] --po
 git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
 kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part3/step1/weavescope-service.yaml -n weave
+
+
+## Installing yaobank sample app 
+kubectl create ns yaobank 
+kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part3/step1/yaobank.yaml -n yaobank
+
+kubectl expose deploy/customer -n yaobank --name=customer-svc --external-ip=[[HOST_IP]] --port=8080 --target-port=80
+
+
