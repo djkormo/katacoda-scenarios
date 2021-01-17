@@ -21,11 +21,11 @@ The Kubernetes nodes are not configured. If you want to configure the nodes then
 
 Let's download images 
 
-`kubeadm config images pull`{{executes}}
+`kubeadm config images pull --kubernetes-version $(kubeadm version -o short)`{{executes}}
 
 For example, for following command will initialise the master with the latest version installed.
 
-`kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16`{{execute HOST1}}
+`kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16`{{execute}}
 
 Move cluster config file to your home directory.
 
