@@ -14,6 +14,3 @@ kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
 
 sleep 10
-
-
-sleep 10
