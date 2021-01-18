@@ -478,6 +478,7 @@ metadata:
   labels:
     app: nginx-deployment
   name: nginx-service
+  namespace: alpha
 spec:
   ports:
   - port: 80
@@ -531,6 +532,33 @@ kubectl run nginx-pod-limit -n alpha --image=nginx:1.18.0 --limits="memory=700Mi
 kubectl apply -f 04-pod-nginx-limit.yaml -n alpha
 ```
 
+The whole file
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-pod-limit
+  name: nginx-pod-limit
+  namespace: alpha
+spec:
+  containers:
+  - image: nginx:1.18.0
+    name: nginx-pod-limit
+    ports:
+    - containerPort: 80
+    resources:
+      limits:
+        cpu: 200m
+        memory: 700Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+EOF
+```
 **2.Create a pod named nginx-pod-request using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request**
 
 ```
@@ -539,15 +567,77 @@ kubectl run nginx-pod-request -n alpha --image=nginx:1.18.0 --requests="memory=5
 kubectl apply -f 04-pod-nginx-request.yaml -n alpha
 ```
 
+The whole file
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-pod-request
+  name: nginx-pod-request
+  namespace: alpha
+spec:
+  containers:
+  - image: nginx:1.18.0
+    name: nginx-pod-request
+    ports:
+    - containerPort: 80
+    resources:
+      requests:
+        cpu: 100m
+        memory: 500Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+EOF
+```
+
+
+
 **3.Create a pod named nginx-pod-request-limit using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
 
 ```
 kubectl run nginx-pod-request-limit -n alpha --image=nginx:1.18.0 --port=80 \
   --requests="memory=500Mi,cpu=100m"  --limits="memory=700Mi,cpu=200m" \
-  -o yaml --dry-run=client >04-pod-nginx-request-limit.yaml
+  -o yaml --dry-run=client >04-pod-nginx-request-limit.yaml --port 80
 
 kubectl apply -f 04-pod-nginx-request-limit.yaml -n alpha
 ```
+
+The whole file
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-pod-request-limit
+  name: nginx-pod-request-limit
+  namespace: alpha
+spec:
+  containers:
+  - image: nginx:1.18.0
+    name: nginx-pod-request-limit
+    ports:
+    - containerPort: 80
+    resources:
+      limits:
+        cpu: 200m
+        memory: 700Mi
+      requests:
+        cpu: 100m
+        memory: 500Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+EOF
+```
+
 
 **4.Create deployment  nginx-deployment-request-limit  using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit**
 
@@ -588,6 +678,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     app: nginx-deployment-request-limit
   name: nginx-deployment-request-limit
@@ -595,27 +686,28 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:      
-    app: nginx-deployment-request-limit
+    matchLabels:
+      app: nginx-deployment-request-limit
   strategy: {}
   template:
-    metadata:      
-    creationTimestamp: null
+    metadata:
+      creationTimestamp: null
       labels:
         app: nginx-deployment-request-limit
-    spec:      
+    spec:
       containers:
       - image: nginx:1.18.0
         name: nginx
-        ports:        
+        ports:
         - containerPort: 80
         resources:
           limits:
-            memory: 700Mi
             cpu: 200m
+            memory: 700Mi
           requests:
-            memory: 500Mi
-            cpu: 100m
+             cpu: 100m
+             memory: 500Mi
+status: {}
 EOF            
 ```
 
