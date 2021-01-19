@@ -47,6 +47,30 @@ Check all objects
 Check events 
 
 `kubectl get events -n default --sort-by=.metadata.creationTimestamp`{{execute}}
+
+
+Look for CNI - here we have calico
+
+`kubectl get pod -n kube-system`{{execute}}
+<pre>
+NAME                                       READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-6b8f6f78dc-2f2z4   1/1     Running   0          4m26s
+calico-node-kd698                          1/1     Running   0          4m25s
+calico-node-m4zl6                          1/1     Running   0          4m26s
+coredns-f9fd979d6-9495l                    1/1     Running   0          4m25s
+coredns-f9fd979d6-mgb6h                    1/1     Running   0          4m26s
+etcd-controlplane                          1/1     Running   0          5m18s
+katacoda-cloud-provider-58f89f7d9-fdbrr    1/1     Running   4          7m42s
+kube-apiserver-controlplane                1/1     Running   0          5m10s
+kube-controller-manager-controlplane       1/1     Running   0          5m1s
+kube-keepalived-vip-qz98w                  1/1     Running   0          6m27s
+kube-proxy-dlqv4                           1/1     Running   0          4m9s
+kube-proxy-mq6d9                           1/1     Running   0          4m15s
+kube-scheduler-controlplane                1/1     Running   0          4m59s
+metrics-server-85f8dd85fd-f762r            1/1     Running   0          6m27s
+</pre>
+
+
 Learn more and more
 
 https://learnk8s.io/blog/kubectl-productivity
