@@ -69,8 +69,9 @@ kubectl delete ds/kube-flannel-ds-amd64 -n kube-system
 
 # install calico
 
-kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml`
+kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 
+sleep 20
 
 echo "done" >> /opt/.calico
 date >> /opt/.calico
