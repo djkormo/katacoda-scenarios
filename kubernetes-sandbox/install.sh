@@ -39,7 +39,6 @@ ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.19.0-00 kubel
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
 
-
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
 
@@ -59,6 +58,22 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
 kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 
+
+
+# unistal flannel
+#kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-old.yaml
+
+# workaround for ds
+kubectl delete ds/kube-flannel-ds-amd64 -n kube-system
+
+# install calico
+
+kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml`
+
+
+echo "done" >> /opt/.calico
+date >> /opt/.calico
 
 # installing nfs server
 

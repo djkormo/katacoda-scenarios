@@ -42,8 +42,8 @@ showProgress()
   waitForCompletion /opt/.clusterupgraded
   echo -n "Upgrading nodes"
   waitForCompletion /opt/.nodeupgraded
-  #echo -n "Installing Tekton CLI"
-  #waitForCompletion /opt/.tkninstalled
+  echo -n "Installing Calico CNI"
+  waitForCompletion /opt/.calico
   #echo -n "Waiting for pods to be ready"
   #waitForCompletion /opt/.podsready
   #echo -n "Configuring ingress"
