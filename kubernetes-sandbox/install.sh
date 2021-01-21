@@ -59,17 +59,18 @@ git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background
 kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 
 
-
 # unistal flannel
 #kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-old.yaml
+#kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-old.yaml
+
+kubectl delete -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-sandbox/flannel-kube.yaml >> /var/log/step1-background.log
 
 # workaround for ds
-kubectl delete ds/kube-flannel-ds-amd64 -n kube-system
+# kubectl delete ds/kube-flannel-ds-amd64 -n kube-system 
 
 # install calico
 
-kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml >> /var/log/step1-background.log
 
 sleep 20
 
