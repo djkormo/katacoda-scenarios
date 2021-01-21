@@ -39,6 +39,8 @@ https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 is installed in **default** namespace
 
 
+![Guestbook architecture](./assets/guestbook-architecture.png)
+
 Check all objects 
 
 `kubectl get all,ep`{{execute}}
