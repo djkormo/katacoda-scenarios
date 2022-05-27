@@ -16,7 +16,7 @@ Show list of cluster nodes
 
 `kubectl get nodes`{{execute}}
 
-Here we have cluster with 1.19 version
+Here we have cluster with 1.24 version
 
 Show all namespaces
 
