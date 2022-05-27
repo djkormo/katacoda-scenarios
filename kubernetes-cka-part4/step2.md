@@ -24,4 +24,8 @@ CHECK
 CHECK
 
 
+[ACCESS PORTS]({{TRAFFIC_SELECTOR}})
+
+[ACCESS GUESTBOOK]({{TRAFFIC_HOST1_30001}})
+
 **To move to the next step make sure to have all checks with "done"**
