@@ -20,25 +20,25 @@ echo "done" >> /opt/.clusterupgraded
 date >> /opt/.clusterupgraded
 
 echo "Upgrading node"
-ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.24.0-00 kubelet=1.24.0-00 -y && systemctl restart kubelet"  >> /var/log/install
+#ssh root@[[HOST2_IP]] "apt-get update && apt-get install kubeadm=1.24.0-00 kubelet=1.24.0-00 -y && systemctl restart kubelet"  >> /var/log/install
+
+#echo "done" >> /opt/.nodeupgraded
+#date >> /opt/.nodeupgraded
+
 
 echo "done" >> /opt/.nodeupgraded
 date >> /opt/.nodeupgraded
 
-
-echo "done" >> /opt/.nodeupgraded
-date >> /opt/.nodeupgraded
-
-(
-  set -x; cd "$(mktemp -d)" &&
-  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
-  tar zxvf krew.tar.gz &&
-  KREW=./krew-"$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed -e 's/x86_64/amd64/' -e 's/arm.*$/arm/')" &&
-  "$KREW" install krew
-)
+#(
+#  set -x; cd "$(mktemp -d)" &&
+#  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
+#  tar zxvf krew.tar.gz &&
+#  KREW=./krew-"$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed -e 's/x86_64/amd64/' -e 's/arm.*$/arm/')" &&
+#  "$KREW" install krew
+#)
 
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+#export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 kubectl create ns alpha
 
