@@ -4,13 +4,13 @@ apt-get update
 
 # Start Kubernetes
 echo "Starting cluster"
-launch.sh
+#launch.sh
 echo "done" >> /opt/.clusterstarted
 
 
 echo "start" >> /opt/.krewinstall
-install-krew.sh >> /opt/.krewinstall
-export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
+#install-krew.sh >> /opt/.krewinstall
+#export PATH="${PATH}:${HOME}/.krew/bin" >> /opt/.krewinstall
 echo "done" >> /opt/.krewinstall
 
 
@@ -26,17 +26,17 @@ kubectl create ns alpha
 kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-master-deployment.yaml -n alpha 
+#kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-master-deployment.yaml -n alpha 
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-master-service.yaml -n alpha 
+#kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-master-service.yaml -n alpha 
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-slave-deployment.yaml -n alpha 
+#kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-slave-deployment.yaml -n alpha 
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-slave-service.yaml -n alpha 
+#kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/redis-slave-service.yaml -n alpha 
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-deployment.yaml -n alpha 
+#kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-deployment.yaml -n alpha 
 
-kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-service.yaml -n alpha 
+#kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/master/kubernetes-cka-part4/step1/frontend-service.yaml -n alpha 
 
 
 ## Installing metrics server 
