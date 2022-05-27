@@ -21,7 +21,7 @@ kubectl create ns alpha
 
 ## Installing metrics server 
 
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
+#kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 
 kubectl delete deploy --all -n alpha
 kubectl delete svc --all -n alpha
@@ -40,7 +40,7 @@ kubectl apply -f https://raw.githubusercontent.com/djkormo/katacoda-scenarios/ma
 
 
 ## Installing metrics server 
-git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
-kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
+#git clone https://github.com/vocon-it/metrics-server >>/var/log/step1-background.log
+#kubectl apply -f ./metrics-server/deploy/1.8+/ >>/var/log/step1-background.log
 
 
