@@ -8,11 +8,11 @@ echo "Starting cluster"
 echo "done" >> /opt/.clusterstarted
 
 
-apt-get update >> /var/log/install
-apt-get install kubeadm=1.24.0-00 kubectl=1.24.0-00 kubelet=1.24.0-00 -y  >> /var/log/install
-systemctl restart kubelet  >> /var/log/install
-kubeadm upgrade apply v1.24.0 -y  >> /var/log/install
-systemctl restart kubelet  >> /var/log/install
+#apt-get update >> /var/log/install
+#apt-get install kubeadm=1.24.0-00 kubectl=1.24.0-00 kubelet=1.24.0-00 -y  >> /var/log/install
+#systemctl restart kubelet  >> /var/log/install
+#kubeadm upgrade apply v1.24.0 -y  >> /var/log/install
+#systemctl restart kubelet  >> /var/log/install
 
 echo "Upgrading cluster"
 #upgrade.sh
