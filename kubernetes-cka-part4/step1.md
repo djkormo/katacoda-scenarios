@@ -1,11 +1,11 @@
 # Troubleshooting exercises
 
-**When all nodes are ready and version is v1.19.x** 
+**When all nodes are ready and version is v1.24.x** 
 
 <pre>
 NAME     STATUS   ROLES    AGE   VERSION
-master   Ready    master   3m   v1.19.0
-node01   Ready    worker   3m   v1.19.0
+master   Ready    master   3m   v1.24.0
+node01   Ready    worker   3m   v1.24.0
 </pre>
 
 click ```clear```{{execute interrupt}} to begin
