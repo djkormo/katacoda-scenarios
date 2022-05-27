@@ -4,7 +4,7 @@ apt-get update
 
 # Start Kubernetes
 echo "Starting cluster"
-launch.sh
+#launch.sh
 echo "done" >> /opt/.clusterstarted
 
 
@@ -15,7 +15,7 @@ kubeadm upgrade apply v1.24.0 -y  >> /var/log/install
 systemctl restart kubelet  >> /var/log/install
 
 echo "Upgrading cluster"
-upgrade.sh
+#upgrade.sh
 echo "done" >> /opt/.clusterupgraded
 date >> /opt/.clusterupgraded
 
@@ -40,7 +40,9 @@ date >> /opt/.nodeupgraded
 
 #export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-kubectl create ns alpha
+#kubectl create ns alpha
+
+kubectl create namespace alpha --dry-run=client -o yaml | kubectl apply -f -
 
 #kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/wordpress/mysql-deployment.yaml -n alpha 
 
