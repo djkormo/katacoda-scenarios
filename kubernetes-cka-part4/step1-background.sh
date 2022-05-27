@@ -14,7 +14,9 @@ echo "start" >> /opt/.krewinstall
 echo "done" >> /opt/.krewinstall
 
 
-kubectl create ns alpha
+#kubectl create ns alpha
+kubectl create namespace alpha --dry-run=client -o yaml | kubectl apply -f -
+
 
 # based on 
 # https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
