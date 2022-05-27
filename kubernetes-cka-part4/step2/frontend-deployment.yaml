@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: guestbook
       tier: frontend
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -21,8 +21,8 @@ spec:
         image: gcr.io/google-samples/gb-frontend:v4
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 50m
+            memory: 50Mi
         env:
         - name: GET_HOSTS_FROM
           value: dns
