@@ -23,7 +23,7 @@ Update packages
 
 Install specific version of  kubeadm, kubelet and kubectl
 
-`apt-get install kubeadm=1.19.0-00 kubectl=1.19.0-00 kubelet=1.19.0-00 -y`{{execute HOST1}}
+`apt-get install kubeadm=1.24.0-00 kubectl=1.24.0-00 kubelet=1.24.0-00 -y`{{execute HOST1}}
 
 What upgrade plan is possible ?
 
@@ -31,13 +31,13 @@ What upgrade plan is possible ?
 
 Let's upgrade (remember to confirm by pressing y key) 
 
-`kubeadm upgrade apply v1.19.0`{{execute HOST1}}
+`kubeadm upgrade apply v1.24.0`{{execute HOST1}}
 
 Let's see the cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
-Now we have master node with 1.19 version and worker node with 1.18
+Now we have master node with 1.24 version and worker node with 1.23
 
 **Look what deployment and pods are on our cluster. Preserve them**
 
@@ -115,7 +115,7 @@ On node01 node
 
 `apt-get update`{{execute}}
 
-`apt-get install kubelet=1.19.0-00 -y `{{execute}}
+`apt-get install kubelet=1.14.0-00 -y `{{execute}}
 
 Now we should restart kubelet
 `systemctl restart kubelet`{{execute}}
@@ -136,12 +136,12 @@ What we have in alone namespace
 
 CHECK
 
-`kubectl get nodes | grep 1.19.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+`kubectl get nodes | grep 1.24.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 `kubectl get pod alone-pod web-server -n alone | grep Running |wc -l | grep 2 && echo "done"`{{execute}}
 
 CHECK
 
-To continue you should have 1.19 Kubernetes cluster with two nodes (ready)
+To continue you should have 1.24 Kubernetes cluster with two nodes (ready)
 
 **To move to the next step make sure to have all checks with "done"**

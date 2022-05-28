@@ -91,10 +91,10 @@ Example objects in default namespace
 
 CHECK
 
-`kubectl get nodes | grep 1.18.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+`kubectl get nodes | grep 1.23.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 CHECK
 
-To continue you should have 1.18 Kubernetes cluster with two nodes (ready)
+To continue you should have 1.23 Kubernetes cluster with two nodes (ready)
 
 **To move to the next step make sure to have all checks with "done"**
