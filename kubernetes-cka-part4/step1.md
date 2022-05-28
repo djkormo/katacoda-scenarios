@@ -8,8 +8,7 @@ master   Ready    master   3m   v1.24.0
 node01   Ready    worker   3m   v1.24.0
 </pre>
 
-click ```clear```{{execute interrupt}} to begin
-
+click Ctrl+C to begin
 
 
 Show list of cluster nodes
@@ -44,10 +43,8 @@ CHECK
 `kubectl get svc frontend -n alpha -o yaml |grep "nodePort: 30001" &&  echo "done"`{{execute}}
 CHECK
 
+[ACCESS GUESTBOOK_ON_PORT_30001]({{TRAFFIC_HOST1_30001}})
 
 [ACCESS PORTS]({{TRAFFIC_SELECTOR}})
-
-[ACCESS GUESTBOOK]({{TRAFFIC_HOST1_30001}})
-
 
 **To move to the next step make sure to have all checks with "done"**
